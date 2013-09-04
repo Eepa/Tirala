@@ -1,5 +1,5 @@
 
-package huffmancoding.huffmancoding;
+package huffmancoding.koodaaja;
 
 import huffmancoding.logiikka.Syotekerailija;
 import java.util.Scanner;

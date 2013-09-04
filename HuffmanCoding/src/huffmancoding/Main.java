@@ -1,7 +1,7 @@
 
 package huffmancoding;
 
-import huffmancoding.huffmancoding.HuffmanCoding;
+import huffmancoding.koodaaja.HuffmanCoding;
 import java.util.Scanner;
 
 /**
