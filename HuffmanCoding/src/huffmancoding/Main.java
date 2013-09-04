@@ -2,6 +2,9 @@
 package huffmancoding;
 
 import huffmancoding.koodaaja.HuffmanCoding;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Scanner;
 
 /**

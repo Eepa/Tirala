@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class HuffmanCoding {
     
     /**
-     * Lukija, joka lukee k√§ytt√§j√§n sy√∂tteet.
+     * Lukija, joka lukee k‰ytt‰j‰n syˆtteet.
      */
     
     private Scanner lukija;
@@ -20,7 +20,7 @@ public class HuffmanCoding {
     
     /**
      * Konstruktorissa luodaan uusi Huffman koodaaja.
-     * @param lukija K√§ytt√§j√§n sy√∂tteiden lukija.
+     * @param lukija K‰ytt‰j‰n syˆtteiden lukija.
      */
     
     public HuffmanCoding(Scanner lukija) {
@@ -31,7 +31,7 @@ public class HuffmanCoding {
     public void kaynnista() {
         String toiminto = this.syotekasittelija.toiminnonValinta();
         String teksti  = this.syotekasittelija.lueKayttajanSyote(toiminto);
-        
+        int[] frekvenssitaulukko = this.syotekasittelija.luoFrekvenssitaululukko(teksti);
     }
     
 }
