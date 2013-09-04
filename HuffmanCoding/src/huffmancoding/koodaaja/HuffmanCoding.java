@@ -1,7 +1,7 @@
 
 package huffmancoding.koodaaja;
 
-import huffmancoding.logiikka.Syotekerailija;
+import huffmancoding.logiikka.Syotekasittelija;
 import java.util.Scanner;
 
 /**
@@ -16,7 +16,7 @@ public class HuffmanCoding {
     
     private Scanner lukija;
     
-    private Syotekerailija syotekerailija;
+    private Syotekasittelija syotekasittelija;
     
     /**
      * Konstruktorissa luodaan uusi Huffman koodaaja.
@@ -25,11 +25,12 @@ public class HuffmanCoding {
     
     public HuffmanCoding(Scanner lukija) {
         this.lukija = lukija;
-        this.syotekerailija = new Syotekerailija(lukija);
+        this.syotekasittelija = new Syotekasittelija(lukija);
     }
 
     public void kaynnista() {
-        String teksti  = this.syotekerailija.lueKayttajanSyote();
+        String toiminto = this.syotekasittelija.toiminnonValinta();
+        String teksti  = this.syotekasittelija.lueKayttajanSyote(toiminto);
         
     }
     
