@@ -1,6 +1,7 @@
 
 package huffmancoding.koodaaja;
 
+import huffmancoding.logiikka.Pakkaaja;
 import huffmancoding.logiikka.Syotekasittelija;
 import java.util.Scanner;
 
@@ -16,6 +17,10 @@ public class HuffmanCoding {
     
     private Scanner lukija;
     
+    /**
+     * Käyttäjän antamien syötteiden käsittelijä.
+     */
+    
     private Syotekasittelija syotekasittelija;
     
     /**
@@ -27,11 +32,22 @@ public class HuffmanCoding {
         this.lukija = lukija;
         this.syotekasittelija = new Syotekasittelija(lukija);
     }
+    
+    /**
+     * Käynnistää pakkaajan tai purkajan toiminnan.
+     */
 
     public void kaynnista() {
+        
         String toiminto = this.syotekasittelija.toiminnonValinta();
-        String teksti  = this.syotekasittelija.lueKayttajanSyote(toiminto);
-        int[] frekvenssitaulukko = this.syotekasittelija.luoFrekvenssitaululukko(teksti);
+        
+        if(toiminto.equals("pakkaus")){
+            Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
+            pakkaaja.kaynnista();
+        }else {
+            return;
+        }
+                
     }
     
 }
