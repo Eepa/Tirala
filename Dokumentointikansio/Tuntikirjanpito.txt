@@ -5,3 +5,6 @@ Projektin aloittamista ja selvittelya.
 
 Ke 4.9.2013, 4h
 Projektin luominen ja koodauksen aloitus.
+
+Su 8.9.2013, 2h
+Tavujen tutkimista ja tiedostojen lukua.
