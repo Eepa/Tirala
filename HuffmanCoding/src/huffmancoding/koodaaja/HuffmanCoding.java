@@ -40,12 +40,16 @@ public class HuffmanCoding {
 
         String toiminto = this.syotekasittelija.toiminnonValinta();
 
-        
+        if (toiminto.equals("pakkaus")) {
+            Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
+            pakkaaja.kaynnistaPakkaus();
+        }
+
 
 
 //        if(toiminto.equals("pakkaus")){
 //            Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
-//            pakkaaja.kaynnista();
+//            pakkaaja.kaynnistaPakkaus();
 //        }else {
 //            return;
 //        }

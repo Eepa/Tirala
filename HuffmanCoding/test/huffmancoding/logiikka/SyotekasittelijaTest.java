@@ -29,12 +29,11 @@ public class SyotekasittelijaTest {
         assertTrue(this.syotekasittelija != null);
     }
 
-    @Test
-    public void toimiikoKayttajanSyotteenLukeminen() {
-        String teksti = this.syotekasittelija.lueKayttajanSyote("pakkaus");
-        assertEquals(teksti, "Alussa annettu 1 teksti, дц?");
-    }
-
+//    @Test
+//    public void toimiikoKayttajanSyotteenLukeminen() {
+//        String teksti = this.syotekasittelija.lueKayttajanSyote("pakkaus");
+//        assertEquals(teksti, "Alussa annettu 1 teksti, дц?");
+//    }
     @Test
     public void toimiikoToiminnonValinta() {
         this.lukija = new Scanner("pakkaus");

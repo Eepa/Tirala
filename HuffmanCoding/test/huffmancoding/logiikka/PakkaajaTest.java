@@ -1,4 +1,3 @@
-
 package huffmancoding.logiikka;
 
 import java.util.Scanner;
@@ -11,14 +10,14 @@ import static org.junit.Assert.*;
 
 /**
  * Testaa luokkaa Pakkaaja.
+ *
  * @author Eveliina
  */
 public class PakkaajaTest {
-    
+
     private Pakkaaja pakkaaja;
     private Scanner lukija;
     private Syotekasittelija syotekasittelija;
-    
 
     @Before
     public void setUp() {
@@ -26,10 +25,9 @@ public class PakkaajaTest {
         this.syotekasittelija = new Syotekasittelija(this.lukija);
         this.pakkaaja = new Pakkaaja(this.syotekasittelija);
     }
-   
 
-     @Test
-     public void luotuPakkaajaOlemassa() {
-         assertTrue(this.pakkaaja != null);
-     }
+    @Test
+    public void luotuPakkaajaOlemassa() {
+        assertTrue(this.pakkaaja != null);
+    }
 }

@@ -23,34 +23,12 @@ public class Main {
      */
     public static void main(String[] args) {
 
-//        Scanner lukija = new Scanner(System.in);
-//                
-//        // Tekstikäyttöliittymä
-//        
-//        HuffmanCoding pakkaaja = new HuffmanCoding(lukija);
-//        pakkaaja.kaynnista();
+        Scanner lukija = new Scanner(System.in);
 
-        File file = new File("testi.txt");
+        // Tekstikäyttöliittymä
 
-        ByteArrayOutputStream byteAOutStream;
-
-        try {
-            System.out.println(file.length());
-            byteAOutStream = new ByteArrayOutputStream((int) file.length());
-            FileInputStream fileIStream = new FileInputStream(file);
-//            byte[] bufferi = new byte[(int) file.length()];
-//            for (int lueNro; (lueNro = fileIStream.read(bufferi)) != -1;) {
-//                byteAOutStream.write(bufferi, 0, lueNro);
-//                System.out.println("lue " + lueNro + " tavuja");
-//            }
-
-
-        } catch (Exception e) {
-            System.out.println("ERRORI!! " + e.getMessage());
-            return;
-        }
-
-        byte[] tavut = byteAOutStream.toByteArray();
+        HuffmanCoding pakkaaja = new HuffmanCoding(lukija);
+        pakkaaja.kaynnista();
 
     }
 }
