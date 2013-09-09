@@ -47,12 +47,5 @@ public class HuffmanCoding {
 
 
 
-//        if(toiminto.equals("pakkaus")){
-//            Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
-//            pakkaaja.kaynnistaPakkaus();
-//        }else {
-//            return;
-//        }
-
     }
 }

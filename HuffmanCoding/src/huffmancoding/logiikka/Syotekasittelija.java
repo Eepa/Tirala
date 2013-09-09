@@ -26,19 +26,7 @@ public class Syotekasittelija {
         this.lukija = lukija;
     }
 
-//    /**
-//     * Lukee tekstin, jonka käyttäjä haluaa pakata.
-//     *
-//     * @return Palauttaa käyttäjän tekstin.
-//     */
-//    public String lueKayttajanSyote(String toiminto) {
-//
-//        System.out.println("Seuraava toiminto on " + toiminto + ". Syötä haluamasi teksti: ");
-//
-//        String teksti = this.lukija.nextLine();
-//
-//        return teksti;
-//    }
+
     /**
      * Valitaan, haluaako käyttäjä purkaa vai pakata tekstiä.
      *
@@ -59,48 +47,6 @@ public class Syotekasittelija {
 
     }
 
-//    /**
-//     * Laskee annetusta tekstistä kunkin merkin esiintymiskerrat.
-//     *
-//     * @param teksti Käyttäjän antama teksti.
-//     * @return Palauttaa valmiin frekvenssitaulukon.
-//     */
-//    public int[] luoFrekvenssitaululukko(String teksti) {
-//
-//        int[] frekvenssit = new int[403];
-//
-//        char[] merkkitaulukko = this.teeMerkkitaulukko(teksti);
-//
-//        for (char c : merkkitaulukko) {
-//
-//            System.out.println("Vanha numero: " + frekvenssit[c] + " Kirjain oli: " + c);
-//            frekvenssit[c]++;
-//            System.out.println("Uusi numero: " + frekvenssit[c]);
-//            System.out.println("");
-//        }
-//        for (int i = 0; i < frekvenssit.length; i++) {
-//            char merkki = (char) i;
-//            System.out.println("Merkki on: " + merkki + " ja määrä " + frekvenssit[i]);
-//        }
-//
-//
-//        return frekvenssit;
-//    }
-//    /**
-//     * Tekee annetusta tekstistä merkkitaulukon.
-//     *
-//     * @param teksti Käyttäjän antama teksti.
-//     * @return Palauttaa valmiin merkkitaulukon.
-//     */
-//    public char[] teeMerkkitaulukko(String teksti) {
-//        char[] taulukko = new char[teksti.length()];
-//
-//        for (int i = 0; i < teksti.length(); i++) {
-//            taulukko[i] = teksti.charAt(i);
-//        }
-//        System.out.println(taulukko);
-//        return taulukko;
-//    }
     /**
      * Lukee käyttäjän antaman tiedoston polun.
      *

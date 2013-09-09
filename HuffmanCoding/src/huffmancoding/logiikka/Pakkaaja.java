@@ -18,7 +18,7 @@ public class Pakkaaja {
      */
     private byte[] tavujenFrekvenssitaulukko;
     
-    private Maksimikeko maksimikeko;
+    private Minimikeko minimikeko;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka käsittelee tiedon
@@ -35,9 +35,6 @@ public class Pakkaaja {
      */
     public void kaynnistaPakkaus() {
 
-//        String teksti  = this.syotekasittelija.lueKayttajanSyote("pakkaus");
-//                
-//        this.frekvenssitaulukko = this.syotekasittelija.luoFrekvenssitaululukko(teksti);
 
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
         byte[] tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
@@ -48,8 +45,8 @@ public class Pakkaaja {
 //            System.out.println("Tavu on: " + (i-128) + " Esiintymiskertojen määrä on: " + frekvenssit[i] + "\n");
 //        }
 
-        this.luoMaksimikeko(frekvenssit);
-
+        this.luoMinimikeko(frekvenssit);
+        
 
 
     }
@@ -59,13 +56,13 @@ public class Pakkaaja {
      * @param frekvenssit 
      */
 
-    public void luoMaksimikeko(int[] frekvenssit) {
-        this.maksimikeko = new Maksimikeko(frekvenssit);
+    public void luoMinimikeko(int[] frekvenssit) {
+        this.minimikeko = new Minimikeko(frekvenssit);
 
-        Node[] solmut = maksimikeko.luoSolmut();
+        Node[] solmut = minimikeko.luoSolmut();
 
         for (int i = (solmut.length / 2) - 1; i >= 0; i--) {
-            solmut = maksimikeko.heapify(solmut, i);
+            solmut = minimikeko.heapify(solmut, i);
         }
 
         for (Node n : solmut) {
