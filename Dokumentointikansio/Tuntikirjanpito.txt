@@ -9,5 +9,5 @@ Projektin luominen ja koodauksen aloitus.
 Su 8.9.2013, 2h
 Tavujen tutkimista ja tiedostojen lukua.
 
-Ma 9.9.2013, 1,5h
+Ma 9.9.2013, 3h
 Tavujen jatkamista ja ohjelman muuttaminen tavuja varten.

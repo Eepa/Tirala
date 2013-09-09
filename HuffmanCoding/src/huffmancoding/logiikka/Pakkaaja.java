@@ -1,5 +1,7 @@
 package huffmancoding.logiikka;
 
+import huffmancoding.koodaaja.Node;
+
 /**
  * Pakkaaja, joka pakkaa k‰ytt‰j‰n antaman tekstin.
  *
@@ -39,6 +41,11 @@ public class Pakkaaja {
         byte[] tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
+        
+        Maksimikeko maksimikeko = new Maksimikeko(frekvenssit);
+        
+        Node[] solmut = maksimikeko.luoSolmut();
+        System.out.println("Solmu: " + solmut[255].getTavu() + " Tavun m‰‰r‰: " + solmut[255].getMaara() + " ja " + frekvenssit[255]);
 
 //        for(int i = 0; i < frekvenssit.length; i++){
 //            System.out.println("Tavu on: " + (i-128) + " Esiintymiskertojen m‰‰r‰ on: " + frekvenssit[i] + "\n");

@@ -129,7 +129,7 @@ public class Syotekasittelija {
         ByteArrayOutputStream byteArrayOutputStream;
 
         try {
-            System.out.println(file.length());
+//            System.out.println(file.length());
 
             byteArrayOutputStream = new ByteArrayOutputStream((int) file.length());
 
@@ -139,7 +139,7 @@ public class Syotekasittelija {
 
             for (int maara; (maara = fileInputStream.read(aputaulukko)) != -1;) {
                 byteArrayOutputStream.write(aputaulukko, 0, maara);
-                System.out.println("lue " + maara + " tavuja");
+                System.out.println("Tiedoston pituus " + maara + " tavua.");
             }
 
 
@@ -149,7 +149,7 @@ public class Syotekasittelija {
         }
 
         byte[] tavut = byteArrayOutputStream.toByteArray();
-        System.out.println(tavut[1] + " ja " + tavut[3]);
+//        System.out.println(tavut[1] + " ja " + tavut[3]);
 
 
 
@@ -171,7 +171,7 @@ public class Syotekasittelija {
             int arvo = tavu + 128;
 
 //            System.out.println("Vanha m‰‰r‰: " + frekvenssit[arvo] + " Tavu oli: " + tavu);
-//            frekvenssit[arvo]++;
+            frekvenssit[arvo]++;
 //            System.out.println("Uusi m‰‰r‰: " + frekvenssit[arvo]);
 //            System.out.println("");
         }
