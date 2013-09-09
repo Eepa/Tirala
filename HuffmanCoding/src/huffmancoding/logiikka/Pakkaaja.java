@@ -17,6 +17,8 @@ public class Pakkaaja {
      * Sis‰lt‰‰ syˆtteen merkkien esiintymism‰‰r‰t.
      */
     private byte[] tavujenFrekvenssitaulukko;
+    
+    private Maksimikeko maksimikeko;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka k‰sittelee tiedon
@@ -41,16 +43,35 @@ public class Pakkaaja {
         byte[] tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
-        
-        Maksimikeko maksimikeko = new Maksimikeko(frekvenssit);
-        
-        Node[] solmut = maksimikeko.luoSolmut();
-        System.out.println("Solmu: " + solmut[255].getTavu() + " Tavun m‰‰r‰: " + solmut[255].getMaara() + " ja " + frekvenssit[255]);
 
 //        for(int i = 0; i < frekvenssit.length; i++){
 //            System.out.println("Tavu on: " + (i-128) + " Esiintymiskertojen m‰‰r‰ on: " + frekvenssit[i] + "\n");
 //        }
 
+        this.luoMaksimikeko(frekvenssit);
+
+
+
+    }
+    
+    /**
+     * 
+     * @param frekvenssit 
+     */
+
+    public void luoMaksimikeko(int[] frekvenssit) {
+        this.maksimikeko = new Maksimikeko(frekvenssit);
+
+        Node[] solmut = maksimikeko.luoSolmut();
+
+        for (int i = (solmut.length / 2) - 1; i >= 0; i--) {
+            solmut = maksimikeko.heapify(solmut, i);
+        }
+
+        for (Node n : solmut) {
+            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
+
+        }
 
     }
 }
