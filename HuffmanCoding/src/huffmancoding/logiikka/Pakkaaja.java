@@ -1,6 +1,7 @@
 package huffmancoding.logiikka;
 
 import huffmancoding.koodaaja.Node;
+import huffmancoding.koodaaja.Tree;
 
 /**
  * Pakkaaja, joka pakkaa k‰ytt‰j‰n antaman tekstin.
@@ -19,6 +20,7 @@ public class Pakkaaja {
     private byte[] tavujenFrekvenssitaulukko;
     private Minimikeko minimikeko;
     private Node[] keko;
+    private Tree puu;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka k‰sittelee tiedon
@@ -52,11 +54,13 @@ public class Pakkaaja {
 //        this.minimikeko.poistaPienin(keko);
 //
 //        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
-
-        for (Node n : this.keko) {
-            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
-
-        }
+//
+//        for (Node n : this.keko) {
+//            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
+//
+//        }
+//        
+        this.muodostaPuu();
 
     }
 
@@ -73,5 +77,40 @@ public class Pakkaaja {
             this.keko = minimikeko.heapify(this.keko, i, this.keko[256].getMaara());
         }
 
+    }
+    
+    public void muodostaPuu(){
+        
+        while(true){
+            
+            if(this.keko[256].getMaara() == 1){
+                break;
+            }
+            
+            Node ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
+//            
+//            while(ensimmainenSolmu.getMaara() == 0){
+//                ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
+//            }
+            
+            Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
+            
+//            while(toinenSolmu.getMaara() == 0){
+//                toinenSolmu = this.minimikeko.poistaPienin(this.keko);
+//            }
+            
+            Node uusiParentSolmu = new Node(-1000, ensimmainenSolmu.getMaara()+toinenSolmu.getMaara(), ensimmainenSolmu, toinenSolmu);
+            
+            this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
+            
+        }
+        
+        for (Node n : this.keko) {
+            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
+
+        }
+        
+        this.puu = new Tree(this.minimikeko.poistaPienin(this.keko));
+        
     }
 }

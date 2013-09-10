@@ -43,13 +43,13 @@ public class Minimikeko {
 
         return solmut;
     }
-    
+
     /**
      * Palauttaa annetun indeksin vanhemman indeksin.
+     *
      * @param indeksi Lähtösolmun indeksi.
      * @return Vanhemman indeksi.
      */
-
     public int parent(int indeksi) {
         return (int) Math.ceil(indeksi / 2);
     }
@@ -117,7 +117,7 @@ public class Minimikeko {
     public Node poistaPienin(Node[] keko) {
         Node pienin = keko[0];
 
-        keko[0] = keko[keko[256].getMaara() - 1];
+        keko[0] = keko[keko[256].getMaara()-1];
 
         keko[256].muutaMaaraa(-1);
 
