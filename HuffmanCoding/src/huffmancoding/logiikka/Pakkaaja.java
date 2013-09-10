@@ -46,12 +46,12 @@ public class Pakkaaja {
 //        }
 
         this.luoMinimikeko(frekvenssit);
-        
-        this.minimikeko.poistaPienin(keko);
-        this.minimikeko.poistaPienin(keko);
-        this.minimikeko.poistaPienin(keko);
-
-        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
+//        
+//        this.minimikeko.poistaPienin(keko);
+//        this.minimikeko.poistaPienin(keko);
+//        this.minimikeko.poistaPienin(keko);
+//
+//        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
 
         for (Node n : this.keko) {
             System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
