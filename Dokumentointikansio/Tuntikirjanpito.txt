@@ -11,3 +11,7 @@ Tavujen tutkimista ja tiedostojen lukua.
 
 Ma 9.9.2013, 5,5h
 Tavujen jatkamista ja ohjelman muuttaminen tavuja varten.
+
+Ti 10.9.2013, 1,5h
+Keon ominaisuuksien luomista.
+

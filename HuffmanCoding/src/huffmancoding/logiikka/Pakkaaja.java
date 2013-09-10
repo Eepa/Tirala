@@ -17,8 +17,8 @@ public class Pakkaaja {
      * Sisältää syötteen merkkien esiintymismäärät.
      */
     private byte[] tavujenFrekvenssitaulukko;
-    
     private Minimikeko minimikeko;
+    private Node[] keko;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka käsittelee tiedon
@@ -47,27 +47,30 @@ public class Pakkaaja {
 
         this.luoMinimikeko(frekvenssit);
         
+        this.minimikeko.poistaPienin(keko);
+        this.minimikeko.poistaPienin(keko);
+        this.minimikeko.poistaPienin(keko);
 
+        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
+
+        for (Node n : this.keko) {
+            System.out.println("Solmu: " + n.getTavu() + " Tavun määrä: " + n.getMaara());
+
+        }
 
     }
-    
-    /**
-     * 
-     * @param frekvenssit 
-     */
 
+    /**
+     * Luo uuden minimikeon annettujen frekvenssien perusteella.
+     * @param frekvenssit Taulukko, jonka tietojen perusteella uusi keko luodaan.
+     */
     public void luoMinimikeko(int[] frekvenssit) {
         this.minimikeko = new Minimikeko(frekvenssit);
 
-        Node[] solmut = minimikeko.luoSolmut();
+        this.keko = minimikeko.luoSolmut();
 
-        for (int i = (solmut.length / 2) - 1; i >= 0; i--) {
-            solmut = minimikeko.heapify(solmut, i);
-        }
-
-        for (Node n : solmut) {
-            System.out.println("Solmu: " + n.getTavu() + " Tavun määrä: " + n.getMaara());
-
+        for (int i = (this.keko[256].getMaara() / 2) - 1; i >= 0; i--) {
+            this.keko = minimikeko.heapify(this.keko, i, this.keko[256].getMaara());
         }
 
     }
