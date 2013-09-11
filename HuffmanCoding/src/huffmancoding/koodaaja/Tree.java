@@ -40,4 +40,19 @@ public class Tree {
         this.juuri = uusiJuuri;
     }
     
+    /**
+     * Tulostaa puun alkiot esij‰rjestyksess‰.
+     * @param solmu Puun juurisolmu.
+     */
+    
+    public void tulostaAlkiotPreorder(Node solmu){
+        if(solmu != null){
+            System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
+            
+            tulostaAlkiotPreorder(solmu.getVasenLapsi());
+            
+            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
+        }
+    }
+    
 }

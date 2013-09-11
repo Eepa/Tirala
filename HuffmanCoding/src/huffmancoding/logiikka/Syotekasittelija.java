@@ -85,7 +85,7 @@ public class Syotekasittelija {
 
             for (int maara; (maara = fileInputStream.read(aputaulukko)) != -1;) {
                 byteArrayOutputStream.write(aputaulukko, 0, maara);
-//                System.out.println("Tiedoston pituus " + maara + " tavua.");
+                System.out.println("Tiedoston pituus " + maara + " tavua.");
             }
 
 

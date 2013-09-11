@@ -92,6 +92,10 @@ public class Pakkaaja {
         }
 
     }
+    
+    /**
+     * Muodostaa Huffman koodauksen puun annetusta keosta.
+     */
 
     public void muodostaPuu() {
 
@@ -113,34 +117,18 @@ public class Pakkaaja {
             Node ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
             laskuri++;
 
-//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//            }
-//
-//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
 
             Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
             laskuri++;
 
-//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//            }
-//
-//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
+
 
             Node uusiParentSolmu = new Node(-1000, ensimmainenSolmu.getMaara() + toinenSolmu.getMaara(), ensimmainenSolmu, toinenSolmu);
 
             this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
             laskuri++;
 
-//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//            }
-//
-//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
+
 
         }
 
@@ -152,6 +140,7 @@ public class Pakkaaja {
         System.out.println(this.keko[256].getMaara());
 
         this.puu = new Tree(this.minimikeko.poistaPienin(this.keko));
+        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
 
     }
 }
