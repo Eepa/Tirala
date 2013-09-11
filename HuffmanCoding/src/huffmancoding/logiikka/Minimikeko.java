@@ -31,15 +31,21 @@ public class Minimikeko {
     public Node[] luoSolmut() {
 
         Node[] solmut = new Node[257];
-
+        Node kekoPituussolmu = new Node(1000, -1);
+        solmut[256] = kekoPituussolmu;
+        int paikka = 0;
 
         for (int i = 0; i < this.frekvenssit.length; i++) {
-            Node uusiSolmu = new Node(i - 128, frekvenssit[i]);
-            solmut[i] = uusiSolmu;
-        }
 
-        Node kekoPituussolmu = new Node(1000, 256);
-        solmut[256] = kekoPituussolmu;
+            if (frekvenssit[i] != 0) {
+                Node uusiSolmu = new Node(i - 128, frekvenssit[i]);
+                solmut[paikka] = uusiSolmu;
+                solmut[256].muutaMaaraa(1);
+                System.out.println("Solmuja lisatty: " + paikka + " keon koko " + solmut[256].getMaara());
+                paikka++;
+            }
+
+        }
 
         return solmut;
     }
@@ -61,7 +67,7 @@ public class Minimikeko {
      * @return Vasemman lapsen indeksi.
      */
     public int vasenLapsi(int indeksi) {
-        return 2 * indeksi + 1;
+        return 2 * indeksi;
     }
 
     /**
@@ -71,7 +77,7 @@ public class Minimikeko {
      * @return Oikean lapsen indeksi.
      */
     public int oikeaLapsi(int indeksi) {
-        return (2 * indeksi) + 2;
+        return (2 * indeksi) + 1;
     }
 
     /**
@@ -116,8 +122,12 @@ public class Minimikeko {
      */
     public Node poistaPienin(Node[] keko) {
         Node pienin = keko[0];
+        if(keko[256].getMaara() == 0){
+            keko[256].muutaMaaraa(-1);
+            return pienin;
+        }
 
-        keko[0] = keko[keko[256].getMaara()-1];
+        keko[0] = keko[keko[256].getMaara()];
 
         keko[256].muutaMaaraa(-1);
 

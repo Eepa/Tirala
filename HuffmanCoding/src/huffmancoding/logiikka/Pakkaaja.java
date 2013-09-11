@@ -55,10 +55,22 @@ public class Pakkaaja {
 //
 //        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
 //
-//        for (Node n : this.keko) {
-//            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
+//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
 //
 //        }
+//        System.out.println(this.keko[256].getMaara());
+//
+//
+//        this.minimikeko.poistaPienin(keko);
+//        this.minimikeko.poistaPienin(keko);
+//
+//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
+//
+//        }
+//        System.out.println(this.keko[256].getMaara());
+
 //        
         this.muodostaPuu();
 
@@ -66,7 +78,9 @@ public class Pakkaaja {
 
     /**
      * Luo uuden minimikeon annettujen frekvenssien perusteella.
-     * @param frekvenssit Taulukko, jonka tietojen perusteella uusi keko luodaan.
+     *
+     * @param frekvenssit Taulukko, jonka tietojen perusteella uusi keko
+     * luodaan.
      */
     public void luoMinimikeko(int[] frekvenssit) {
         this.minimikeko = new Minimikeko(frekvenssit);
@@ -78,39 +92,66 @@ public class Pakkaaja {
         }
 
     }
-    
-    public void muodostaPuu(){
-        
-        while(true){
-            
-            if(this.keko[256].getMaara() == 1){
-                break;
-            }
-            
-            Node ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
-//            
-//            while(ensimmainenSolmu.getMaara() == 0){
-//                ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
-//            }
-            
-            Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
-            
-//            while(toinenSolmu.getMaara() == 0){
-//                toinenSolmu = this.minimikeko.poistaPienin(this.keko);
-//            }
-            
-            Node uusiParentSolmu = new Node(-1000, ensimmainenSolmu.getMaara()+toinenSolmu.getMaara(), ensimmainenSolmu, toinenSolmu);
-            
-            this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
-            
-        }
-        
-        for (Node n : this.keko) {
-            System.out.println("Solmu: " + n.getTavu() + " Tavun m‰‰r‰: " + n.getMaara());
+
+    public void muodostaPuu() {
+
+        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
 
         }
-        
+
+        System.out.println(this.keko[256].getMaara());
+
+
+        int laskuri = 0;
+
+        int lahtoarvo = this.keko[256].getMaara() * 3;
+
+        while (laskuri < lahtoarvo) {
+
+
+            Node ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
+            laskuri++;
+
+//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
+//
+//            }
+//
+//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
+
+            Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
+            laskuri++;
+
+//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
+//
+//            }
+//
+//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
+
+            Node uusiParentSolmu = new Node(-1000, ensimmainenSolmu.getMaara() + toinenSolmu.getMaara(), ensimmainenSolmu, toinenSolmu);
+
+            this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
+            laskuri++;
+
+//            for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//                System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
+//
+//            }
+//
+//            System.out.println("Keon koko: " + this.keko[256].getMaara() + " Laskurin arvo: " + laskuri);
+
+        }
+
+        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
+
+        }
+
+        System.out.println(this.keko[256].getMaara());
+
         this.puu = new Tree(this.minimikeko.poistaPienin(this.keko));
-        
+
     }
 }
