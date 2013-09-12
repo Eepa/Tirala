@@ -132,7 +132,7 @@ public class Pakkaaja {
 
         }
 
-        for (int i = 0; i <= this.keko[256].getMaara()+5; i++) {
+        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
             System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
 
         }

@@ -116,10 +116,10 @@ public class Syotekasittelija {
 
             int arvo = tavu + 128;
 
-            System.out.println("Vanha m‰‰r‰: " + frekvenssit[arvo] + " Tavu oli: " + tavu);
+//            System.out.println("Vanha m‰‰r‰: " + frekvenssit[arvo] + " Tavu oli: " + tavu);
             frekvenssit[arvo]++;
-            System.out.println("Uusi m‰‰r‰: " + frekvenssit[arvo]);
-            System.out.println("");
+//            System.out.println("Uusi m‰‰r‰: " + frekvenssit[arvo]);
+//            System.out.println("");
         }
 
         return frekvenssit;
