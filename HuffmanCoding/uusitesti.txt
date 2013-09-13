@@ -51,65 +51,30 @@ public class Pakkaaja {
 //        }
 
         this.luoMinimikeko(frekvenssit);
-        
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
 //        
 //        this.minimikeko.poistaPienin(keko);
-//        
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
 //        this.minimikeko.poistaPienin(keko);
-//        
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
+//        this.minimikeko.poistaPienin(keko);
 //
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        
-//         this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 2));
+//        this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 1));
 //
 //        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
 //            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
 //
 //        }
 //        System.out.println(this.keko[256].getMaara());
-//        
-//                this.minimikeko.poistaPienin(keko);
+//
+//
+//        this.minimikeko.poistaPienin(keko);
+//        this.minimikeko.poistaPienin(keko);
 //
 //        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
 //            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
 //
 //        }
 //        System.out.println(this.keko[256].getMaara());
-//        
-//                this.minimikeko.poistaPienin(keko);
-////
-//       
-////
-//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-////
-////
-////        this.minimikeko.poistaPienin(keko);
-////        this.minimikeko.poistaPienin(keko);
-////
-////        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-////            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-////
-////        }
-////        System.out.println(this.keko[256].getMaara());
 
-        
+//        
         this.muodostaPuu();
 
     }

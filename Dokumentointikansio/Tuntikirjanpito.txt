@@ -17,3 +17,6 @@ Keon ominaisuuksien luomista.
 
 Ke 11.9.2013, 2,5h
 Keon korjailua ja puun luomista.
+
+pe 13.9.2013, 2,5h
+Keon parantelua ja hammastelya puista (Miksi suurempia pituuksia kuin 8 bittia?).

@@ -67,7 +67,7 @@ public class Minimikeko {
      * @return Vasemman lapsen indeksi.
      */
     public int vasenLapsi(int indeksi) {
-        return 2 * indeksi;
+        return 2 * indeksi+1;
     }
 
     /**
@@ -77,7 +77,7 @@ public class Minimikeko {
      * @return Oikean lapsen indeksi.
      */
     public int oikeaLapsi(int indeksi) {
-        return (2 * indeksi) + 1;
+        return (2 * indeksi) + 2;
     }
 
     /**
@@ -88,6 +88,15 @@ public class Minimikeko {
      * @return Palauttaa valmiin minimikeon.
      */
     public Node[] heapify(Node[] keko, int indeksi, int keonPituus) {
+        
+        if(keonPituus == 1){
+            if(keko[0].getMaara() > keko[1].getMaara()){
+                Node apunode = keko[0];
+                keko[0] = keko[1];
+                keko[1] = apunode;
+                return keko;
+            }
+        }
 
         while ((this.vasenLapsi(indeksi)) <= keonPituus - 1) {
             int pienin = indeksi;
@@ -107,7 +116,7 @@ public class Minimikeko {
                 keko[indeksi] = pieninSolmu;
                 indeksi = pienin;
             } else {
-                indeksi = keonPituus + 1;
+                indeksi = keonPituus + 1000;
             }
         }
 
