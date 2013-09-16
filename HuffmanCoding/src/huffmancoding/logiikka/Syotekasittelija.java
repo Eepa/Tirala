@@ -3,6 +3,10 @@ package huffmancoding.logiikka;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Scanner;
 
 /**
@@ -127,10 +131,10 @@ public class Syotekasittelija {
     }
 
         
-        public String etsiTiedostopaate(String osoite){
+        public String[] etsiTiedostopaate(String osoite){
             String[] osat = osoite.split("\\.");
                         
-            return osat[osat.length-1];
+            return osat;
         }
         
         public String etsiTiedostonimi(String osoite){
@@ -146,6 +150,34 @@ public class Syotekasittelija {
             }           
             
             return osat[osat.length-1];
+        }
+        
+        public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto){
+            
+            String[] osat = this.etsiTiedostopaate(tiedostonimi);
+            
+            String wanhaNimi = osat[0];
+            String paate = osat[osat.length -1];
+                        
+            String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + wanhaNimi + ".txt";
+                   
+            
+            File uusiTiedosto  = new File(osoite);
+            
+            
+            try{
+
+                FileWriter kirjoittaja = new FileWriter(uusiTiedosto);
+                kirjoittaja.write(tiedostonimi + " ");
+                kirjoittaja.write(frekvenssit + " ");
+                kirjoittaja.write(uusiMuoto);
+                kirjoittaja.close();
+                
+            }catch (Exception e){
+                System.out.println("Virhe sattui! " + e.toString());
+            }
+            
+            
         }
         
         

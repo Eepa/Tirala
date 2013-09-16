@@ -1,6 +1,7 @@
 package huffmancoding.koodaaja;
 
 import huffmancoding.logiikka.Pakkaaja;
+import huffmancoding.logiikka.Purkaja;
 import huffmancoding.logiikka.Syotekasittelija;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,6 +44,11 @@ public class HuffmanCoding {
         if (toiminto.equals("pakkaus")) {
             Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
             pakkaaja.kaynnistaPakkaus();
+        }
+        
+        else {
+            Purkaja purkaja = new Purkaja(this.syotekasittelija);
+            purkaja.kaynnistaPurku();
         }
 
 

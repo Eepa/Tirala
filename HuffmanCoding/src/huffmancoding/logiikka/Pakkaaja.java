@@ -146,7 +146,27 @@ public class Pakkaaja {
         
         String sana = this.muodostaUusiEsitys("");
         System.out.println("\n"+sana);
+        
+        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+        System.out.println(frekvenssitSana);
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
+    }
+    
+    public String muodostaFrekvenssitString(int[] frekvenssit){
+        
+        String sana = "";
+        
+        for(int i = 0 ; i < frekvenssit.length ; i++){
+            
+            if(frekvenssit[i] != 0){
+                sana += i + "*" + frekvenssit[i] + ";";
+            }
+            
+        }
+        
+        
+        return sana;
     }
 
     /**
