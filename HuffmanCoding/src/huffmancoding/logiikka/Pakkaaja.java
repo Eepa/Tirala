@@ -23,6 +23,7 @@ public class Pakkaaja {
     private Minimikeko minimikeko;
     private Node[] keko;
     private Tree puu;
+    private String[] uusienKoodienTaulukko;
     
 
     /**
@@ -33,6 +34,7 @@ public class Pakkaaja {
      */
     public Pakkaaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
+        this.uusienKoodienTaulukko = new String[256];
     }
 
     /**
@@ -111,6 +113,9 @@ public class Pakkaaja {
 
         
         this.muodostaPuu();
+        
+        String sana = this.muodostaUusiEsitys("");
+        System.out.println("\n"+sana);
 
     }
 
@@ -188,16 +193,41 @@ public class Pakkaaja {
 //        this.puu.tulostaAlkiotInorder(this.puu.getJuuri() );
 //        System.out.println("\n");
         
-        String[] taulukko = new String[256];
+                
+        this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
         
-        taulukko = this.puu.muodostaUudetKoodit(taulukko, "", this.puu.getJuuri());
-        
-        for(int i = 0; i < taulukko.length; i++){
-            if(taulukko[i] != null){
-                System.out.println("Tavun nimi: " + (i-128) +" Uusi koodi: "+ taulukko[i]);
+        for(int i = 0; i < this.uusienKoodienTaulukko.length; i++){
+            if(this.uusienKoodienTaulukko[i] != null){
+                System.out.println("Tavun nimi: " + (i-128) +" Uusi koodi: "+ this.uusienKoodienTaulukko[i]);
             }
             
         }
 
     }
+    
+    public String muodostaUusiEsitys(String sana){
+        
+        for(int i = 0; i < this.tiedostonTavut.length; i++){
+            
+            int numero;
+                        
+            if(this.tiedostonTavut[i] < 0){
+                numero = this.tiedostonTavut[i] + 2 *128;
+            } else {
+                numero = this.tiedostonTavut[i];
+            }
+            
+            System.out.println((char)numero);
+            
+            String koodi = this.uusienKoodienTaulukko[this.tiedostonTavut[i] + 128];
+            
+            sana = sana + koodi;
+                        
+        }
+        
+        
+        return sana;
+    }
+    
+    
 }
