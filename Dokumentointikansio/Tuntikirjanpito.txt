@@ -20,3 +20,6 @@ Keon korjailua ja puun luomista.
 
 pe 13.9.2013, 2,5h
 Keon parantelua ja hammastelya puista (Miksi suurempia pituuksia kuin 8 bittia?).
+
+ma 16.9.2013, 4h
+Tiedostoja ja purkamisen aloitus.

@@ -73,6 +73,7 @@ public class Syotekasittelija {
         File file = new File(polku);
 
         ByteArrayOutputStream byteArrayOutputStream;
+        
 
         try {
 //            System.out.println(file.length());
@@ -124,4 +125,29 @@ public class Syotekasittelija {
 
         return frekvenssit;
     }
+
+        
+        public String etsiTiedostopaate(String osoite){
+            String[] osat = osoite.split("\\.");
+                        
+            return osat[osat.length-1];
+        }
+        
+        public String etsiTiedostonimi(String osoite){
+            
+            String[] osat;
+            
+            if(osoite.contains("/")){
+                osat = osoite.split("\\/");
+                
+            }
+            else {
+                osat = osoite.split("\\\\");
+            }           
+            
+            return osat[osat.length-1];
+        }
+        
+        
+
 }

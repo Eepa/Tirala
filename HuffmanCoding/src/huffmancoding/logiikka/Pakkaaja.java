@@ -24,6 +24,7 @@ public class Pakkaaja {
     private Node[] keko;
     private Tree puu;
     private String[] uusienKoodienTaulukko;
+    private String tiedostonimi;
     
 
     /**
@@ -36,6 +37,7 @@ public class Pakkaaja {
         this.syotekasittelija = syotekasittelija;
         this.uusienKoodienTaulukko = new String[256];
     }
+    
 
     /**
      * K‰ynnist‰‰ pakkaajan toiminnan.
@@ -44,7 +46,16 @@ public class Pakkaaja {
 
 
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
+        
+       
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
+        
+        if(this.tiedostonTavut.length == 0){
+            return;
+        }
+
+        this.tiedostonimi = this.syotekasittelija.etsiTiedostonimi(teksti);
+        System.out.println(this.tiedostonimi);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
 
@@ -112,7 +123,26 @@ public class Pakkaaja {
 ////        System.out.println(this.keko[256].getMaara());
 
         
-        this.muodostaPuu();
+        this.puu = this.muodostaPuu();
+                         
+        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri() );
+        System.out.println("\n");
+        
+//        this.puu.tulostaAlkiotPostorder(this.puu.getJuuri() );
+//        System.out.println("\n");
+//        
+//        this.puu.tulostaAlkiotInorder(this.puu.getJuuri() );
+//        System.out.println("\n");
+        
+                
+        this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
+        
+        for(int i = 0; i < this.uusienKoodienTaulukko.length; i++){
+            if(this.uusienKoodienTaulukko[i] != null){
+                System.out.println("Tavun nimi: " + (i-128) +" Uusi koodi: "+ this.uusienKoodienTaulukko[i]);
+            }
+            
+        }
         
         String sana = this.muodostaUusiEsitys("");
         System.out.println("\n"+sana);
@@ -140,7 +170,7 @@ public class Pakkaaja {
      * Muodostaa Huffman koodauksen puun annetusta keosta.
      */
 
-    public void muodostaPuu() {
+    public Tree muodostaPuu() {
 
         for (int i = 0; i <= this.keko[256].getMaara(); i++) {
             System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
@@ -182,26 +212,7 @@ public class Pakkaaja {
 
         System.out.println(this.keko[256].getMaara());
 
-        this.puu = new Tree(this.minimikeko.poistaPienin(this.keko));
-        
-        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri() );
-        System.out.println("\n");
-        
-//        this.puu.tulostaAlkiotPostorder(this.puu.getJuuri() );
-//        System.out.println("\n");
-//        
-//        this.puu.tulostaAlkiotInorder(this.puu.getJuuri() );
-//        System.out.println("\n");
-        
-                
-        this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
-        
-        for(int i = 0; i < this.uusienKoodienTaulukko.length; i++){
-            if(this.uusienKoodienTaulukko[i] != null){
-                System.out.println("Tavun nimi: " + (i-128) +" Uusi koodi: "+ this.uusienKoodienTaulukko[i]);
-            }
-            
-        }
+       return  new Tree(this.minimikeko.poistaPienin(this.keko));
 
     }
     
