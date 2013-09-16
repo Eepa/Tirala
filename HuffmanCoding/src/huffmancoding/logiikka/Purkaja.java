@@ -20,7 +20,7 @@ public class Purkaja {
     }
     
     public void kaynnistaPurku(){
-        System.out.println("Purku");
+        String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
     }
     
     

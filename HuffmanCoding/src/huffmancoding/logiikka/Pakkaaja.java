@@ -248,7 +248,7 @@ public class Pakkaaja {
                 numero = this.tiedostonTavut[i];
             }
             
-            System.out.println((char)numero);
+//            System.out.println((char)numero);
             
             String koodi = this.uusienKoodienTaulukko[this.tiedostonTavut[i] + 128];
             
