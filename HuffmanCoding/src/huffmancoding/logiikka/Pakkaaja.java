@@ -18,14 +18,12 @@ public class Pakkaaja {
      * Sis‰lt‰‰ syˆtteen merkkien esiintymism‰‰r‰t.
      */
     private byte[] tavujenFrekvenssitaulukko;
-    
-    private byte[] tiedostonTavut; 
+    private byte[] tiedostonTavut;
     private Minimikeko minimikeko;
     private Node[] keko;
     private Tree puu;
     private String[] uusienKoodienTaulukko;
     private String tiedostonimi;
-    
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka k‰sittelee tiedon
@@ -37,7 +35,6 @@ public class Pakkaaja {
         this.syotekasittelija = syotekasittelija;
         this.uusienKoodienTaulukko = new String[256];
     }
-    
 
     /**
      * K‰ynnist‰‰ pakkaajan toiminnan.
@@ -46,11 +43,11 @@ public class Pakkaaja {
 
 
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
-        
-       
+
+
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
-        
-        if(this.tiedostonTavut.length == 0){
+
+        if (this.tiedostonTavut.length == 0) {
             return;
         }
 
@@ -64,7 +61,7 @@ public class Pakkaaja {
 //        }
 
         this.luoMinimikeko(frekvenssit);
-        
+
 //                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
 //            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun m‰‰r‰: " + this.keko[i].getMaara());
 //
@@ -122,51 +119,65 @@ public class Pakkaaja {
 ////        }
 ////        System.out.println(this.keko[256].getMaara());
 
-        
+
         this.puu = this.muodostaPuu();
-                         
-        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri() );
+
+        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
         System.out.println("\n");
-        
+
+//        this.puu.setSolmumaara(this.puu.laskeSolmut(this.puu.getJuuri()));
+//        System.out.println(this.puu.getSolmumaara());
+
+
 //        this.puu.tulostaAlkiotPostorder(this.puu.getJuuri() );
 //        System.out.println("\n");
 //        
 //        this.puu.tulostaAlkiotInorder(this.puu.getJuuri() );
 //        System.out.println("\n");
-        
-                
+
+
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
-        
-        for(int i = 0; i < this.uusienKoodienTaulukko.length; i++){
-            if(this.uusienKoodienTaulukko[i] != null){
-                System.out.println("Tavun nimi: " + (i-128) +" Uusi koodi: "+ this.uusienKoodienTaulukko[i]);
+
+        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+            if (this.uusienKoodienTaulukko[i] != null) {
+                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
             }
-            
+
         }
         
+//        int[] numerokeko = this.muodostaPuustaKeko();
+//        
+//        for(int i = 0; i < numerokeko.length; i++){
+//            System.out.println(numerokeko[i]);
+//        }
+
         String sana = this.muodostaUusiEsitys("");
-        System.out.println("\n"+sana);
-        
+//        System.out.println("\n"+sana);
+
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
-        System.out.println(frekvenssitSana);
+//        System.out.println(frekvenssitSana);
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
     }
-    
-    public String muodostaFrekvenssitString(int[] frekvenssit){
-        
+
+    public String muodostaFrekvenssitString(int[] frekvenssit) {
+
         String sana = "";
-        
-        for(int i = 0 ; i < frekvenssit.length ; i++){
-            
-            if(frekvenssit[i] != 0){
+
+        for (int i = 0; i < frekvenssit.length; i++) {
+
+            if (frekvenssit[i] != 0) {
                 sana += i + "*" + frekvenssit[i] + ";";
             }
-            
+
         }
-        
-        
+
+
         return sana;
+    }
+    
+    public Minimikeko getMinimikeko(){
+        return this.minimikeko;
     }
 
     /**
@@ -185,11 +196,10 @@ public class Pakkaaja {
         }
 
     }
-    
+
     /**
      * Muodostaa Huffman koodauksen puun annetusta keosta.
      */
-
     public Tree muodostaPuu() {
 
         for (int i = 0; i <= this.keko[256].getMaara(); i++) {
@@ -232,33 +242,70 @@ public class Pakkaaja {
 
         System.out.println(this.keko[256].getMaara());
 
-       return  new Tree(this.minimikeko.poistaPienin(this.keko));
+        return new Tree(this.minimikeko.poistaPienin(this.keko));
 
     }
-    
-    public String muodostaUusiEsitys(String sana){
-        
-        for(int i = 0; i < this.tiedostonTavut.length; i++){
-            
+
+//    public int[] muodostaPuustaKeko() {
+//
+//        Node[] keko = new Node[this.puu.getSolmumaara()];
+//
+//        keko[0] = this.puu.getJuuri();
+//    
+//
+//        for (int i = 0; i < this.puu.getSolmumaara(); i++) {
+//           
+//            Node nykSolmu = keko[i];
+//            System.out.println(nykSolmu.getTavu());
+//
+//            int vasenLapsiIndeksi = i * 2 + 1;
+//            int oikeaLapsiIndeksi = i * 2 + 2;
+//
+//            Node vasenLapsi = nykSolmu.getVasenLapsi();
+//            
+//            Node oikeaLapsi = nykSolmu.getVasenLapsi();
+//
+//            if (vasenLapsiIndeksi < keko.length) {
+//                keko[vasenLapsiIndeksi] = vasenLapsi;
+//            }
+//
+//            if (oikeaLapsiIndeksi < this.puu.getSolmumaara()) {
+//                keko[oikeaLapsiIndeksi] = oikeaLapsi;
+//            }
+//
+//        }
+//        
+//        int[] numerokeko = new int[keko.length];
+//        
+//        for(int j = 0; j < numerokeko.length; j++){
+//            numerokeko[j] = keko[j].getTavu();
+//        }
+//        
+//
+//        return numerokeko;
+//    }
+
+    public String muodostaUusiEsitys(String sana) {
+
+        for (int i = 0; i < this.tiedostonTavut.length; i++) {
+
             int numero;
-                        
-            if(this.tiedostonTavut[i] < 0){
-                numero = this.tiedostonTavut[i] + 2 *128;
+
+            if (this.tiedostonTavut[i] < 0) {
+                numero = this.tiedostonTavut[i] + 2 * 128;
             } else {
                 numero = this.tiedostonTavut[i];
             }
-            
+
 //            System.out.println((char)numero);
-            
+
             String koodi = this.uusienKoodienTaulukko[this.tiedostonTavut[i] + 128];
-            
+
             sana = sana + koodi;
-                        
+
         }
-        
-        
+
+
         return sana;
     }
-    
-    
 }

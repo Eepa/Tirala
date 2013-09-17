@@ -13,6 +13,8 @@ public class Tree {
     
     private Node juuri;
     
+    private int solmumaara;
+    
     /**
      * Konstruktori alustaa puulle juuren.
      * @param juuri 
@@ -20,6 +22,7 @@ public class Tree {
     
     public Tree(Node juuri){
         this.juuri = juuri;
+        this.solmumaara = 0;
     }
     
     /**
@@ -90,6 +93,24 @@ public class Tree {
         
         
         return taulukko;
+    }
+    
+    public void setSolmumaara(int maara){
+        this.solmumaara = maara;
+    }
+    public int getSolmumaara(){
+        return this.solmumaara;
+    }
+    
+    public int laskeSolmut(Node juuri){
+        
+        int maara = 0;
+        
+        if(juuri != null){
+            maara = 1 + laskeSolmut(juuri.getVasenLapsi()) + laskeSolmut(juuri.getOikeaLapsi());
+        }
+        
+        return maara;
     }
     
 }

@@ -30,7 +30,6 @@ public class Syotekasittelija {
         this.lukija = lukija;
     }
 
-
     /**
      * Valitaan, haluaako käyttäjä purkaa vai pakata tekstiä.
      *
@@ -77,7 +76,7 @@ public class Syotekasittelija {
         File file = new File(polku);
 
         ByteArrayOutputStream byteArrayOutputStream;
-        
+
 
         try {
 //            System.out.println(file.length());
@@ -130,56 +129,79 @@ public class Syotekasittelija {
         return frekvenssit;
     }
 
-        
-        public String[] etsiTiedostopaate(String osoite){
-            String[] osat = osoite.split("\\.");
-                        
-            return osat;
-        }
-        
-        public String etsiTiedostonimi(String osoite){
-            
-            String[] osat;
-            
-            if(osoite.contains("/")){
-                osat = osoite.split("\\/");
-                
-            }
-            else {
-                osat = osoite.split("\\\\");
-            }           
-            
-            return osat[osat.length-1];
-        }
-        
-        public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto){
-            
-            String[] osat = this.etsiTiedostopaate(tiedostonimi);
-            
-            String wanhaNimi = osat[0];
-            String paate = osat[osat.length -1];
-                        
-            String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + wanhaNimi + ".txt";
-                   
-            
-            File uusiTiedosto  = new File(osoite);
-            
-            
-            try{
+    public String[] etsiTiedostopaate(String osoite) {
+        String[] osat = osoite.split("\\.");
 
-                FileWriter kirjoittaja = new FileWriter(uusiTiedosto);
-                kirjoittaja.write(tiedostonimi + " ");
-                kirjoittaja.write(frekvenssit + " ");
-                kirjoittaja.write(uusiMuoto);
-                kirjoittaja.close();
-                
-            }catch (Exception e){
-                System.out.println("Virhe sattui! " + e.toString());
-            }
+        return osat;
+    }
+
+    public String etsiTiedostonimi(String osoite) {
+
+        String[] osat;
+
+        if (osoite.contains("/")) {
+            osat = osoite.split("\\/");
+
+        } else {
+            osat = osoite.split("\\\\");
+        }
+
+        return osat[osat.length - 1];
+    }
+
+    public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto) {
+
+        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
+
+        File file = new File(osoite);
+
+        FileOutputStream fileOutputStream;
+        
+        String tieto = tiedostonimi + " " + frekvenssit + " " + uusiMuoto;
+        
+        byte[] tietoarray = tieto.getBytes();
+
+
+        try {
             
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(tietoarray);
+            fileOutputStream.close();
+
+
+        } catch (Exception e) {
+            System.out.println("VIRHE! \n" + e.getMessage());
             
         }
-        
-        
+   
 
+
+    }
+//        public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto){
+//            
+//            String[] osat = this.etsiTiedostopaate(tiedostonimi);
+//            
+//            String wanhaNimi = osat[0];
+//            String paate = osat[osat.length -1];
+//                        
+//            String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + wanhaNimi + ".txt";
+//                   
+//            
+//            File uusiTiedosto  = new File(osoite);
+//            
+//            
+//            try{
+//
+//                FileWriter kirjoittaja = new FileWriter(uusiTiedosto);
+//                kirjoittaja.write(tiedostonimi + " ");
+//                kirjoittaja.write(frekvenssit + " ");
+//                kirjoittaja.write(uusiMuoto);
+//                kirjoittaja.close();
+//                
+//            }catch (Exception e){
+//                System.out.println("Virhe sattui! " + e.toString());
+//            }
+//            
+//            
+//        }
 }
