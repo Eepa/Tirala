@@ -23,3 +23,9 @@ Keon parantelua ja hammastelya puista (Miksi suurempia pituuksia kuin 8 bittia?)
 
 ma 16.9.2013, 4h
 Tiedostoja ja purkamisen aloitus.
+
+ti 17.9.2013, 3h
+Koodiahdistus. Pakattu tiedosto liian suuri, eika ratkaisua viela.
+
+ke 18.9.2013, 4h
+Koodailun jatkamista ja miettimista.
