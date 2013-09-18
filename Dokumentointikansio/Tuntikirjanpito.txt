@@ -27,5 +27,5 @@ Tiedostoja ja purkamisen aloitus.
 ti 17.9.2013, 3h
 Koodiahdistus. Pakattu tiedosto liian suuri, eika ratkaisua viela.
 
-ke 18.9.2013, 4h
+ke 18.9.2013, 5h
 Koodailun jatkamista ja miettimista.

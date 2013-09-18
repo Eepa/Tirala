@@ -24,6 +24,7 @@ public class Pakkaaja {
     private Tree puu;
     private String[] uusienKoodienTaulukko;
     private String tiedostonimi;
+    private Bittikasittelija bittikasittelija;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka käsittelee tiedon
@@ -34,6 +35,7 @@ public class Pakkaaja {
     public Pakkaaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
         this.uusienKoodienTaulukko = new String[256];
+        this.bittikasittelija = new Bittikasittelija();
     }
 
     /**
@@ -144,39 +146,34 @@ public class Pakkaaja {
             }
 
         }
-        
+
+        boolean[] bitit = this.bittikasittelija.byteToBits(219);
+
+        for (boolean b : bitit) {
+            System.out.println(b);
+        }
+
+
+
+
 //        int[] numerokeko = this.muodostaPuustaKeko();
 //        
 //        for(int i = 0; i < numerokeko.length; i++){
 //            System.out.println(numerokeko[i]);
 //        }
 
-        String sana = this.muodostaUusiEsitys("");
-//        System.out.println("\n"+sana);
+        String sana = this.muodostaUusiStringEsitys("");
 
-        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
-//        System.out.println(frekvenssitSana);
-        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
+
+        System.out.println("\n" + sana);
+//
+//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+////        System.out.println(frekvenssitSana);
+//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
     }
 
-    public String muodostaFrekvenssitString(int[] frekvenssit) {
-
-        String sana = "";
-
-        for (int i = 0; i < frekvenssit.length; i++) {
-
-            if (frekvenssit[i] != 0) {
-                sana += i + "*" + frekvenssit[i] + ";";
-            }
-
-        }
-
-
-        return sana;
-    }
-    
-    public Minimikeko getMinimikeko(){
+    public Minimikeko getMinimikeko() {
         return this.minimikeko;
     }
 
@@ -284,20 +281,10 @@ public class Pakkaaja {
 //
 //        return numerokeko;
 //    }
-
-    public String muodostaUusiEsitys(String sana) {
+    public String muodostaUusiStringEsitys(String sana) {
 
         for (int i = 0; i < this.tiedostonTavut.length; i++) {
 
-            int numero;
-
-            if (this.tiedostonTavut[i] < 0) {
-                numero = this.tiedostonTavut[i] + 2 * 128;
-            } else {
-                numero = this.tiedostonTavut[i];
-            }
-
-//            System.out.println((char)numero);
 
             String koodi = this.uusienKoodienTaulukko[this.tiedostonTavut[i] + 128];
 
