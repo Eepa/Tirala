@@ -4,6 +4,7 @@
  */
 package huffmancoding.logiikka;
 
+import huffmancoding.koodaaja.Node;
 import huffmancoding.koodaaja.Tree;
 import java.io.File;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class Purkaja {
 
     private Syotekasittelija syotekasittelija;
     private Pakkaaja pakkaaja;
+    private Tree puu;
 
     public Purkaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
@@ -33,12 +35,12 @@ public class Purkaja {
         int[] frekvenssit = this.muodostaFrekvenssitaulukko(sisalto[1]);
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
-        Tree puu = this.pakkaaja.muodostaPuu();
+        this.puu = this.pakkaaja.muodostaPuu();
 
-        puu.tulostaAlkiotPreorder(puu.getJuuri());
+        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
         String[] uusienKoodienTaulukko = new String[256];
 
-        uusienKoodienTaulukko = puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", puu.getJuuri());
+        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
 
         for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
             if (uusienKoodienTaulukko[i] != null) {
@@ -46,6 +48,57 @@ public class Purkaja {
             }
 
         }
+        
+        byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
+        
+        this.syotekasittelija.luoTiedosto(tavut, sisalto[0]);
+    }
+    
+    public byte[] muodostaTavutUudestaan(String koodi){
+        
+        byte[] tavut = new byte[this.puu.getJuuri().getMaara()];
+        int tavulaskuri = 0;
+        
+        Node lahtopiste = this.puu.getJuuri();
+        Node solmu = this.puu.getJuuri();
+        
+        int i = 0;
+        
+        while(tavulaskuri < this.puu.getJuuri().getMaara()){
+            
+            if(solmu.getVasenLapsi() == null && solmu.getOikeaLapsi() == null){
+//                System.out.println(solmu.getTavu());
+                
+                byte tavu = (byte) solmu.getTavu();
+                tavut[tavulaskuri] = tavu;
+                tavulaskuri++;
+                solmu = lahtopiste;
+                continue;
+            }
+            
+            char kirjain = koodi.charAt(i);
+            
+            if(kirjain == '0'){
+                if(solmu.getVasenLapsi() != null){
+                    solmu = solmu.getVasenLapsi();
+                }
+                
+            } else if(kirjain == '1'){
+                 if(solmu.getOikeaLapsi() != null){
+                    solmu = solmu.getOikeaLapsi();
+                }
+            }
+            
+            i++;
+                        
+        }
+        
+        for(int j = 0; j < tavut.length; j++){
+            System.out.println(tavut[j]);
+        }
+        
+        return tavut;
+        
     }
 
     public int[] muodostaFrekvenssitaulukko(String lahtosana) {

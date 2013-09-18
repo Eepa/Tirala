@@ -204,4 +204,29 @@ public class Syotekasittelija {
 //            
 //            
 //        }
+    
+        public void luoTiedosto(byte[] tavut, String tiedostonimi) {
+
+        String osoite = "C:\\Users\\Public\\Downloads\\" + tiedostonimi ;
+
+        File file = new File(osoite);
+
+        FileOutputStream fileOutputStream;
+        
+        try {
+            
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(tavut);
+            fileOutputStream.close();
+
+
+        } catch (Exception e) {
+            System.out.println("VIRHE! \n" + e.getMessage());
+            
+        }
+   
+
+
+    }
+    
 }
