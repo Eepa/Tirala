@@ -97,12 +97,24 @@ public class Pakkaaja {
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
         
         
-        
+        byte[] tavuja = new byte[numerotavut.length];
         System.out.println("");
         for(int i = 0; i < numerotavut.length; i++){
-            byte tavu = (byte) numerotavut[i];
+            int k = numerotavut[i] - 128;
+            System.out.println(k);
+            
+            
+            byte tavu = (byte) k;
             System.out.println(tavu);
+            tavuja[i] = tavu;
         }
+        
+        for(int i = 0; i < tavuja.length; i++){
+            System.out.println(tavuja[i]);
+            
+            System.out.println("Alkuperainen " + (tavuja[i] + 128));
+        }
+        
         
         
         //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
