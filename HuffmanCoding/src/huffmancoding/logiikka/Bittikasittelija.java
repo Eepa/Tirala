@@ -73,4 +73,49 @@ public class Bittikasittelija {
         return bitit;
                 
     }
+      
+      public int[] muodostaNumerotavut(boolean[][] tavut){
+          
+          int[] numerotavut = new int[tavut.length];
+          
+          for(int i = 0; i < tavut.length; i++){
+              int numero = this.bitsToByte(tavut[i]);
+              numerotavut[i] = numero;
+          }
+          
+          for(int i = 0; i < numerotavut.length; i++){
+              System.out.println(numerotavut[i]);
+          }
+          
+          return numerotavut;
+      }
+      
+      public boolean[][] jaaBittitaulukkoTavuihin(boolean[] bitit){
+          
+          boolean[][] tavut = new boolean[bitit.length/8][8];
+          
+          int laskuri = 0;
+          
+          for(int i = 0; i < tavut.length; i++){
+              for(int j = 0; j < tavut[i].length; j++){
+                 tavut[i][j] = bitit[laskuri];
+                 laskuri++;
+              }
+              
+          }
+          
+//          for(int i = 0; i < tavut.length; i++){
+//              for(int j = 0; j < tavut[i].length; j++){
+//                  System.out.print(tavut[i][j] + " ");
+//                
+//              }
+//              System.out.println("");
+//          }
+          
+          
+                    
+          
+          
+          return tavut;
+      }
 }

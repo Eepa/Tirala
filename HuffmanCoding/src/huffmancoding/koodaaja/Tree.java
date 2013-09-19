@@ -1,66 +1,62 @@
-
 package huffmancoding.koodaaja;
 
 /**
  * Kuvaa bin‰‰rihakupuuta.
+ *
  * @author evpa
  */
 public class Tree {
-    
+
     /**
      * Bin‰‰rihakupuun juuri;
      */
-    
     private Node juuri;
-    
     private int solmumaara;
-    
+
     /**
      * Konstruktori alustaa puulle juuren.
-     * @param juuri 
+     *
+     * @param juuri
      */
-    
-    public Tree(Node juuri){
+    public Tree(Node juuri) {
         this.juuri = juuri;
         this.solmumaara = 0;
     }
-    
+
     /**
      * Palautta puun juuren.
-     * @return 
+     *
+     * @return
      */
-    
-    public Node getJuuri(){
+    public Node getJuuri() {
         return this.juuri;
     }
-    
+
     /**
      * Asettaa uuden juuren puulle.
-     * @param uusiJuuri 
+     *
+     * @param uusiJuuri
      */
-    
-    public void setJuuri(Node uusiJuuri){
+    public void setJuuri(Node uusiJuuri) {
         this.juuri = uusiJuuri;
     }
-    
-    
+
     /**
      * Tulostaa puun alkiot esij‰rjestyksess‰.
+     *
      * @param solmu Puun juurisolmu.
      */
-    
-    public void tulostaAlkiotPreorder(Node solmu){
-//        if(solmu.getOikeaLapsi() != null || solmu.getVasenLapsi() != null){}
-        
-            if(solmu != null){
+    public void tulostaAlkiotPreorder(Node solmu) {
+
+        if (solmu != null) {
             System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
-            
+
             tulostaAlkiotPreorder(solmu.getVasenLapsi());
-            
+
             tulostaAlkiotPreorder(solmu.getOikeaLapsi());
         }
     }
-    
+
 //        public void tulostaAlkiotInorder(Node solmu){
 //        if(solmu != null){
 //            
@@ -81,36 +77,34 @@ public class Tree {
 //             System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
 //        }
 //    }
-    
-    public String[] muodostaUudetKoodit(String[] taulukko, String uusiSana, Node solmu){
-        if(solmu != null){
-            if(solmu.getTavu() != -1000){
-                taulukko[solmu.getTavu()+128] = uusiSana;
+    public String[] muodostaUudetKoodit(String[] taulukko, String uusiSana, Node solmu) {
+        if (solmu != null) {
+            if (solmu.getTavu() != -1000) {
+                taulukko[solmu.getTavu() + 128] = uusiSana;
             }
             muodostaUudetKoodit(taulukko, uusiSana + "0", solmu.getVasenLapsi());
             muodostaUudetKoodit(taulukko, uusiSana + "1", solmu.getOikeaLapsi());
         }
-        
-        
+
         return taulukko;
     }
-    
-    public void setSolmumaara(int maara){
+
+    public void setSolmumaara(int maara) {
         this.solmumaara = maara;
     }
-    public int getSolmumaara(){
+
+    public int getSolmumaara() {
         return this.solmumaara;
     }
-    
-    public int laskeSolmut(Node juuri){
-        
+
+    public int laskeSolmut(Node juuri) {
+
         int maara = 0;
-        
-        if(juuri != null){
+
+        if (juuri != null) {
             maara = 1 + laskeSolmut(juuri.getVasenLapsi()) + laskeSolmut(juuri.getOikeaLapsi());
         }
-        
+
         return maara;
     }
-    
 }

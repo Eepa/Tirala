@@ -54,7 +54,7 @@ public class Pakkaaja {
         }
 
         this.tiedostonimi = this.syotekasittelija.etsiTiedostonimi(teksti);
-        System.out.println(this.tiedostonimi);
+//        System.out.println(this.tiedostonimi);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
 
@@ -67,8 +67,8 @@ public class Pakkaaja {
 
         this.puu = this.muodostaPuu();
 
-        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
-        System.out.println("\n");
+//        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
+//        System.out.println("\n");
 
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
@@ -84,11 +84,32 @@ public class Pakkaaja {
         String sana = this.muodostaUusiStringEsitys("");
 
 
-//        System.out.println("\n" + sana);
+        System.out.println("\n" + sana);
+        
+//        int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
+        
+        sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
+        
+        boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
+        
+        boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
+        
+        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
+        
+        
+        
+        System.out.println("");
+        for(int i = 0; i < numerotavut.length; i++){
+            byte tavu = (byte) numerotavut[i];
+            System.out.println(tavu);
+        }
+        
+        
+        //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
 //
-        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 ////        System.out.println(frekvenssitSana);
-        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
+//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
     }
 
