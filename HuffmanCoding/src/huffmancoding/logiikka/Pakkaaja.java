@@ -84,44 +84,44 @@ public class Pakkaaja {
         String sana = this.muodostaUusiStringEsitys("");
 
 
-        System.out.println("\n" + sana);
-        
-//        int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
-        
-        sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
-        
-        boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
-        
-        boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
-        
-        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
-        
-        
-        byte[] tavuja = new byte[numerotavut.length];
-        System.out.println("");
-        for(int i = 0; i < numerotavut.length; i++){
-            int k = numerotavut[i] - 128;
-            System.out.println(k);
-            
-            
-            byte tavu = (byte) k;
-            System.out.println(tavu);
-            tavuja[i] = tavu;
-        }
-        
-        for(int i = 0; i < tavuja.length; i++){
-            System.out.println(tavuja[i]);
-            
-            System.out.println("Alkuperainen " + (tavuja[i] + 128));
-        }
-        
+//        System.out.println("\n" + sana);
+//        
+////        int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
+//        
+//        sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
+//        
+//        boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
+//        
+//        boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
+//        
+//        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
+//        
+//        
+//        byte[] tavuja = new byte[numerotavut.length];
+//        System.out.println("");
+//        for(int i = 0; i < numerotavut.length; i++){
+//            int k = numerotavut[i] - 128;
+//            System.out.println(k);
+//            
+//            
+//            byte tavu = (byte) k;
+//            System.out.println(tavu);
+//            tavuja[i] = tavu;
+//        }
+//        
+//        for(int i = 0; i < tavuja.length; i++){
+//            System.out.println(tavuja[i]);
+//            
+//            System.out.println("Alkuperainen " + (tavuja[i] + 128));
+//        }
+//        
         
         
         //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
 //
-//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 ////        System.out.println(frekvenssitSana);
-//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
     }
 
