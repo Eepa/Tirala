@@ -79,7 +79,6 @@ public class Syotekasittelija {
 
 
         try {
-//            System.out.println(file.length());
 
             byteArrayOutputStream = new ByteArrayOutputStream((int) file.length());
 
@@ -99,7 +98,6 @@ public class Syotekasittelija {
         }
 
         byte[] tavut = byteArrayOutputStream.toByteArray();
-//        System.out.println(tavut[1] + " ja " + tavut[3]);
 
 
 
@@ -115,6 +113,11 @@ public class Syotekasittelija {
     public int[] luoTavuistaFrekvenssitaululukko(byte[] tavut) {
 
         int[] frekvenssit = new int[256];
+//        System.out.println("Tulostetaan tavut");
+//        for(int i = 0; i < tavut.length; i++){
+//            System.out.println(tavut[i]);
+//        }
+//        System.out.println("Tavutulostus loppui");
 
         for (byte tavu : tavut) {
 
@@ -151,7 +154,9 @@ public class Syotekasittelija {
 
     public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto) {
 
-        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
+//        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
+        
+        String osoite = "pakattu" + tiedostonimi + ".txt";
 
         File file = new File(osoite);
 
@@ -177,37 +182,13 @@ public class Syotekasittelija {
 
 
     }
-//        public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto){
-//            
-//            String[] osat = this.etsiTiedostopaate(tiedostonimi);
-//            
-//            String wanhaNimi = osat[0];
-//            String paate = osat[osat.length -1];
-//                        
-//            String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + wanhaNimi + ".txt";
-//                   
-//            
-//            File uusiTiedosto  = new File(osoite);
-//            
-//            
-//            try{
-//
-//                FileWriter kirjoittaja = new FileWriter(uusiTiedosto);
-//                kirjoittaja.write(tiedostonimi + " ");
-//                kirjoittaja.write(frekvenssit + " ");
-//                kirjoittaja.write(uusiMuoto);
-//                kirjoittaja.close();
-//                
-//            }catch (Exception e){
-//                System.out.println("Virhe sattui! " + e.toString());
-//            }
-//            
-//            
-//        }
-    
-        public void luoTiedosto(byte[] tavut, String tiedostonimi) {
 
-        String osoite = "C:\\Users\\Public\\Downloads\\" + tiedostonimi ;
+    
+        public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi) {
+
+//        String osoite = "C:\\Users\\Public\\Downloads\\" + tiedostonimi ;
+            
+            String osoite = tiedostonimi;
 
         File file = new File(osoite);
 

@@ -64,78 +64,11 @@ public class Pakkaaja {
 
         this.luoMinimikeko(frekvenssit);
 
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        
-//        this.minimikeko.poistaPienin(keko);
-//        
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        this.minimikeko.poistaPienin(keko);
-//        
-//                for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        
-//         this.minimikeko.lisaaAlkioKekoon(keko, new Node(800, 2));
-//
-//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        
-//                this.minimikeko.poistaPienin(keko);
-//
-//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-//        
-//                this.minimikeko.poistaPienin(keko);
-////
-//       
-////
-//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-//
-//        }
-//        System.out.println(this.keko[256].getMaara());
-////
-////
-////        this.minimikeko.poistaPienin(keko);
-////        this.minimikeko.poistaPienin(keko);
-////
-////        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-////            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-////
-////        }
-////        System.out.println(this.keko[256].getMaara());
-
 
         this.puu = this.muodostaPuu();
 
         this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
         System.out.println("\n");
-
-//        this.puu.setSolmumaara(this.puu.laskeSolmut(this.puu.getJuuri()));
-//        System.out.println(this.puu.getSolmumaara());
-
-
-//        this.puu.tulostaAlkiotPostorder(this.puu.getJuuri() );
-//        System.out.println("\n");
-//        
-//        this.puu.tulostaAlkiotInorder(this.puu.getJuuri() );
-//        System.out.println("\n");
 
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
@@ -147,30 +80,32 @@ public class Pakkaaja {
 
         }
 
-        boolean[] bitit = this.bittikasittelija.byteToBits(219);
-
-        for (boolean b : bitit) {
-            System.out.println(b);
-        }
-
-
-
-
-//        int[] numerokeko = this.muodostaPuustaKeko();
-//        
-//        for(int i = 0; i < numerokeko.length; i++){
-//            System.out.println(numerokeko[i]);
-//        }
 
         String sana = this.muodostaUusiStringEsitys("");
 
 
-        System.out.println("\n" + sana);
+//        System.out.println("\n" + sana);
 //
-//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 ////        System.out.println(frekvenssitSana);
-//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, sana);
 
+    }
+
+    public String muodostaFrekvenssitString(int[] frekvenssit) {
+
+        String sana = "";
+
+        for (int i = 0; i < frekvenssit.length; i++) {
+
+            if (frekvenssit[i] != 0) {
+                sana += i + "*" + frekvenssit[i] + ";";
+            }
+
+        }
+
+
+        return sana;
     }
 
     public Minimikeko getMinimikeko() {
@@ -243,44 +178,6 @@ public class Pakkaaja {
 
     }
 
-//    public int[] muodostaPuustaKeko() {
-//
-//        Node[] keko = new Node[this.puu.getSolmumaara()];
-//
-//        keko[0] = this.puu.getJuuri();
-//    
-//
-//        for (int i = 0; i < this.puu.getSolmumaara(); i++) {
-//           
-//            Node nykSolmu = keko[i];
-//            System.out.println(nykSolmu.getTavu());
-//
-//            int vasenLapsiIndeksi = i * 2 + 1;
-//            int oikeaLapsiIndeksi = i * 2 + 2;
-//
-//            Node vasenLapsi = nykSolmu.getVasenLapsi();
-//            
-//            Node oikeaLapsi = nykSolmu.getVasenLapsi();
-//
-//            if (vasenLapsiIndeksi < keko.length) {
-//                keko[vasenLapsiIndeksi] = vasenLapsi;
-//            }
-//
-//            if (oikeaLapsiIndeksi < this.puu.getSolmumaara()) {
-//                keko[oikeaLapsiIndeksi] = oikeaLapsi;
-//            }
-//
-//        }
-//        
-//        int[] numerokeko = new int[keko.length];
-//        
-//        for(int j = 0; j < numerokeko.length; j++){
-//            numerokeko[j] = keko[j].getTavu();
-//        }
-//        
-//
-//        return numerokeko;
-//    }
     public String muodostaUusiStringEsitys(String sana) {
 
         for (int i = 0; i < this.tiedostonTavut.length; i++) {

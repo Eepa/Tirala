@@ -51,7 +51,7 @@ public class Purkaja {
         
         byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
         
-        this.syotekasittelija.luoTiedosto(tavut, sisalto[0]);
+        this.syotekasittelija.luoPurettuTiedosto(tavut, sisalto[0]);
     }
     
     public byte[] muodostaTavutUudestaan(String koodi){
