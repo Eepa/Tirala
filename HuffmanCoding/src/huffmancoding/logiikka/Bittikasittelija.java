@@ -105,15 +105,44 @@ public class Bittikasittelija {
     }
 
     public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-        int[] numerotavut = new int[tavuja.length];
-        for (int i = 0; i < numerotavut.length; i++) {
-
+        int[] numerotavut = new int[tavuja.length-1];
+        for (int i = 1; i < tavuja.length; i++) {
+            System.out.println("Tavu oli " + tavuja[i]);
             int k = tavuja[i] + 128;
 
-            numerotavut[i] = k;
+            numerotavut[i-1] = k;
         }
         return numerotavut;
 
+
+    }
+    
+    public boolean[] muodostaLuettavatTavut(int[] numerotavut){
+        
+        boolean[] luettavatTavut = new boolean[numerotavut.length * 8];
+        boolean[][] valiaikaisetTavut = new boolean[numerotavut.length][8];
+        
+        for(int i = 0; i < numerotavut.length; i++){
+            boolean[] uudetTavut = this.byteToBits(numerotavut[i]);
+            
+            for(int j = 0; j < uudetTavut.length; j++){
+                valiaikaisetTavut[i][j] = uudetTavut[j];
+            }
+            
+        }
+        
+        int laskuri = 0;
+        
+        for(int h = 0; h < valiaikaisetTavut.length; h++){
+            for(int k = 0; k < valiaikaisetTavut[h].length; k++){
+                luettavatTavut[laskuri] = valiaikaisetTavut[h][k];
+                laskuri++;
+            }
+        }
+        
+        
+        
+        return luettavatTavut;
     }
     
     public byte[] kopioiTavutLisaaRoskabittienMaara(byte[] vanhatTavut, int roskabitit){

@@ -18,87 +18,119 @@ public class Purkaja {
     private Syotekasittelija syotekasittelija;
     private Pakkaaja pakkaaja;
     private Tree puu;
+    private Bittikasittelija bittikasittelija;
 
     public Purkaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
         this.pakkaaja = new Pakkaaja(this.syotekasittelija);
+        this.bittikasittelija = new Bittikasittelija();
     }
 
     public void kaynnistaPurku() {
+        System.out.println("Valitaan ensiksi haluttu frekvenssitiedosto.");
+        String tiedostopolkufrekvenssit = this.syotekasittelija.lueTiedostopolku("purku");
+
+        System.out.println("Valitaan sitten haluttu purettava tiedosto.");
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
-        String[] sisalto = this.lueTiedosto(tiedostopolku);
 
-        for (int i = 0; i < sisalto.length; i++) {
-            System.out.println(sisalto[i]);
 
+
+        String tiedostonimi = this.etsiTiedostonimi(tiedostopolkufrekvenssit, tiedostopolku);
+
+        if (tiedostonimi.isEmpty()) {
+            return;
         }
-        int[] frekvenssit = this.muodostaFrekvenssitaulukko(sisalto[1]);
+
+        System.out.println("onnistui " + tiedostonimi);
+
+        String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
+        
+//        System.out.println(frekvenssisisalto[0]);
+
+
+
+        int[] frekvenssit = this.muodostaFrekvenssitaulukko(frekvenssisisalto[0]);
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
         this.puu = this.pakkaaja.muodostaPuu();
 
-        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
+//        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
         String[] uusienKoodienTaulukko = new String[256];
 
         uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
-            if (uusienKoodienTaulukko[i] != null) {
-                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + uusienKoodienTaulukko[i]);
-            }
-
+//        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
+//            if (uusienKoodienTaulukko[i] != null) {
+//                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + uusienKoodienTaulukko[i]);
+//            }
+//
+//        }
+        
+        System.out.println("Tavutaulukko alkaa");
+        
+        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
+        for(int i = 0; i < tavutaulukko.length; i++){
+            System.out.println(tavutaulukko[i]);
         }
         
-        byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
+        int roskabititMaara = tavutaulukko[0];
         
-        this.syotekasittelija.luoPurettuTiedosto(tavut, sisalto[0]);
+        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tavutaulukko);
+//        for(int i = 0; i< numerotavut.length; i++){
+//            System.out.println(numerotavut[i]);
+//        }
+
+//
+//        byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
+//
+//        this.syotekasittelija.luoPurettuTiedosto(tavut, sisalto[0]);
     }
-    
-    public byte[] muodostaTavutUudestaan(String koodi){
-        
+
+    public byte[] muodostaTavutUudestaan(String koodi) {
+
         byte[] tavut = new byte[this.puu.getJuuri().getMaara()];
         int tavulaskuri = 0;
-        
+
         Node lahtopiste = this.puu.getJuuri();
         Node solmu = this.puu.getJuuri();
-        
+
         int i = 0;
-        
-        while(tavulaskuri < this.puu.getJuuri().getMaara()){
-            
-            if(solmu.getVasenLapsi() == null && solmu.getOikeaLapsi() == null){
+
+        while (tavulaskuri < this.puu.getJuuri().getMaara()) {
+
+            if (solmu.getVasenLapsi() == null && solmu.getOikeaLapsi() == null) {
 //                System.out.println(solmu.getTavu());
-                
+
                 byte tavu = (byte) solmu.getTavu();
                 tavut[tavulaskuri] = tavu;
                 tavulaskuri++;
                 solmu = lahtopiste;
                 continue;
             }
-            
+
             char kirjain = koodi.charAt(i);
-            
-            if(kirjain == '0'){
-                if(solmu.getVasenLapsi() != null){
+
+            if (kirjain == '0') {
+                if (solmu.getVasenLapsi() != null) {
                     solmu = solmu.getVasenLapsi();
                 }
-                
-            } else if(kirjain == '1'){
-                 if(solmu.getOikeaLapsi() != null){
+
+            } else if (kirjain == '1') {
+                if (solmu.getOikeaLapsi() != null) {
                     solmu = solmu.getOikeaLapsi();
                 }
             }
-            
+
             i++;
-                        
+
         }
-        
-        for(int j = 0; j < tavut.length; j++){
+
+        for (int j = 0; j < tavut.length; j++) {
             System.out.println(tavut[j]);
         }
-        
+
         return tavut;
-        
+
     }
 
     public int[] muodostaFrekvenssitaulukko(String lahtosana) {
@@ -110,11 +142,11 @@ public class Purkaja {
             frekvenssit[osanumerot[0]] = osanumerot[1];
         }
 
-        for (int i = 0; i < frekvenssit.length; i++) {
-            if (frekvenssit[i] != 0) {
-                System.out.println(frekvenssit[i]);
-            }
-        }
+//        for (int i = 0; i < frekvenssit.length; i++) {
+//            if (frekvenssit[i] != 0) {
+//                System.out.println(frekvenssit[i]);
+//            }
+//        }
 
         return frekvenssit;
     }
@@ -136,6 +168,27 @@ public class Purkaja {
         return numerot;
     }
 
+    public String etsiTiedostonimi(String frekvenssitTiedostopolku, String tiedostopolku) {
+        String frekvenssisana = "";
+
+        for (int i = 17; i < frekvenssitTiedostopolku.length() - 3; i++) {
+            frekvenssisana = frekvenssisana + frekvenssitTiedostopolku.charAt(i);
+        }
+
+        String tiedostonimi = "";
+
+        for (int i = 7; i < tiedostopolku.length() - 3; i++) {
+            tiedostonimi = tiedostonimi + tiedostopolku.charAt(i);
+        }
+
+        if (frekvenssisana.equals(tiedostonimi)) {
+            return tiedostonimi;
+        }
+
+
+        return "";
+    }
+
     public String[] jaaPaaosiin(String sana) {
         String[] osat = sana.split(";");
 
@@ -144,7 +197,7 @@ public class Purkaja {
 
     public String[] lueTiedosto(String tiedostopolku) {
 
-        String[] sisalto = new String[3];
+        String[] sisalto = new String[1];
 
         File tiedosto = new File(tiedostopolku);
 
@@ -160,7 +213,7 @@ public class Purkaja {
             }
             lukija.close();
         } catch (Exception e) {
-            System.out.println("Lukeminen Epäonnistui");
+            System.out.println("Lukeminen epäonnistui");
         }
 
 

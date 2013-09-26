@@ -99,15 +99,18 @@ public class Pakkaaja {
         boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
 
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
-
+//        for(int i = 0; i < numerotavut.length; i++){
+//            System.out.println("numerotavu " + numerotavut[i]);
+//        }
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
-
-
+       
         //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
 //
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
         byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
+
+
 
 ////        System.out.println(frekvenssitSana);
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, kirjoitettavatTavut);
