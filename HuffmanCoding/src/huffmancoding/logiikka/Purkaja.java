@@ -79,6 +79,8 @@ public class Purkaja {
 //        for(int i = 0; i< numerotavut.length; i++){
 //            System.out.println(numerotavut[i]);
 //        }
+        
+        
 
 //
 //        byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
