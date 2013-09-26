@@ -42,68 +42,104 @@ public class Bittikasittelija {
     }
 
     public int etsiRoskabittimaara(String sana) {
-        return 8 - (sana.length() % 8);
+        int roskabittienMaara = 8 - (sana.length() % 8);
+        if (roskabittienMaara == 8) {
+            return 0;
+        }
+
+        return roskabittienMaara;
     }
-    
-    public String lisaaRoskabititSanaan(String sana){
-        
+
+    public String lisaaRoskabititSanaan(String sana) {
+
         int maara = this.etsiRoskabittimaara(sana);
-        
-        for(int i = 0; i < maara; i++){
+
+        for (int i = 0; i < maara; i++) {
             sana += "0";
         }
-        
+
         return sana;
     }
-    
-      public boolean[] muodostaBittitaulukko(char[] merkit){
-        
+
+    public boolean[] muodostaBittitaulukko(char[] merkit) {
+
         boolean[] bitit = new boolean[merkit.length];
-        
-        for(int i = 0; i < merkit.length; i++){
-            
-            if(merkit[i] == '1'){
+
+        for (int i = 0; i < merkit.length; i++) {
+
+            if (merkit[i] == '1') {
                 bitit[i] = true;
             } else {
                 bitit[i] = false;
             }
-            
-            
+
+
         }
         return bitit;
-                
+
     }
-      
-      public int[] muodostaNumerotavut(boolean[][] tavut){
-          
-          int[] numerotavut = new int[tavut.length];
-          
-          for(int i = 0; i < tavut.length; i++){
-              int numero = this.bitsToByte(tavut[i]);
-              numerotavut[i] = numero;
-          }
-          
-          for(int i = 0; i < numerotavut.length; i++){
-              System.out.println(numerotavut[i]);
-          }
-          
-          return numerotavut;
-      }
-      
-      public boolean[][] jaaBittitaulukkoTavuihin(boolean[] bitit){
-          
-          boolean[][] tavut = new boolean[bitit.length/8][8];
-          
-          int laskuri = 0;
-          
-          for(int i = 0; i < tavut.length; i++){
-              for(int j = 0; j < tavut[i].length; j++){
-                 tavut[i][j] = bitit[laskuri];
-                 laskuri++;
-              }
-              
-          }
-          
+
+    public int[] muodostaNumerotavut(boolean[][] tavut) {
+
+        int[] numerotavut = new int[tavut.length];
+
+        for (int i = 0; i < tavut.length; i++) {
+            int numero = this.bitsToByte(tavut[i]);
+            numerotavut[i] = numero;
+        }
+
+        return numerotavut;
+    }
+
+    public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
+        byte[] tavuja = new byte[numerotavut.length];
+
+        for (int i = 0; i < numerotavut.length; i++) {
+
+            int k = numerotavut[i] - 128;
+            byte tavu = (byte) k;
+
+            tavuja[i] = tavu;
+        }
+        return tavuja;
+    }
+
+    public int[] muunnaNumerotavuiksi(byte[] tavuja) {
+        int[] numerotavut = new int[tavuja.length];
+        for (int i = 0; i < numerotavut.length; i++) {
+
+            int k = tavuja[i] + 128;
+
+            numerotavut[i] = k;
+        }
+        return numerotavut;
+
+    }
+    
+    public byte[] kopioiTavutLisaaRoskabittienMaara(byte[] vanhatTavut, int roskabitit){
+        byte[] kirjoitettavatTavut = new byte[vanhatTavut.length+1];
+        kirjoitettavatTavut[0] =  (byte) roskabitit;
+        
+        for(int i = 1; i < kirjoitettavatTavut.length; i++){
+            kirjoitettavatTavut[i] = vanhatTavut[i-1];
+        }
+        return kirjoitettavatTavut;
+    }
+
+    public boolean[][] jaaBittitaulukkoTavuihin(boolean[] bitit) {
+
+        boolean[][] tavut = new boolean[bitit.length / 8][8];
+
+        int laskuri = 0;
+
+        for (int i = 0; i < tavut.length; i++) {
+            for (int j = 0; j < tavut[i].length; j++) {
+                tavut[i][j] = bitit[laskuri];
+                laskuri++;
+            }
+
+        }
+
 //          for(int i = 0; i < tavut.length; i++){
 //              for(int j = 0; j < tavut[i].length; j++){
 //                  System.out.print(tavut[i][j] + " ");
@@ -111,11 +147,11 @@ public class Bittikasittelija {
 //              }
 //              System.out.println("");
 //          }
-          
-          
-                    
-          
-          
-          return tavut;
-      }
+
+
+
+
+
+        return tavut;
+    }
 }

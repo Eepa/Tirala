@@ -152,50 +152,63 @@ public class Syotekasittelija {
         return osat[osat.length - 1];
     }
 
-    public void luoPakattuTiedosto(String tiedostonimi, String frekvenssit, String uusiMuoto) {
-
+    public void luoPakattuTiedosto(String tiedostonimi, String frekvenssitSana, byte[] tavut) {
 //        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
-        
-        String osoite = "pakattu" + tiedostonimi + ".txt";
+        this.luoPakattuFrekvenssitiedosto(tiedostonimi, frekvenssitSana);
 
+        String osoite = "pakattu" + tiedostonimi + ".ep";
         File file = new File(osoite);
 
         FileOutputStream fileOutputStream;
-        
-        String tieto = tiedostonimi + " " + frekvenssit + " " + uusiMuoto;
-        
-        byte[] tietoarray = tieto.getBytes();
-
-
         try {
-            
-            fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(tietoarray);
-            fileOutputStream.close();
 
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(tavut);
+            fileOutputStream.close();
 
         } catch (Exception e) {
             System.out.println("VIRHE! \n" + e.getMessage());
-            
-        }
-   
 
+        }
 
     }
 
-    
-        public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi) {
-
-//        String osoite = "C:\\Users\\Public\\Downloads\\" + tiedostonimi ;
-            
-            String osoite = tiedostonimi;
+    public void luoPakattuFrekvenssitiedosto(String tiedostonimi, String frekvenssitSana) {
+        String osoite = "pakattufrekvenssi" + tiedostonimi + ".ep";
 
         File file = new File(osoite);
 
         FileOutputStream fileOutputStream;
-        
+
+        String frekvenssitieto = frekvenssitSana;
+
+        byte[] frekvenssitietoarray = frekvenssitieto.getBytes();
+
+
         try {
-            
+
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(frekvenssitietoarray);
+            fileOutputStream.close();
+
+        } catch (Exception e) {
+            System.out.println("VIRHE! \n" + e.getMessage());
+
+        }
+    }
+
+    public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi) {
+
+//        String osoite = "C:\\Users\\Public\\Downloads\\" + tiedostonimi ;
+
+        String osoite = tiedostonimi;
+
+        File file = new File(osoite);
+
+        FileOutputStream fileOutputStream;
+
+        try {
+
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(tavut);
             fileOutputStream.close();
@@ -203,11 +216,10 @@ public class Syotekasittelija {
 
         } catch (Exception e) {
             System.out.println("VIRHE! \n" + e.getMessage());
-            
+
         }
-   
+
 
 
     }
-    
 }
