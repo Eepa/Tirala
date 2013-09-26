@@ -57,7 +57,7 @@ public class Purkaja {
 //        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
         String[] uusienKoodienTaulukko = new String[256];
 
-        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
+//        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
 
 //        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
 //            if (uusienKoodienTaulukko[i] != null) {
@@ -80,15 +80,19 @@ public class Purkaja {
 //            System.out.println(numerotavut[i]);
 //        }
         
+        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
         
+        for(int i = 0; i < luettavatTavut.length; i++){
+            System.out.println(luettavatTavut[i]);
+        }
 
 //
-//        byte[] tavut = this.muodostaTavutUudestaan(sisalto[2]);
+        byte[] tavut = this.muodostaTavutUudestaan(luettavatTavut);
 //
-//        this.syotekasittelija.luoPurettuTiedosto(tavut, sisalto[0]);
+        this.syotekasittelija.luoPurettuTiedosto(tavut, tiedostonimi);
     }
 
-    public byte[] muodostaTavutUudestaan(String koodi) {
+    public byte[] muodostaTavutUudestaan(boolean[] koodi) {
 
         byte[] tavut = new byte[this.puu.getJuuri().getMaara()];
         int tavulaskuri = 0;
@@ -110,14 +114,12 @@ public class Purkaja {
                 continue;
             }
 
-            char kirjain = koodi.charAt(i);
-
-            if (kirjain == '0') {
+            if (!koodi[i]) {
                 if (solmu.getVasenLapsi() != null) {
                     solmu = solmu.getVasenLapsi();
                 }
 
-            } else if (kirjain == '1') {
+            } else if (koodi[i]) {
                 if (solmu.getOikeaLapsi() != null) {
                     solmu = solmu.getOikeaLapsi();
                 }

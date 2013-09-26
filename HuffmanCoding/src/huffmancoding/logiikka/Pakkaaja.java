@@ -73,25 +73,25 @@ public class Pakkaaja {
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
-            if (this.uusienKoodienTaulukko[i] != null) {
-                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
-            }
-
-        }
+//        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+//            if (this.uusienKoodienTaulukko[i] != null) {
+//                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
+//            }
+//
+//        }
 
 
         String sana = this.muodostaUusiStringEsitys("");
 
 
-        System.out.println("\n" + sana);
+//        System.out.println("\n" + sana);
 
         int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
-        System.out.println(roskabittienMaara);
+//        System.out.println(roskabittienMaara);
 
         sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
 
-        System.out.println(sana);
+//        System.out.println(sana);
 
 
         boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
@@ -108,6 +108,7 @@ public class Pakkaaja {
         //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
 //
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+
         byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
 
 
@@ -159,12 +160,12 @@ public class Pakkaaja {
      */
     public Tree muodostaPuu() {
 
-        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
+//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
+//
+//        }
 
-        }
-
-        System.out.println(this.keko[256].getMaara());
+//        System.out.println(this.keko[256].getMaara());
 
 
         int laskuri = 0;
@@ -192,12 +193,12 @@ public class Pakkaaja {
 
         }
 
-        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
-            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
-
-        }
-
-        System.out.println(this.keko[256].getMaara());
+//        for (int i = 0; i <= this.keko[256].getMaara(); i++) {
+//            System.out.println("Solmu: " + this.keko[i].getTavu() + " Tavun määrä: " + this.keko[i].getMaara());
+//
+//        }
+//
+//        System.out.println(this.keko[256].getMaara());
 
         return new Tree(this.minimikeko.poistaPienin(this.keko));
 

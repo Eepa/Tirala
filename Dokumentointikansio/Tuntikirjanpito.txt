@@ -32,3 +32,6 @@ Koodailun jatkamista ja miettimista.
 
 to 19.9.2013, 1,5h
 Pajakaynti ja pohdintaa pakkauksen tiivistamisesta.
+
+to 26.9.2013, 2h
+Tiivimman pakkauksen muodostaminen, selvittelya canonical koodista.

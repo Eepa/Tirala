@@ -1,5 +1,9 @@
 package huffmancoding.logiikka;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.IntBuffer;
+
 /**
  * Bittejä käsittelevä luokka.
  *
@@ -105,52 +109,53 @@ public class Bittikasittelija {
     }
 
     public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-        int[] numerotavut = new int[tavuja.length-1];
+        int[] numerotavut = new int[tavuja.length - 1];
         for (int i = 1; i < tavuja.length; i++) {
-            System.out.println("Tavu oli " + tavuja[i]);
+//            System.out.println("Tavu oli " + tavuja[i]);
             int k = tavuja[i] + 128;
 
-            numerotavut[i-1] = k;
+            numerotavut[i - 1] = k;
         }
         return numerotavut;
 
 
     }
-    
-    public boolean[] muodostaLuettavatTavut(int[] numerotavut){
-        
+
+    public boolean[] muodostaLuettavatTavut(int[] numerotavut) {
+
         boolean[] luettavatTavut = new boolean[numerotavut.length * 8];
         boolean[][] valiaikaisetTavut = new boolean[numerotavut.length][8];
-        
-        for(int i = 0; i < numerotavut.length; i++){
+
+        for (int i = 0; i < numerotavut.length; i++) {
             boolean[] uudetTavut = this.byteToBits(numerotavut[i]);
-            
-            for(int j = 0; j < uudetTavut.length; j++){
+
+
+            for (int j = 0; j < uudetTavut.length; j++) {
                 valiaikaisetTavut[i][j] = uudetTavut[j];
             }
-            
+
         }
-        
+
         int laskuri = 0;
-        
-        for(int h = 0; h < valiaikaisetTavut.length; h++){
-            for(int k = 0; k < valiaikaisetTavut[h].length; k++){
+
+        for (int h = 0; h < valiaikaisetTavut.length; h++) {
+            for (int k = 0; k < valiaikaisetTavut[h].length; k++) {
                 luettavatTavut[laskuri] = valiaikaisetTavut[h][k];
                 laskuri++;
             }
         }
-        
-        
-        
+
+
+
         return luettavatTavut;
     }
-    
-    public byte[] kopioiTavutLisaaRoskabittienMaara(byte[] vanhatTavut, int roskabitit){
-        byte[] kirjoitettavatTavut = new byte[vanhatTavut.length+1];
-        kirjoitettavatTavut[0] =  (byte) roskabitit;
-        
-        for(int i = 1; i < kirjoitettavatTavut.length; i++){
-            kirjoitettavatTavut[i] = vanhatTavut[i-1];
+
+    public byte[] kopioiTavutLisaaRoskabittienMaara(byte[] vanhatTavut, int roskabitit) {
+        byte[] kirjoitettavatTavut = new byte[vanhatTavut.length + 1];
+        kirjoitettavatTavut[0] = (byte) roskabitit;
+
+        for (int i = 1; i < kirjoitettavatTavut.length; i++) {
+            kirjoitettavatTavut[i] = vanhatTavut[i - 1];
         }
         return kirjoitettavatTavut;
     }
@@ -182,5 +187,20 @@ public class Bittikasittelija {
 
 
         return tavut;
+    }
+
+    public byte[] intToByte(int[] input) {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(input.length * 4);
+        IntBuffer intBuffer = byteBuffer.asIntBuffer();
+        intBuffer.put(input);
+        byte[] array = byteBuffer.array();
+        return array;
+    }
+
+    public int[] byteToInt(byte[] input) {
+        IntBuffer intBuf = ByteBuffer.wrap(input).order(ByteOrder.BIG_ENDIAN).asIntBuffer();
+        int[] array = new int[intBuf.remaining()];
+        intBuf.get(array);
+        return array;
     }
 }
