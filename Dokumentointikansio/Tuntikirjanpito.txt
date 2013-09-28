@@ -35,3 +35,6 @@ Pajakaynti ja pohdintaa pakkauksen tiivistamisesta.
 
 to 26.9.2013, 2h
 Tiivimman pakkauksen muodostaminen, selvittelya canonical koodista.
+
+la 28.9.2013, 2h
+Miettimista, miksi pakkaus vie niin kauan.

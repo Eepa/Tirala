@@ -65,23 +65,7 @@ public class Bittikasittelija {
         return sana;
     }
 
-    public boolean[] muodostaBittitaulukko(char[] merkit) {
-
-        boolean[] bitit = new boolean[merkit.length];
-
-        for (int i = 0; i < merkit.length; i++) {
-
-            if (merkit[i] == '1') {
-                bitit[i] = true;
-            } else {
-                bitit[i] = false;
-            }
-
-
-        }
-        return bitit;
-
-    }
+   
 
     public int[] muodostaNumerotavut(boolean[][] tavut) {
 
@@ -94,6 +78,18 @@ public class Bittikasittelija {
 
         return numerotavut;
     }
+    
+//        public byte[] muodostaTavut(boolean[][] tavut) {
+//
+//        byte[] numerotavut = new byte[tavut.length];
+//
+//        for (int i = 0; i < tavut.length; i++) {
+//            int numero = this.bitsToByte(tavut[i]) -128;
+//            numerotavut[i] = (byte)numero;
+//        }
+//
+//        return numerotavut;
+//    }
 
     public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
         byte[] tavuja = new byte[numerotavut.length];
@@ -109,12 +105,12 @@ public class Bittikasittelija {
     }
 
     public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-        int[] numerotavut = new int[tavuja.length - 1];
-        for (int i = 1; i < tavuja.length; i++) {
+        int[] numerotavut = new int[tavuja.length ];
+        for (int i = 0; i < tavuja.length; i++) {
 //            System.out.println("Tavu oli " + tavuja[i]);
             int k = tavuja[i] + 128;
 
-            numerotavut[i - 1] = k;
+            numerotavut[i ] = k;
         }
         return numerotavut;
 
@@ -159,8 +155,38 @@ public class Bittikasittelija {
         }
         return kirjoitettavatTavut;
     }
-
-    public boolean[][] jaaBittitaulukkoTavuihin(boolean[] bitit) {
+//
+//    public boolean[][] jaaBittitaulukkoTavuihin(boolean[] bitit) {
+//
+//        boolean[][] tavut = new boolean[bitit.length / 8][8];
+//
+//        int laskuri = 0;
+//
+//        for (int i = 0; i < tavut.length; i++) {
+//            for (int j = 0; j < tavut[i].length; j++) {
+//                tavut[i][j] = bitit[laskuri];
+//                laskuri++;
+//            }
+//
+//        }
+//
+////          for(int i = 0; i < tavut.length; i++){
+////              for(int j = 0; j < tavut[i].length; j++){
+////                  System.out.print(tavut[i][j] + " ");
+////                
+////              }
+////              System.out.println("");
+////          }
+//
+//
+//
+//
+//
+//        return tavut;
+//    }
+//    
+    
+        public boolean[][] jaaTavuihin(char[] bitit) {
 
         boolean[][] tavut = new boolean[bitit.length / 8][8];
 
@@ -168,39 +194,40 @@ public class Bittikasittelija {
 
         for (int i = 0; i < tavut.length; i++) {
             for (int j = 0; j < tavut[i].length; j++) {
-                tavut[i][j] = bitit[laskuri];
+                
+                boolean merkki;
+                
+                if(bitit[laskuri] == '0'){
+                    merkki = false;
+                } else {
+                    merkki = true;
+                }
+                
+                tavut[i][j] = merkki;
                 laskuri++;
             }
 
         }
 
-//          for(int i = 0; i < tavut.length; i++){
-//              for(int j = 0; j < tavut[i].length; j++){
-//                  System.out.print(tavut[i][j] + " ");
-//                
-//              }
-//              System.out.println("");
-//          }
-
-
-
-
-
         return tavut;
     }
+        
+//         public boolean[] muodostaBittitaulukko(char[] merkit) {
+//
+//        boolean[] bitit = new boolean[merkit.length];
+//
+//        for (int i = 0; i < merkit.length; i++) {
+//
+//            if (merkit[i] == '1') {
+//                bitit[i] = true;
+//            } else {
+//                bitit[i] = false;
+//            }
+//
+//
+//        }
+//        return bitit;
+//
+//    }
 
-    public byte[] intToByte(int[] input) {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(input.length * 4);
-        IntBuffer intBuffer = byteBuffer.asIntBuffer();
-        intBuffer.put(input);
-        byte[] array = byteBuffer.array();
-        return array;
-    }
-
-    public int[] byteToInt(byte[] input) {
-        IntBuffer intBuf = ByteBuffer.wrap(input).order(ByteOrder.BIG_ENDIAN).asIntBuffer();
-        int[] array = new int[intBuf.remaining()];
-        intBuf.get(array);
-        return array;
-    }
 }

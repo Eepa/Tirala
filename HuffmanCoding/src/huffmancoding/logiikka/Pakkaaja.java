@@ -86,35 +86,37 @@ public class Pakkaaja {
 
 //        System.out.println("\n" + sana);
 
-        int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
+//        int roskabittienMaara = this.bittikasittelija.etsiRoskabittimaara(sana);
 //        System.out.println(roskabittienMaara);
 
         sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
 
 //        System.out.println(sana);
 
-
-        boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
-
-        boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
+//
+//        boolean[] bittitaulukko = this.bittikasittelija.muodostaBittitaulukko(sana.toCharArray());
+//
+//        boolean[][] tavut = this.bittikasittelija.jaaBittitaulukkoTavuihin(bittitaulukko);
+//        
+        boolean[][] tavut = this.bittikasittelija.jaaTavuihin(sana.toCharArray());
 
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
 //        for(int i = 0; i < numerotavut.length; i++){
 //            System.out.println("numerotavu " + numerotavut[i]);
 //        }
-
+//        byte[] tavuja = this.bittikasittelija.muodostaTavut(tavut);
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
        
         //ALLA MUODOSTETAAN PAKATTU ESITYS --> ENNEN SITÄ TEE MUUTOKSIA SANAAN!
 //
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 
-        byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
+//        byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
 
 
 
 ////        System.out.println(frekvenssitSana);
-        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, kirjoitettavatTavut);
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
 
     }
 

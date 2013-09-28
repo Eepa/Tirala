@@ -58,7 +58,7 @@ public class Purkaja {
         String[] uusienKoodienTaulukko = new String[256];
 
 //        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
-
+//
 //        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
 //            if (uusienKoodienTaulukko[i] != null) {
 //                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + uusienKoodienTaulukko[i]);
