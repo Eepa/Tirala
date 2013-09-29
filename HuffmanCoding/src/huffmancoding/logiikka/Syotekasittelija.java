@@ -4,9 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.Scanner;
 
 /**
@@ -66,7 +63,8 @@ public class Syotekasittelija {
 
     /**
      * Muuttaa halutun tiedoston tavutaulukoksi. Antaa virheilmoituksen, jos
-     * tiedostoa ei löydy ja palauttaa tyhjän taulukon.
+     * tiedostoa ei löydy ja palauttaa tyhjän taulukon. Samoin palauttaa tyhjän 
+     * taulukon, jos haluttu tiedosto on tyhjä.
      *
      * @param polku Polku haluttuun tiedostoon.
      * @return Palauttaa tiedoston tavutaulukkona.
@@ -85,6 +83,10 @@ public class Syotekasittelija {
             FileInputStream fileInputStream = new FileInputStream(file);
 
             byte[] aputaulukko = new byte[(int) file.length()];
+            
+            if(file.length() == 0){
+                return new byte[0];
+            }
 
             for (int maara; (maara = fileInputStream.read(aputaulukko)) != -1;) {
                 byteArrayOutputStream.write(aputaulukko, 0, maara);
@@ -131,12 +133,12 @@ public class Syotekasittelija {
 
         return frekvenssit;
     }
-
-    public String[] etsiTiedostopaate(String osoite) {
-        String[] osat = osoite.split("\\.");
-
-        return osat;
-    }
+    
+    /**
+     * Palauttaa pakattavan tiedoston alkuperäisen nimen.
+     * @param osoite Osoite, josta alkuperäinen tiedosto haettiin.
+     * @return Palauttaa alkuperäisen tiedoston nimen.
+     */
 
     public String etsiTiedostonimi(String osoite) {
 
@@ -151,6 +153,15 @@ public class Syotekasittelija {
 
         return osat[osat.length - 1];
     }
+    
+    /**
+     * Luo pakatun tiedoston annettujen tietojen pohjalta. Ensiksi luodaan oma 
+     * tiedosto frekvenssitaulukkoa varten. Sen jälkeen luodaan varsinainen pakattu 
+     * tiedosto.
+     * @param tiedostonimi Alkuperäisen tiedoston nimi.
+     * @param frekvenssitSana Frekvenssitaulukko String-muodossa.
+     * @param tavut Pakattuun tiedostoon kirjoitettavat tavut.
+     */
 
     public void luoPakattuTiedosto(String tiedostonimi, String frekvenssitSana, byte[] tavut) {
 //        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
@@ -172,6 +183,13 @@ public class Syotekasittelija {
         }
 
     }
+    
+    /**
+     * Luo frekvenssitaulukon sisältävän tiedoston annettujen tietojen pohjalta. 
+     * 
+     * @param tiedostonimi Alkuperäisen tiedoston nimi.
+     * @param frekvenssitSana Frekvenssitaulukko String-muodossa.
+     */
 
     public void luoPakattuFrekvenssitiedosto(String tiedostonimi, String frekvenssitSana) {
         String osoite = "pakattufrekvenssi" + tiedostonimi + ".ep";
@@ -196,6 +214,14 @@ public class Syotekasittelija {
 
         }
     }
+    
+    
+    /**
+     * Luo pakatusta tiedostostosta uudestaan alkuperäisen tiedoston eli 
+     * purkaa pakatun tiedoston.
+     * @param tavut Purettavaan tiedostoon kirjoitettavat tavut.
+     * @param tiedostonimi Alkuperäisen tiedoston nimi.
+     */
 
     public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi) {
 

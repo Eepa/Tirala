@@ -1,9 +1,5 @@
 package huffmancoding.logiikka;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
-
 /**
  * Bittejä käsittelevä luokka.
  *

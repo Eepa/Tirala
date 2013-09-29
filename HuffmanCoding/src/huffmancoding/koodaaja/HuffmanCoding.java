@@ -3,9 +3,6 @@ package huffmancoding.koodaaja;
 import huffmancoding.logiikka.Pakkaaja;
 import huffmancoding.logiikka.Purkaja;
 import huffmancoding.logiikka.Syotekasittelija;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.Scanner;
 
 /**

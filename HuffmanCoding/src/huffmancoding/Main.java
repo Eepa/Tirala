@@ -1,12 +1,6 @@
 package huffmancoding;
 
 import huffmancoding.koodaaja.HuffmanCoding;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.Scanner;
 
 /**

@@ -17,7 +17,7 @@ public class Pakkaaja {
     /**
      * Sisältää syötteen merkkien esiintymismäärät.
      */
-    private byte[] tavujenFrekvenssitaulukko;
+    
     private byte[] tiedostonTavut;
     private Minimikeko minimikeko;
     private Node[] keko;
@@ -50,6 +50,7 @@ public class Pakkaaja {
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
 
         if (this.tiedostonTavut.length == 0) {
+            System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
             return;
         }
 
@@ -82,25 +83,31 @@ public class Pakkaaja {
 
 
         String sana = this.muodostaUusiStringEsitys("");
-//
-//
-//        sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
-//
-//        boolean[][] tavut = this.bittikasittelija.jaaTavuihin(sana.toCharArray());
-//
-//        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
-//
-//        byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
-//       
-//
-//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
-//
-////        byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
-//
-//
-//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
+
+
+        sana = this.bittikasittelija.lisaaRoskabititSanaan(sana);
+
+        boolean[][] tavut = this.bittikasittelija.jaaTavuihin(sana.toCharArray());
+
+        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut);
+
+        byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
+       
+
+        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+
+//        byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
+
+
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
 
     }
+    
+    /**
+     * Muodostaa frekvenssitaulukosta String-muotoisen esityksen.
+     * @param frekvenssit Frekvenssitaulukko, josta uusi esitys muodostetaan.
+     * @return Palauttaa taulukon String-muotoisen esityksen.
+     */
 
     public String muodostaFrekvenssitString(int[] frekvenssit) {
 
@@ -187,6 +194,13 @@ public class Pakkaaja {
         return new Tree(this.minimikeko.poistaPienin(this.keko));
 
     }
+    
+    /**
+     * Muodostaa alkuperäisestä tiedostosta uusien koodien avulla String-muotoisen 
+     * uuden bittiesityksen.
+     * @param sana Sana, josta muodostaminen aloitetaan.
+     * @return Palauttaa valmiin esityksen.
+     */
 
     public String muodostaUusiStringEsitys(String sana) {
 

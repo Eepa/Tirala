@@ -11,7 +11,6 @@ public class Tree {
      * Bin‰‰rihakupuun juuri;
      */
     private Node juuri;
-    private int solmumaara;
 
     /**
      * Konstruktori alustaa puulle juuren.
@@ -20,7 +19,7 @@ public class Tree {
      */
     public Tree(Node juuri) {
         this.juuri = juuri;
-        this.solmumaara = 0;
+
     }
 
     /**
@@ -77,34 +76,23 @@ public class Tree {
 //             System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
 //        }
 //    }
-    public String[] muodostaUudetKoodit(String[] taulukko, String uusiSana, Node solmu) {
+    /**
+     * Muodostaa uudet bittikoodit tavuille.
+     *
+     * @param taulukko Taulukko, johon uudet koodit tallennetaan.
+     * @param uusiKoodi Uusi koodi tietylle tavulle.
+     * @param solmu Puun solmu, jossa kullakin hetkell‰ ollaan.
+     * @return Palauttaa valmiin uusien koodien taulukon.
+     */
+    public String[] muodostaUudetKoodit(String[] taulukko, String uusiKoodi, Node solmu) {
         if (solmu != null) {
             if (solmu.getTavu() != -1000) {
-                taulukko[solmu.getTavu() + 128] = uusiSana;
+                taulukko[solmu.getTavu() + 128] = uusiKoodi;
             }
-            muodostaUudetKoodit(taulukko, uusiSana + "0", solmu.getVasenLapsi());
-            muodostaUudetKoodit(taulukko, uusiSana + "1", solmu.getOikeaLapsi());
+            muodostaUudetKoodit(taulukko, uusiKoodi + "0", solmu.getVasenLapsi());
+            muodostaUudetKoodit(taulukko, uusiKoodi + "1", solmu.getOikeaLapsi());
         }
 
         return taulukko;
-    }
-
-    public void setSolmumaara(int maara) {
-        this.solmumaara = maara;
-    }
-
-    public int getSolmumaara() {
-        return this.solmumaara;
-    }
-
-    public int laskeSolmut(Node juuri) {
-
-        int maara = 0;
-
-        if (juuri != null) {
-            maara = 1 + laskeSolmut(juuri.getVasenLapsi()) + laskeSolmut(juuri.getOikeaLapsi());
-        }
-
-        return maara;
     }
 }
