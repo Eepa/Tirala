@@ -15,16 +15,42 @@ import java.util.Scanner;
  */
 public class Purkaja {
 
+    /**
+     *Käyttäjän antamien syötteiden käsittelijä.
+     */
     private Syotekasittelija syotekasittelija;
+    
+    /**
+     * Tiedoston pakkaajan ilmentymä.
+     */
+    
     private Pakkaaja pakkaaja;
+    
+    /**
+     * Puu, joka sisältää tavujen uudet koodit.
+     */
     private Tree puu;
+    
+    /**
+     * Bittioperaatioita käsittelevä luokka.
+     */
     private Bittikasittelija bittikasittelija;
+    
+    /**
+     * Konstruktori alustaa tarvittavat apuluokat, kuten syötekäsittelijän ja 
+     * bittikäsittelijän.
+     * @param syotekasittelija Syötteitä käsittelevä luokka.
+     */
 
     public Purkaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
         this.pakkaaja = new Pakkaaja(this.syotekasittelija);
         this.bittikasittelija = new Bittikasittelija();
     }
+    
+    /**
+     * Käynnistää purkamisen ja suorittaa tarvittavat operaatiot.
+     */
 
     public void kaynnistaPurku() {
         System.out.println("Valitaan ensiksi haluttu frekvenssitiedosto.");
@@ -38,13 +64,14 @@ public class Purkaja {
         String tiedostonimi = this.etsiTiedostonimi(tiedostopolkufrekvenssit, tiedostopolku);
 
         if (tiedostonimi.isEmpty()) {
+            System.out.println("Tiedostolle ei löytynyt nimeä.");
             return;
         }
 
         System.out.println("onnistui " + tiedostonimi);
 
         String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
-        
+
 //        System.out.println(frekvenssisisalto[0]);
 
 
@@ -65,22 +92,22 @@ public class Purkaja {
 //            }
 //
 //        }
-        
+
         System.out.println("Tavutaulukko alkaa");
-        
+
         byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
 //        for(int i = 0; i < tavutaulukko.length; i++){
 //            System.out.println(tavutaulukko[i]);
 //        }
-        
+
 
         int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tavutaulukko);
 //        for(int i = 0; i< numerotavut.length; i++){
 //            System.out.println(numerotavut[i]);
 //        }
-        
+
         boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
-        
+
 //        for(int i = 0; i < luettavatTavut.length; i++){
 //            System.out.println(luettavatTavut[i]);
 //        }
@@ -91,6 +118,13 @@ public class Purkaja {
         this.syotekasittelija.luoPurettuTiedosto(tavut, tiedostonimi);
     }
 
+    /**
+     * Muodostaa annetun koodin perusteella uudestaan alkuperäisen tiedoston
+     * tavut.
+     *
+     * @param koodi Koodi (bittimuodossa true = 1 ja false = 0).
+     * @return Palauttaa alkuperäisen tiedoston tavut.
+     */
     public byte[] muodostaTavutUudestaan(boolean[] koodi) {
 
         byte[] tavut = new byte[this.puu.getJuuri().getMaara()];
@@ -136,6 +170,13 @@ public class Purkaja {
 
     }
 
+    /**
+     * Muodostaa annetusta String-muotoisesta frekvenssitaulukosta uuden
+     * numeroista koostuvan frekvenssitaulukon.
+     *
+     * @param lahtosana String-muotoinen frekvenssitaulukko.
+     * @return Palauttaa uuden numeroista koostuvan frekvensitaulukon.
+     */
     public int[] muodostaFrekvenssitaulukko(String lahtosana) {
         int[] frekvenssit = new int[256];
         String[] osat = this.jaaPaaosiin(lahtosana);
@@ -145,15 +186,16 @@ public class Purkaja {
             frekvenssit[osanumerot[0]] = osanumerot[1];
         }
 
-//        for (int i = 0; i < frekvenssit.length; i++) {
-//            if (frekvenssit[i] != 0) {
-//                System.out.println(frekvenssit[i]);
-//            }
-//        }
-
         return frekvenssit;
     }
 
+    /**
+     * Jakaa frekvenssisanan pienempiin osiin muotoa "tavu" "frekvenssi" ja
+     * muuttaa ne numeroiksi.
+     *
+     * @param sana Jaettava sana.
+     * @return Palauttaa osat integer-taulukossa.
+     */
     public int[] numeroOsat(String sana) {
         String[] kirjainosat = sana.split("\\*");
 
@@ -171,6 +213,14 @@ public class Purkaja {
         return numerot;
     }
 
+    /**
+     * Etsii annetuista tiedostoista alkuperäisen tiedostonimen. Jos samaa
+     * tiedostonimeä ei löydy, palauttaa metodi tyhjän sanan.
+     *
+     * @param frekvenssitTiedostopolku Frekvenssitiedoston polku.
+     * @param tiedostopolku Pakatun tiedoston polku.
+     * @return Palauttaa alkuperäisen tiedostonimen tai tyhjän merkkijonon.
+     */
     public String etsiTiedostonimi(String frekvenssitTiedostopolku, String tiedostopolku) {
         String frekvenssisana = "";
 
@@ -192,12 +242,24 @@ public class Purkaja {
         return "";
     }
 
-    public String[] jaaPaaosiin(String sana) {
-        String[] osat = sana.split(";");
+    /**
+     * Jakaa frekvenssitaulukon pienempiin osiin muotoa "tavu*frekvenssi".
+     *
+     * @param jaettavaSana Sana, joka jaetaan osiin.
+     * @return Palauttaa jaetun sanan osat.
+     */
+    public String[] jaaPaaosiin(String jaettavaSana) {
+        String[] osat = jaettavaSana.split(";");
 
         return osat;
     }
 
+    /**
+     * Lukee annetun tiedoston frekvenssitaulukon.
+     *
+     * @param tiedostopolku Polku, josta luettava tiedosto löytyy.
+     * @return Palauttaa luetun tiedoston sisällön.
+     */
     public String[] lueTiedosto(String tiedostopolku) {
 
         String[] sisalto = new String[1];

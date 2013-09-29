@@ -19,11 +19,35 @@ public class Pakkaaja {
      */
     
     private byte[] tiedostonTavut;
+    /**
+     * Minimikeon operaatioita k‰sittelev‰ luokka.
+     */
     private Minimikeko minimikeko;
+    /**
+     * Keko, joka sis‰lt‰‰ tavut Node-luokan ilmentymin‰.
+     */
     private Node[] keko;
+    
+     /**
+     * Puu, joka sis‰lt‰‰ tavujen uudet koodit.
+     */
+    
     private Tree puu;
+    
+    /**
+     * Tavujen uudet bittikoodit sis‰lt‰v‰ taulukko.
+     */
     private String[] uusienKoodienTaulukko;
+    
+    /**
+     * Alkuper‰isen tiedoston nimi.
+     */
     private String tiedostonimi;
+    
+     /**
+     * Bittioperaatioita k‰sittelev‰ luokka.
+     */
+    
     private Bittikasittelija bittikasittelija;
 
     /**

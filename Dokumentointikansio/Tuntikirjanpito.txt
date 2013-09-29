@@ -39,5 +39,5 @@ Tiivimman pakkauksen muodostaminen, selvittelya canonical koodista.
 la 28.9.2013, 2h
 Miettimista, miksi pakkaus vie niin kauan.
 
-su 29.9.2013, 1,5h
+su 29.9.2013, 3h
 Koodin kommentointia ja siistimista.
