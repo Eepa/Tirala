@@ -55,7 +55,7 @@ public class Purkaja {
         this.puu = this.pakkaaja.muodostaPuu();
 
 //        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
-        String[] uusienKoodienTaulukko = new String[256];
+//        String[] uusienKoodienTaulukko = new String[256];
 
 //        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
 //
@@ -69,12 +69,11 @@ public class Purkaja {
         System.out.println("Tavutaulukko alkaa");
         
         byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
-        for(int i = 0; i < tavutaulukko.length; i++){
-            System.out.println(tavutaulukko[i]);
-        }
+//        for(int i = 0; i < tavutaulukko.length; i++){
+//            System.out.println(tavutaulukko[i]);
+//        }
         
-        int roskabititMaara = tavutaulukko[0];
-        
+
         int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tavutaulukko);
 //        for(int i = 0; i< numerotavut.length; i++){
 //            System.out.println(numerotavut[i]);
@@ -82,9 +81,9 @@ public class Purkaja {
         
         boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
         
-        for(int i = 0; i < luettavatTavut.length; i++){
-            System.out.println(luettavatTavut[i]);
-        }
+//        for(int i = 0; i < luettavatTavut.length; i++){
+//            System.out.println(luettavatTavut[i]);
+//        }
 
 //
         byte[] tavut = this.muodostaTavutUudestaan(luettavatTavut);
@@ -129,9 +128,9 @@ public class Purkaja {
 
         }
 
-        for (int j = 0; j < tavut.length; j++) {
-            System.out.println(tavut[j]);
-        }
+//        for (int j = 0; j < tavut.length; j++) {
+//            System.out.println(tavut[j]);
+//        }
 
         return tavut;
 
