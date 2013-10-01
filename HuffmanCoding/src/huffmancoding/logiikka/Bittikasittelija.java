@@ -77,14 +77,7 @@ public class Bittikasittelija {
      * @param bittijono Bittijono, johon roskabitit lis‰t‰‰n.
      * @return Palauttaa uuden bittijonon.
      */
-//    public boolean[][] lisaaRoskabititSanaan(boolean[][] tavut, int bitti, int osoitin) {
-//
-//        for (int i = bitti; i < 8; i++) {
-//            tavut[osoitin][i] = false;
-//        }
-//
-//        return tavut;
-//    }
+
     public boolean[] lisaaRoskabititSanaan(boolean[] tavut, int osoitin) {
 
         int roskabittienMaara = this.etsiRoskabittimaara(osoitin);
@@ -104,32 +97,18 @@ public class Bittikasittelija {
      * @param tavut Bittimuotoiset tavut, jotka muutetaan numeroiksi.
      * @return
      */
-//    public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
-//
-//        int[] numerotavut = new int[tavut.length-osoitin];
-//
-//        for (int i = 0; i < tavut.length-osoitin; i++) {
-//            int numero = this.bitsToByte(tavut[i]);
-//            numerotavut[i] = numero;
-//        }
-//
-//        return numerotavut;
-//    }
     public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
 
-        int maara = (osoitin/8) + 1;
-        System.out.println("Pituus oli " +maara + "tavut pituus " + tavut.length);
+        int[] numerotavut = new int[osoitin+1];
 
-        int[] numerotavut = new int[tavut.length];
-
-        for (int i = 0; i < tavut.length; i++) {
-            System.out.println("Indeksi oli " + i);
+        for (int i = 0; i < osoitin+1; i++) {
             int numero = this.bitsToByte(tavut[i]);
             numerotavut[i] = numero;
         }
 
         return numerotavut;
     }
+
 
     /**
      * Muuntaa numeromuotoiset tavut oikeiksi Javan tavuiksi (v‰lill‰ -127-128).
@@ -232,31 +211,7 @@ public class Bittikasittelija {
      * @param bitit Merkkimuotoinen bittijono, joka muutetaan booleaneiksi.
      * @return Palauttaa merkit muutettuina ja jaettuina tavuihin.
      */
-//    public boolean[][] jaaTavuihin(char[] bitit) {
-//
-//        boolean[][] tavut = new boolean[bitit.length / 8][8];
-//
-//        int laskuri = 0;
-//
-//        for (int i = 0; i < tavut.length; i++) {
-//            for (int j = 0; j < tavut[i].length; j++) {
-//
-//                boolean merkki;
-//
-//                if (bitit[laskuri] == '0') {
-//                    merkki = false;
-//                } else {
-//                    merkki = true;
-//                }
-//
-//                tavut[i][j] = merkki;
-//                laskuri++;
-//            }
-//
-//        }
-//
-//        return tavut;
-//    }
+
     public boolean[][] jaaTavuihin(boolean[] bitit, int osoitin) {
 
         boolean[][] tavut = new boolean[(bitit.length - osoitin) / 8][8];

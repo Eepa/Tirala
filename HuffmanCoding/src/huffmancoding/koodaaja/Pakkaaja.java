@@ -1,7 +1,5 @@
 package huffmancoding.koodaaja;
 
-import huffmancoding.koodaaja.Node;
-import huffmancoding.koodaaja.Tree;
 import huffmancoding.logiikka.Bittikasittelija;
 import huffmancoding.logiikka.Kirjoittaja;
 import huffmancoding.logiikka.Minimikeko;
@@ -106,31 +104,23 @@ public class Pakkaaja {
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
-            if (this.uusienKoodienTaulukko[i] != null) {
-                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
-            }
-
-        }
+//        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+//            if (this.uusienKoodienTaulukko[i] != null) {
+//                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
+//            }
+//
+//        }
 
 
         this.kirjoittaja = new Kirjoittaja(this.uusienKoodienTaulukko, this.puu.getJuuri().getMaara());
-             
-        
-
-        boolean[] ekatTavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
-        
-        boolean[][] tavut = this.bittikasittelija.jaaTavuihin(ekatTavut, this.kirjoittaja.getOsoitin());
+                     
+        boolean[][] tavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
 
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut, this.kirjoittaja.getOsoitin());
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
        
-
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
-
-//        byte[] kirjoitettavatTavut = this.bittikasittelija.kopioiTavutLisaaRoskabittienMaara(tavuja, roskabittienMaara);
-
 
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
 
@@ -227,13 +217,7 @@ public class Pakkaaja {
         return new Tree(this.minimikeko.poistaPienin(this.keko));
 
     }
-    
-    /**
-     * Muodostaa alkuperäisestä tiedostosta uusien koodien avulla String-muotoisen 
-     * uuden bittiesityksen.
-     * @param sana Sana, josta muodostaminen aloitetaan.
-     * @return Palauttaa valmiin esityksen.
-     */
+
 
 
 }

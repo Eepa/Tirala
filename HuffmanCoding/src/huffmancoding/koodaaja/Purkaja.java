@@ -4,9 +4,6 @@
  */
 package huffmancoding.koodaaja;
 
-import huffmancoding.koodaaja.Pakkaaja;
-import huffmancoding.koodaaja.Node;
-import huffmancoding.koodaaja.Tree;
 import huffmancoding.logiikka.Bittikasittelija;
 import huffmancoding.logiikka.Syotekasittelija;
 import java.io.File;
