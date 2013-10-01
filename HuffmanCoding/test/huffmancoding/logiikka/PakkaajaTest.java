@@ -1,5 +1,6 @@
 package huffmancoding.logiikka;
 
+import huffmancoding.koodaaja.Pakkaaja;
 import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;

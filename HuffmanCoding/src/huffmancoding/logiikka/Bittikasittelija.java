@@ -9,13 +9,15 @@ public class Bittikasittelija {
 
     public Bittikasittelija() {
     }
-    
+
     /**
-     * Muuttaa tavun biteiksi. (Koodi täältä: http://www.cs.helsinki.fi/u/ejunttil/opetus/tiraharjoitus/bittiohje.txt)
-     * @param data Tavu (väliltä 0-255), joka muutetaan biteiksi (true = 1, false = 0).
+     * Muuttaa tavun biteiksi. (Koodi täältä:
+     * http://www.cs.helsinki.fi/u/ejunttil/opetus/tiraharjoitus/bittiohje.txt)
+     *
+     * @param data Tavu (väliltä 0-255), joka muutetaan biteiksi (true = 1,
+     * false = 0).
      * @return Palauttaa tavun bittiesityksen.
      */
-
     public boolean[] byteToBits(int data) {
 
         if (data < 0 || 255 < data) {
@@ -30,13 +32,14 @@ public class Bittikasittelija {
         return bits;
 
     }
-    
+
     /**
-     * Muuttaa bitit tavuksi. (Koodi täältä: http://www.cs.helsinki.fi/u/ejunttil/opetus/tiraharjoitus/bittiohje.txt)
+     * Muuttaa bitit tavuksi. (Koodi täältä:
+     * http://www.cs.helsinki.fi/u/ejunttil/opetus/tiraharjoitus/bittiohje.txt)
+     *
      * @param bits Bitit, joista muodostetaan tavu väliltä 0-255.
      * @return Palauttaa bittejä vastaavan tavun.
      */
-
     public int bitsToByte(boolean[] bits) {
         if (bits == null || bits.length != 8) {
             throw new IllegalArgumentException("Vääränlainen taulukko.");
@@ -52,64 +55,88 @@ public class Bittikasittelija {
 
 
     }
-    
+
     /**
      * Etsii annetusta bittijonosta tarvittavan roskabittimäärän.
+     *
      * @param bittijono Bittijono, jonka roskabittimäärää tutkitaan.
      * @return Palauttaa roskabittimäärän.
      */
-
-    public int etsiRoskabittimaara(String bittijono) {
-        int roskabittienMaara = 8 - (bittijono.length() % 8);
+    public int etsiRoskabittimaara(int bitti) {
+        int roskabittienMaara = 8 - (bitti % 8);
         if (roskabittienMaara == 8) {
             return 0;
         }
 
         return roskabittienMaara;
     }
-    
+
     /**
      * Lisää annettuun bittijonoon tarvittavan määrän roskabittejä.
+     *
      * @param bittijono Bittijono, johon roskabitit lisätään.
      * @return Palauttaa uuden bittijonon.
      */
+//    public boolean[][] lisaaRoskabititSanaan(boolean[][] tavut, int bitti, int osoitin) {
+//
+//        for (int i = bitti; i < 8; i++) {
+//            tavut[osoitin][i] = false;
+//        }
+//
+//        return tavut;
+//    }
+    public boolean[] lisaaRoskabititSanaan(boolean[] tavut, int osoitin) {
 
-    public String lisaaRoskabititSanaan(String bittijono) {
+        int roskabittienMaara = this.etsiRoskabittimaara(osoitin);
 
-        int maara = this.etsiRoskabittimaara(bittijono);
-
-        for (int i = 0; i < maara; i++) {
-            bittijono += "0";
+        for (int i = 0; i < roskabittienMaara; i++) {
+            tavut[osoitin] = false;
+            osoitin++;
         }
 
-        return bittijono;
+        return tavut;
     }
 
-   /**
-    * Muodostaa annetuista bittimuotoisista tavuista niitä vastaavat numerotavut.
-    * @param tavut Bittimuotoiset tavut, jotka muutetaan numeroiksi.
-    * @return 
-    */
+    /**
+     * Muodostaa annetuista bittimuotoisista tavuista niitä vastaavat
+     * numerotavut.
+     *
+     * @param tavut Bittimuotoiset tavut, jotka muutetaan numeroiksi.
+     * @return
+     */
+//    public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
+//
+//        int[] numerotavut = new int[tavut.length-osoitin];
+//
+//        for (int i = 0; i < tavut.length-osoitin; i++) {
+//            int numero = this.bitsToByte(tavut[i]);
+//            numerotavut[i] = numero;
+//        }
+//
+//        return numerotavut;
+//    }
+    public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
 
-    public int[] muodostaNumerotavut(boolean[][] tavut) {
+        int maara = (osoitin/8) + 1;
+        System.out.println("Pituus oli " +maara + "tavut pituus " + tavut.length);
 
         int[] numerotavut = new int[tavut.length];
 
         for (int i = 0; i < tavut.length; i++) {
+            System.out.println("Indeksi oli " + i);
             int numero = this.bitsToByte(tavut[i]);
             numerotavut[i] = numero;
         }
 
         return numerotavut;
     }
-    
+
     /**
      * Muuntaa numeromuotoiset tavut oikeiksi Javan tavuiksi (välillä -127-128).
+     *
      * @param numerotavut Numerotavut, jotka muutetaan byte-muotoon.
      * @return Palauttaa numerotavuja vastaavat byte-tavut.
      */
-
-
     public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
         byte[] tavuja = new byte[numerotavut.length];
 
@@ -122,34 +149,34 @@ public class Bittikasittelija {
         }
         return tavuja;
     }
-    
+
     /**
      * Muuntaa byte-muotoiset tavut numerotavuiksi välille 0-255.
+     *
      * @param tavuja Tavut, jotka muunnetaan numeroiksi.
      * @return Palauttaa annettuja tavuja vastaavat numerotavut.
      */
-
     public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-        int[] numerotavut = new int[tavuja.length ];
+        int[] numerotavut = new int[tavuja.length];
         for (int i = 0; i < tavuja.length; i++) {
 //            System.out.println("Tavu oli " + tavuja[i]);
             int k = tavuja[i] + 128;
 
-            numerotavut[i ] = k;
+            numerotavut[i] = k;
         }
         return numerotavut;
 
 
     }
-    
+
     /**
-     * Muodostaa annetuista numerotavuista ensin bittimuotoiset tavut ja kopioi 
-     * ne sitten yhteen boolean-taulukkoon lukemista varten. Taulukko vastaa 
+     * Muodostaa annetuista numerotavuista ensin bittimuotoiset tavut ja kopioi
+     * ne sitten yhteen boolean-taulukkoon lukemista varten. Taulukko vastaa
      * vanhan tiedoston bittiesitystä.
+     *
      * @param numerotavut Numerotavut, joista bittiesitys muodostetaan.
      * @return Palauttaa tiedoston bittiesityksen (true = 1, false = 0).
      */
-
     public boolean[] muodostaLuettavatTavut(int[] numerotavut) {
 
         boolean[] luettavatTavut = new boolean[numerotavut.length * 8];
@@ -178,16 +205,16 @@ public class Bittikasittelija {
 
         return luettavatTavut;
     }
-    
+
     /**
-     * Kopioi vanhan tiedoston tavut ja lisää siihen roskabittien määrän kertovan tavun 
-     * tiedoston eteen.
+     * Kopioi vanhan tiedoston tavut ja lisää siihen roskabittien määrän
+     * kertovan tavun tiedoston eteen.
+     *
      * @param vanhatTavut Vanhat tavut, jotka kopioidaan.
      * @param roskabitit Roskabittien määrä.
-     * @return Palauttaa uuden byte-taulukon, joka sisältää paikalla 0 roskabittien määrän 
-     * ja lopussa vanhat tavut.
+     * @return Palauttaa uuden byte-taulukon, joka sisältää paikalla 0
+     * roskabittien määrän ja lopussa vanhat tavut.
      */
-
     public byte[] kopioiTavutLisaaRoskabittienMaara(byte[] vanhatTavut, int roskabitit) {
         byte[] kirjoitettavatTavut = new byte[vanhatTavut.length + 1];
         kirjoitettavatTavut[0] = (byte) roskabitit;
@@ -199,28 +226,48 @@ public class Bittikasittelija {
     }
 
     /**
-     * Jakaa merkkijonotaulukon tavuihin (8 arvon sarjoihin ) ja muuttaa merkit boolean-arvoiksi. 
-     * True = 1 ja false = 0;
+     * Jakaa merkkijonotaulukon tavuihin (8 arvon sarjoihin ) ja muuttaa merkit
+     * boolean-arvoiksi. True = 1 ja false = 0;
+     *
      * @param bitit Merkkimuotoinen bittijono, joka muutetaan booleaneiksi.
      * @return Palauttaa merkit muutettuina ja jaettuina tavuihin.
      */
-        public boolean[][] jaaTavuihin(char[] bitit) {
+//    public boolean[][] jaaTavuihin(char[] bitit) {
+//
+//        boolean[][] tavut = new boolean[bitit.length / 8][8];
+//
+//        int laskuri = 0;
+//
+//        for (int i = 0; i < tavut.length; i++) {
+//            for (int j = 0; j < tavut[i].length; j++) {
+//
+//                boolean merkki;
+//
+//                if (bitit[laskuri] == '0') {
+//                    merkki = false;
+//                } else {
+//                    merkki = true;
+//                }
+//
+//                tavut[i][j] = merkki;
+//                laskuri++;
+//            }
+//
+//        }
+//
+//        return tavut;
+//    }
+    public boolean[][] jaaTavuihin(boolean[] bitit, int osoitin) {
 
-        boolean[][] tavut = new boolean[bitit.length / 8][8];
+        boolean[][] tavut = new boolean[(bitit.length - osoitin) / 8][8];
 
         int laskuri = 0;
 
         for (int i = 0; i < tavut.length; i++) {
             for (int j = 0; j < tavut[i].length; j++) {
-                
-                boolean merkki;
-                
-                if(bitit[laskuri] == '0'){
-                    merkki = false;
-                } else {
-                    merkki = true;
-                }
-                
+
+                boolean merkki = bitit[laskuri];
+
                 tavut[i][j] = merkki;
                 laskuri++;
             }
@@ -229,6 +276,4 @@ public class Bittikasittelija {
 
         return tavut;
     }
-
-
 }
