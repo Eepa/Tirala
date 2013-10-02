@@ -41,3 +41,9 @@ Miettimista, miksi pakkaus vie niin kauan.
 
 su 29.9.2013, 3h
 Koodin kommentointia ja siistimista.
+
+Ti 1.10.2013, 2h
+Koodin parantelua ja korjailua.
+
+Ke 2.10.2013, 2h
+Korjailu jatkuu ja parantelu.

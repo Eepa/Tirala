@@ -19,7 +19,6 @@ public class Pakkaaja {
     /**
      * Sisältää syötteen merkkien esiintymismäärät.
      */
-    
     private byte[] tiedostonTavut;
     /**
      * Minimikeon operaatioita käsittelevä luokka.
@@ -29,29 +28,22 @@ public class Pakkaaja {
      * Keko, joka sisältää tavut Node-luokan ilmentyminä.
      */
     private Node[] keko;
-    
-     /**
+    /**
      * Puu, joka sisältää tavujen uudet koodit.
      */
-    
     private Tree puu;
-    
     /**
      * Tavujen uudet bittikoodit sisältävä taulukko.
      */
     private String[] uusienKoodienTaulukko;
-    
     /**
      * Alkuperäisen tiedoston nimi.
      */
     private String tiedostonimi;
-    
-     /**
+    /**
      * Bittioperaatioita käsittelevä luokka.
      */
-    
     private Bittikasittelija bittikasittelija;
-    
     private Kirjoittaja kirjoittaja;
 
     /**
@@ -76,8 +68,8 @@ public class Pakkaaja {
 
 
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
-        
-        
+
+
 
         if (this.tiedostonTavut.length == 0) {
             System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
@@ -113,34 +105,37 @@ public class Pakkaaja {
 
 
         this.kirjoittaja = new Kirjoittaja(this.uusienKoodienTaulukko, this.puu.getJuuri().getMaara());
-                     
+
         boolean[][] tavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
 
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut, this.kirjoittaja.getOsoitin());
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
-       
+
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
 
     }
-    
+
     /**
      * Muodostaa frekvenssitaulukosta String-muotoisen esityksen.
+     *
      * @param frekvenssit Frekvenssitaulukko, josta uusi esitys muodostetaan.
      * @return Palauttaa taulukon String-muotoisen esityksen.
      */
-
     public String muodostaFrekvenssitString(int[] frekvenssit) {
 
         String sana = "";
 
         for (int i = 0; i < frekvenssit.length; i++) {
-
-            if (frekvenssit[i] != 0) {
-                sana += i + "*" + frekvenssit[i] + ";";
+            if (i == frekvenssit.length - 1) {
+                sana += frekvenssit[1];
+                continue;
             }
+
+            sana += frekvenssit[i] + ";";
+
 
         }
 
@@ -217,7 +212,4 @@ public class Pakkaaja {
         return new Tree(this.minimikeko.poistaPienin(this.keko));
 
     }
-
-
-
 }
