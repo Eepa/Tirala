@@ -16,37 +16,42 @@ import java.util.Scanner;
 public class Purkaja {
 
     /**
-     * Käyttäjän antamien syötteiden käsittelijä.
+     *Käyttäjän antamien syötteiden käsittelijä.
      */
     private Syotekasittelija syotekasittelija;
+    
     /**
      * Tiedoston pakkaajan ilmentymä.
      */
+    
     private Pakkaaja pakkaaja;
+    
     /**
      * Puu, joka sisältää tavujen uudet koodit.
      */
     private Tree puu;
+    
     /**
      * Bittioperaatioita käsittelevä luokka.
      */
     private Bittikasittelija bittikasittelija;
-
+    
     /**
-     * Konstruktori alustaa tarvittavat apuluokat, kuten syötekäsittelijän ja
+     * Konstruktori alustaa tarvittavat apuluokat, kuten syötekäsittelijän ja 
      * bittikäsittelijän.
-     *
      * @param syotekasittelija Syötteitä käsittelevä luokka.
      */
+
     public Purkaja(Syotekasittelija syotekasittelija) {
         this.syotekasittelija = syotekasittelija;
         this.pakkaaja = new Pakkaaja(this.syotekasittelija);
         this.bittikasittelija = new Bittikasittelija();
     }
-
+    
     /**
      * Käynnistää purkamisen ja suorittaa tarvittavat operaatiot.
      */
+
     public void kaynnistaPurku() {
         System.out.println("Valitaan ensiksi haluttu frekvenssitiedosto.");
         String tiedostopolkufrekvenssit = this.syotekasittelija.lueTiedostopolku("purku");
@@ -177,8 +182,8 @@ public class Purkaja {
         String[] osat = this.jaaPaaosiin(lahtosana);
 
         for (int i = 0; i < osat.length; i++) {
-            int numero = this.muutaNumeroksi(osat[i]);
-            frekvenssit[i] = numero;
+            int[] osanumerot = this.numeroOsat(osat[i]);
+            frekvenssit[osanumerot[0]] = osanumerot[1];
         }
 
         return frekvenssit;
@@ -191,19 +196,21 @@ public class Purkaja {
      * @param sana Jaettava sana.
      * @return Palauttaa osat integer-taulukossa.
      */
-    public int muutaNumeroksi(String sana) {
-        int numero = 0;
+    public int[] numeroOsat(String sana) {
+        String[] kirjainosat = sana.split("\\*");
 
+        int[] numerot = new int[2];
 
-        try {
-            numero = Integer.parseInt(sana);
-        } catch (Exception e) {
-            System.out.println("Numeron muutos epäonnistui");
+        for (int i = 0; i < kirjainosat.length; i++) {
+            try {
+                numerot[i] = Integer.parseInt(kirjainosat[i]);
+            } catch (Exception e) {
+                System.out.println("Numeron muutos epäonnistui");
+            }
+
         }
 
-
-
-        return numero;
+        return numerot;
     }
 
     /**
