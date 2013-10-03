@@ -221,9 +221,10 @@ public class Syotekasittelija {
     public void luoPakattuTiedosto(String tiedostonimi, byte[] tavut, String tiedostopolku) {
 //        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
         
-        String uusiKansio = this.luoKansio(tiedostopolku, tiedostonimi);
+//        String uusiKansio = this.luoKansio(tiedostopolku, tiedostonimi);
 
-        String osoite = uusiKansio + "/" +"pakattu" + tiedostonimi + ".ep";
+//        String osoite = uusiKansio + "/" +"pakattu" + tiedostonimi + ".ep";
+        String osoite = tiedostopolku + "pakattu" + tiedostonimi + ".ep";
         File file = new File(osoite);
 
         FileOutputStream fileOutputStream;

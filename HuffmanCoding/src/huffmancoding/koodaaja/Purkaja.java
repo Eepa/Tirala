@@ -100,11 +100,14 @@ public class Purkaja {
 //
 //        System.out.println("Valitaan sitten haluttu purettava tiedosto.");
 //        String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
+//
+//        System.out.println("Valitaan kansio, jossa purettavat tiedostot ovat.");
+//        String kansiopolku = this.syotekasittelija.lueTiedostopolku("purku");
+        
+        System.out.println("Anna tiedosto, jonka haluat purkaa.");
+        String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
-        System.out.println("Valitaan kansio, jossa purettavat tiedostot ovat.");
-        String kansiopolku = this.syotekasittelija.lueTiedostopolku("purku");
-
-        String[] kansionSisalto = this.lueKansionSisalto(kansiopolku);
+//        String[] kansionSisalto = this.lueKansionSisalto(kansiopolku);
 
 //        String tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(tiedostopolkufrekvenssit);
 //        String tiedosto = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
@@ -125,7 +128,8 @@ public class Purkaja {
 //            return;
 //        }
 //        String tiedostonimi = this.etsiTiedostonimi(tiedostonimifrekvenssit, tiedosto);
-        String haettuNimi = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
+//        String haettuNimi = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
+        String haettuNimi = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
          String tiedostonimi = this.etsiTiedostonimi(haettuNimi);
         
         
@@ -138,8 +142,8 @@ public class Purkaja {
 
 //        String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
         
-        byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[0]);
-        
+//        byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[0]);
+             byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
         
 //        String[] frekvenssisisalto = this.lueTiedosto(kansionSisalto[0]);
         
