@@ -54,10 +54,15 @@ public class Purkaja {
         System.out.println("Valitaan sitten haluttu purettava tiedosto.");
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
+        String tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(tiedostopolkufrekvenssit);
+        String tiedosto = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
 
 
-        String tiedostonimi = this.etsiTiedostonimi(tiedostopolkufrekvenssit, tiedostopolku);
-
+        if (tiedostonimifrekvenssit == null || tiedosto == null) {
+            System.out.println("JOKU MENI PIELEEN");
+            return;
+        }
+        String tiedostonimi = this.etsiTiedostonimi(tiedostonimifrekvenssit, tiedosto);
         if (tiedostonimi.isEmpty()) {
             System.out.println("Tiedostolle ei löytynyt nimeä.");
             return;

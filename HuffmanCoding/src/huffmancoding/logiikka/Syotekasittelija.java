@@ -143,15 +143,45 @@ public class Syotekasittelija {
     public String etsiTiedostonimi(String osoite) {
 
         String[] osat;
+        String merkki = "\\";
 
         if (osoite.contains("/")) {
-            osat = osoite.split("\\/");
+            merkki = "\\/";
+            osat = osoite.split(merkki);
+            return osat[osat.length - 1];
 
-        } else {
-            osat = osoite.split("\\\\");
+        } else if(osoite.contains(merkki)) {
+            osat = osoite.split(merkki);
+            return osat[osat.length - 1];
         }
 
-        return osat[osat.length - 1];
+        return "";
+    }
+    
+    public String etsiTiedostopolku(String osoite) {
+
+        String[] osat;
+        String merkki = "\\";
+
+        if (osoite.contains("/")) {
+            merkki = "\\/";
+            osat = osoite.split(merkki);
+            return this.kasaaTiedostopolku(osat);
+
+        } else if(osoite.contains(merkki)) {
+            osat = osoite.split(merkki);
+            return this.kasaaTiedostopolku(osat);
+        }
+
+        return "";
+    }
+    
+    public String kasaaTiedostopolku(String[] osat){
+        String polku = "";
+        for(int i = 0; i < osat.length-1; i++){
+            polku += osat[i] + "/";
+        }
+        return polku;
     }
     
     /**
@@ -163,11 +193,14 @@ public class Syotekasittelija {
      * @param tavut Pakattuun tiedostoon kirjoitettavat tavut.
      */
 
-    public void luoPakattuTiedosto(String tiedostonimi, String frekvenssitSana, byte[] tavut) {
+    public void luoPakattuTiedosto(String tiedostonimi, String frekvenssitSana, byte[] tavut, String tiedostopolku) {
 //        String osoite = "C:\\Users\\Public\\Downloads\\pakattu" + tiedostonimi + ".txt";
-        this.luoPakattuFrekvenssitiedosto(tiedostonimi, frekvenssitSana);
+        
+        String uusiKansio = this.luoKansio(tiedostopolku, tiedostonimi);
+        
+        this.luoPakattuFrekvenssitiedosto(tiedostonimi, frekvenssitSana, uusiKansio);
 
-        String osoite = "pakattu" + tiedostonimi + ".ep";
+        String osoite = uusiKansio + "/" +"pakattu" + tiedostonimi + ".ep";
         File file = new File(osoite);
 
         FileOutputStream fileOutputStream;
@@ -184,6 +217,25 @@ public class Syotekasittelija {
 
     }
     
+    public String luoKansio(String tiedostopolku, String tiedostonimi){
+        String osoite = tiedostopolku + "p"+tiedostonimi;
+        File kansio = new File(osoite);
+        System.out.println(osoite);
+        if(!kansio.exists()){
+            
+            boolean arvo = kansio.mkdir();
+            if(arvo){
+                System.out.println("Kansion luonti onnistui");
+                return osoite;
+            }
+            else {
+                System.out.println("Kansion luominen epäonnistui");
+                return "";
+            }
+        }
+        return "";
+    }
+    
     /**
      * Luo frekvenssitaulukon sisältävän tiedoston annettujen tietojen pohjalta. 
      * 
@@ -191,8 +243,8 @@ public class Syotekasittelija {
      * @param frekvenssitSana Frekvenssitaulukko String-muodossa.
      */
 
-    public void luoPakattuFrekvenssitiedosto(String tiedostonimi, String frekvenssitSana) {
-        String osoite = "pakattufrekvenssi" + tiedostonimi + ".ep";
+    public void luoPakattuFrekvenssitiedosto(String tiedostonimi, String frekvenssitSana, String tiedostopolku) {
+        String osoite = tiedostopolku + "/"+ "pakattufrekvenssi" + tiedostonimi + ".ep";
 
         File file = new File(osoite);
 

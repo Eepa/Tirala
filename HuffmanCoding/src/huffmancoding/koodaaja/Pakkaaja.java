@@ -78,6 +78,7 @@ public class Pakkaaja {
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
         
         
+        
 
         if (this.tiedostonTavut.length == 0) {
             System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
@@ -86,6 +87,7 @@ public class Pakkaaja {
 
         this.tiedostonimi = this.syotekasittelija.etsiTiedostonimi(teksti);
 //        System.out.println(this.tiedostonimi);
+        String tiedostopolku = this.syotekasittelija.etsiTiedostopolku(teksti);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
 
@@ -122,7 +124,7 @@ public class Pakkaaja {
        
         String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
 
-        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja);
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja, tiedostopolku);
 
     }
     
