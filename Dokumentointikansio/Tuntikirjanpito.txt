@@ -41,3 +41,9 @@ Miettimista, miksi pakkaus vie niin kauan.
 
 su 29.9.2013, 3h
 Koodin kommentointia ja siistimista.
+
+ti 1.10.2013, 2h
+Muutto nopeammaksi.
+
+ke 2.10.2013, 3h
+Panikointia! Kansiot meni ihan v*******.

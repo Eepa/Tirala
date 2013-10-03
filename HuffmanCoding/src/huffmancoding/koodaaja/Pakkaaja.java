@@ -136,13 +136,16 @@ public class Pakkaaja {
 
         String sana = "";
 
-        for (int i = 0; i < frekvenssit.length; i++) {
+        for (int i = 0; i < frekvenssit.length-1; i++) {
 
-            if (frekvenssit[i] != 0) {
-                sana += i + "*" + frekvenssit[i] + ";";
-            }
+//            if (frekvenssit[i] != 0) {
+//                sana += i + "*" + 
+                        sana += frekvenssit[i] + ";";
+//            }
 
         }
+        
+        sana += frekvenssit[frekvenssit.length-1];
 
 
         return sana;
