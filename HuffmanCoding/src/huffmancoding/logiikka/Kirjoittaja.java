@@ -7,11 +7,32 @@ package huffmancoding.logiikka;
  */
 public class Kirjoittaja {
 
+    /**
+     * Tavujen uudet String-muotoiset "bittiesitykset".
+     */
     private String[] uudetEsitykset;
+    /**
+     * Kertoo, monennessako bitissä mennään nykyisessä tavussa.
+     */
     private int bitti;
+    /**
+     * Kertoo, missä eli monennessa tavussa mennään tiedostossa.
+     */
     private int osoitin;
+    /**
+     * Tavut, joista muodostetaan uusi tiedosto. Sisältää bitittäisen esityksen
+     * tavuista.
+     */
     private boolean[][] tiedostonTavut;
 
+    /**
+     * Konstruktorissa alustetaan bitti ja osoitin tiedoston alkuun ja luodaan
+     * uusi tavut sisältävä tiedosto.
+     *
+     * @param uudetEsitykset Tavujen bittimuotoiset esitykset, jotka lisätään
+     * oliomuuttujaan.
+     * @param koko Alkuperäisen tiedoston tavumäärä.
+     */
     public Kirjoittaja(String[] uudetEsitykset, int koko) {
         this.uudetEsitykset = uudetEsitykset;
         this.bitti = 0;
@@ -20,6 +41,11 @@ public class Kirjoittaja {
 
     }
 
+    /**
+     * Kirjoittaa yhden uuden tavun tiedostoon biteittäin.
+     *
+     * @param tavu Tavu, joka tiedostoon pitää kirjoittaa.
+     */
     public void kirjoitaTavu(int tavu) {
 
         String tavunEsitys = this.uudetEsitykset[tavu];
@@ -35,33 +61,50 @@ public class Kirjoittaja {
         }
     }
 
+    /**
+     * Bitti, joka kirjoitetaan tavuun.
+     *
+     * @param bitti Kirjoitettava bitti.
+     */
     public void kirjoitaBitti(boolean bitti) {
-        try{
+        try {
             this.tiedostonTavut[this.osoitin][this.bitti] = bitti;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Osoitin: " + this.osoitin + " ja bitti " + this.bitti);
         }
-        
+
 
     }
 
+    /**
+     * Kasvattaa osoitinta, kun tavuja muodostetaan lisää. Kasvattaa
+     * tavutaulukon kokoa, jos uusia tavuja tulee enemmän kuin vanhoja.
+     */
     public void kasvataOsoitinta() {
         this.osoitin += 1;
-        if(this.osoitin >= tiedostonTavut.length){
-            this.kasvataTavuja();
+        if (this.osoitin >= tiedostonTavut.length) {
+            this.kasvataTavutaulukkoa();
         }
     }
-    
-    public void kasvataTavuja(){
-        boolean[][] uusiTaulukko = new boolean[this.tiedostonTavut.length*2][8];
-        for(int i = 0; i < this.tiedostonTavut.length; i++){
-            for(int j = 0; j < this.tiedostonTavut[i].length; j++){
+
+    /**
+     * Kasvattaa tavutaulukon kokoa kaksinkertaiseksi ja kopioi vanhan taulukon
+     * uuteen taulukkoon.
+     */
+    public void kasvataTavutaulukkoa() {
+        boolean[][] uusiTaulukko = new boolean[this.tiedostonTavut.length * 2][8];
+        for (int i = 0; i < this.tiedostonTavut.length; i++) {
+            for (int j = 0; j < this.tiedostonTavut[i].length; j++) {
                 uusiTaulukko[i][j] = this.tiedostonTavut[i][j];
             }
         }
         this.tiedostonTavut = uusiTaulukko;
     }
 
+    /**
+     * Kasvattaa bittiä, joka kertoo, missä kohtaa ollaan tavussa. Jos tavun
+     * koko ylittyy, siirrytään uuteen tavuun.
+     */
     public void kasvataBittia() {
 
         if (this.bitti == 7) {
@@ -76,16 +119,18 @@ public class Kirjoittaja {
         return this.osoitin;
     }
 
+    /**
+     * Muodostaa uuden bittimuotoisen esityksen alkuperäisen tiedoston tavuista.
+     * @param alkuperaisenTiedostonTavut Tavut, joista uusi esitys muodostetaan.
+     * @return Palauttaa bittimuotoisen esityksen.
+     */
     public boolean[][] muodostaUusiEsitys(byte[] alkuperaisenTiedostonTavut) {
 
         for (int i = 0; i < alkuperaisenTiedostonTavut.length; i++) {
 
-
             this.kirjoitaTavu(alkuperaisenTiedostonTavut[i] + 128);
 
         }
-
-
         return this.tiedostonTavut;
     }
 }

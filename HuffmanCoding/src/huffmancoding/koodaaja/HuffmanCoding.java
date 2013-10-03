@@ -11,10 +11,6 @@ import java.util.Scanner;
 public class HuffmanCoding {
 
     /**
-     * Lukija, joka lukee käyttäjän syötteet.
-     */
-    private Scanner lukija;
-    /**
      * Käyttäjän antamien syötteiden käsittelijä.
      */
     private Syotekasittelija syotekasittelija;
@@ -25,7 +21,7 @@ public class HuffmanCoding {
      * @param lukija Käyttäjän syötteiden lukija.
      */
     public HuffmanCoding(Scanner lukija) {
-        this.lukija = lukija;
+
         this.syotekasittelija = new Syotekasittelija(lukija);
     }
 
@@ -39,9 +35,7 @@ public class HuffmanCoding {
         if (toiminto.equals("pakkaus")) {
             Pakkaaja pakkaaja = new Pakkaaja(this.syotekasittelija);
             pakkaaja.kaynnistaPakkaus();
-        }
-        
-        else {
+        } else {
             Purkaja purkaja = new Purkaja(this.syotekasittelija);
             purkaja.kaynnistaPurku();
         }

@@ -56,26 +56,6 @@ public class Tree {
         }
     }
 
-//        public void tulostaAlkiotInorder(Node solmu){
-//        if(solmu != null){
-//            
-//            
-//            tulostaAlkiotPreorder(solmu.getVasenLapsi());
-//            System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
-//            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
-//        }
-//    }
-//        
-//            public void tulostaAlkiotPostorder(Node solmu){
-//        if(solmu != null){
-//           
-//            
-//            tulostaAlkiotPreorder(solmu.getVasenLapsi());
-//            
-//            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
-//             System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
-//        }
-//    }
     /**
      * Muodostaa uudet bittikoodit tavuille.
      *

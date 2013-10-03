@@ -20,7 +20,6 @@ public class Pakkaaja {
     /**
      * Sisältää syötteen merkkien esiintymismäärät.
      */
-    
     private byte[] tiedostonTavut;
     /**
      * Minimikeon operaatioita käsittelevä luokka.
@@ -30,34 +29,34 @@ public class Pakkaaja {
      * Keko, joka sisältää tavut Node-luokan ilmentyminä.
      */
     private Node[] keko;
-    
-     /**
+    /**
      * Puu, joka sisältää tavujen uudet koodit.
      */
-    
     private Tree puu;
-    
     /**
      * Tavujen uudet bittikoodit sisältävä taulukko.
      */
     private String[] uusienKoodienTaulukko;
-    
     /**
      * Alkuperäisen tiedoston nimi.
      */
     private String tiedostonimi;
-    
-     /**
+    /**
      * Bittioperaatioita käsittelevä luokka.
      */
-    
     private Bittikasittelija bittikasittelija;
-    
+    /**
+     * Kirjoittaa tiedoston tavuja uuteen muotoon bittiesitykseen.
+     */
     private Kirjoittaja kirjoittaja;
+    /**
+     * Käsittelee numeroita ja muuttaa ne tavuiksi ja toisinpäin.
+     */
+    private Numerokasittelija numerokasittelija;
 
     /**
      * Konstruktorissa luodaan uusi pakkaaja, joka käsittelee tiedon
-     * pakkaamista.
+     * pakkaamista, ja alustetaan tarvittavat apuluokat.
      *
      * @param syotekasittelija Käyttäjän antamien syötteiden käsittelijä.
      */
@@ -65,6 +64,7 @@ public class Pakkaaja {
         this.syotekasittelija = syotekasittelija;
         this.uusienKoodienTaulukko = new String[256];
         this.bittikasittelija = new Bittikasittelija();
+        this.numerokasittelija = new Numerokasittelija();
     }
 
     /**
@@ -77,9 +77,7 @@ public class Pakkaaja {
 
 
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
-        
-        
-        
+
 
         if (this.tiedostonTavut.length == 0) {
             System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
@@ -91,7 +89,6 @@ public class Pakkaaja {
         String tiedostopolku = this.syotekasittelija.etsiTiedostopolku(teksti);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
-//        System.out.println(frekvenssit.length);
 
 //        for(int i = 0; i < frekvenssit.length; i++){
 //            System.out.println("Tavu on: " + (i-128) + " Esiintymiskertojen määrä on: " + frekvenssit[i] + "\n");
@@ -108,60 +105,26 @@ public class Pakkaaja {
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
-            if (this.uusienKoodienTaulukko[i] != null) {
-                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
-            }
-
-        }
+//        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+//            if (this.uusienKoodienTaulukko[i] != null) {
+//                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
+//            }
+//
+//        }
 
 
         this.kirjoittaja = new Kirjoittaja(this.uusienKoodienTaulukko, this.puu.getJuuri().getMaara());
-                     
+
         boolean[][] tavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
 
         int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut, this.kirjoittaja.getOsoitin());
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
-       
-//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
-        
-        Numerokasittelija numerokasittelija = new Numerokasittelija();
-        byte[] uudetTavut = numerokasittelija.kirjoitaFrekvenssitaulukkoTiedostoon(frekvenssit, tavuja);
 
-//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja, tiedostopolku);
-        
+        byte[] uudetTavut = this.numerokasittelija.kirjoitaFrekvenssitaulukkoTiedostoon(frekvenssit, tavuja);
+
+
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, uudetTavut, tiedostopolku);
-
-    }
-    
-    /**
-     * Muodostaa frekvenssitaulukosta String-muotoisen esityksen.
-     * @param frekvenssit Frekvenssitaulukko, josta uusi esitys muodostetaan.
-     * @return Palauttaa taulukon String-muotoisen esityksen.
-     */
-
-    public String muodostaFrekvenssitString(int[] frekvenssit) {
-
-        String sana = "";
-
-        for (int i = 0; i < frekvenssit.length-1; i++) {
-
-//            if (frekvenssit[i] != 0) {
-//                sana += i + "*" + 
-                        sana += frekvenssit[i] + ";";
-//            }
-
-        }
-        
-        sana += frekvenssit[frekvenssit.length-1];
-
-
-        return sana;
-    }
-
-    public Minimikeko getMinimikeko() {
-        return this.minimikeko;
     }
 
     /**
@@ -208,13 +171,10 @@ public class Pakkaaja {
             Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
             laskuri++;
 
-
-
             Node uusiParentSolmu = new Node(-1000, ensimmainenSolmu.getMaara() + toinenSolmu.getMaara(), ensimmainenSolmu, toinenSolmu);
 
             this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
             laskuri++;
-
 
 
         }
@@ -227,9 +187,5 @@ public class Pakkaaja {
 //        System.out.println(this.keko[256].getMaara());
 
         return new Tree(this.minimikeko.poistaPienin(this.keko));
-
     }
-
-
-
 }
