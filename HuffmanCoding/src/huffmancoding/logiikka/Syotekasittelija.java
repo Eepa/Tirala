@@ -143,14 +143,14 @@ public class Syotekasittelija {
     public String etsiTiedostonimi(String osoite) {
 
         String[] osat;
-        String merkki = "\\";
+        String merkki = "\\\\";
 
         if (osoite.contains("/")) {
-            merkki = "\\/";
+            merkki = "/";
             osat = osoite.split(merkki);
             return osat[osat.length - 1];
 
-        } else if(osoite.contains(merkki)) {
+        } else if(osoite.contains("\\")) {
             osat = osoite.split(merkki);
             return osat[osat.length - 1];
         }

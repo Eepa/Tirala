@@ -87,13 +87,14 @@ public class Purkaja {
 
         String tiedostonimifrekvenssit = "";
         String tiedosto = "";
-
+        
         if (kansionSisalto[0] != null && kansionSisalto[1] != null) {
             tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
             tiedosto = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[1]);
         }
 
-
+        System.out.println(tiedostonimifrekvenssit);
+        System.out.println(tiedosto);
 
         if (tiedostonimifrekvenssit == null || tiedosto == null) {
             System.out.println("JOKU MENI PIELEEN");
