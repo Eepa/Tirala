@@ -36,12 +36,30 @@ public class Kirjoittaja {
     }
 
     public void kirjoitaBitti(boolean bitti) {
-        this.tiedostonTavut[this.osoitin][this.bitti] = bitti;
+        try{
+            this.tiedostonTavut[this.osoitin][this.bitti] = bitti;
+        } catch (Exception e){
+            System.out.println("Osoitin: " + this.osoitin + " ja bitti " + this.bitti);
+        }
+        
 
     }
 
     public void kasvataOsoitinta() {
         this.osoitin += 1;
+        if(this.osoitin >= tiedostonTavut.length){
+            this.kasvataTavuja();
+        }
+    }
+    
+    public void kasvataTavuja(){
+        boolean[][] uusiTaulukko = new boolean[this.tiedostonTavut.length*2][8];
+        for(int i = 0; i < this.tiedostonTavut.length; i++){
+            for(int j = 0; j < this.tiedostonTavut[i].length; j++){
+                uusiTaulukko[i][j] = this.tiedostonTavut[i][j];
+            }
+        }
+        this.tiedostonTavut = uusiTaulukko;
     }
 
     public void kasvataBittia() {

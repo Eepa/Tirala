@@ -218,7 +218,7 @@ public class Syotekasittelija {
     }
     
     public String luoKansio(String tiedostopolku, String tiedostonimi){
-        String osoite = tiedostopolku + "p"+tiedostonimi;
+        String osoite = tiedostopolku +tiedostonimi + ".ep";
         File kansio = new File(osoite);
         System.out.println(osoite);
         if(!kansio.exists()){
