@@ -5,6 +5,7 @@
 package huffmancoding.koodaaja;
 
 import huffmancoding.logiikka.Bittikasittelija;
+import huffmancoding.logiikka.Numerokasittelija;
 import huffmancoding.logiikka.Syotekasittelija;
 import java.io.File;
 import java.util.Scanner;
@@ -44,10 +45,33 @@ public class Purkaja {
         this.bittikasittelija = new Bittikasittelija();
     }
 
-    public String[] lueKansionSisalto(String kansiopolku) {
+//    public String[] lueKansionSisalto(String kansiopolku) {
+//        File kansio = new File(kansiopolku);
+//
+//        String[] kansionSisalto = new String[2];
+//
+//        try {
+//            File[] tiedostolista = kansio.listFiles();
+//
+//            for (int i = 0; i < tiedostolista.length; i++) {
+//                if (tiedostolista[i].isFile()) {
+//                    String tiedostopolku = tiedostolista[i].getCanonicalPath();
+//                    System.out.println(tiedostopolku);
+//                    kansionSisalto[i] = tiedostopolku;
+//                }
+//            }
+//            return kansionSisalto;
+//
+//        } catch (Exception e) {
+//            return new String[2];
+//        }
+//
+//    }
+    
+        public String[] lueKansionSisalto(String kansiopolku) {
         File kansio = new File(kansiopolku);
 
-        String[] kansionSisalto = new String[2];
+        String[] kansionSisalto = new String[1];
 
         try {
             File[] tiedostolista = kansio.listFiles();
@@ -62,7 +86,7 @@ public class Purkaja {
             return kansionSisalto;
 
         } catch (Exception e) {
-            return new String[2];
+            return new String[1];
         }
 
     }
@@ -85,22 +109,26 @@ public class Purkaja {
 //        String tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(tiedostopolkufrekvenssit);
 //        String tiedosto = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
 
-        String tiedostonimifrekvenssit = "";
-        String tiedosto = "";
+//        String tiedostonimifrekvenssit = "";
+//        String tiedosto = "";
+//        
+//        if (kansionSisalto[0] != null && kansionSisalto[1] != null) {
+//            tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
+//            tiedosto = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[1]);
+//        }
+//
+//        System.out.println(tiedostonimifrekvenssit);
+//        System.out.println(tiedosto);
+
+//        if (tiedostonimifrekvenssit == null || tiedosto == null) {
+//            System.out.println("JOKU MENI PIELEEN");
+//            return;
+//        }
+//        String tiedostonimi = this.etsiTiedostonimi(tiedostonimifrekvenssit, tiedosto);
+        String haettuNimi = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
+         String tiedostonimi = this.etsiTiedostonimi(haettuNimi);
         
-        if (kansionSisalto[0] != null && kansionSisalto[1] != null) {
-            tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
-            tiedosto = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[1]);
-        }
-
-        System.out.println(tiedostonimifrekvenssit);
-        System.out.println(tiedosto);
-
-        if (tiedostonimifrekvenssit == null || tiedosto == null) {
-            System.out.println("JOKU MENI PIELEEN");
-            return;
-        }
-        String tiedostonimi = this.etsiTiedostonimi(tiedostonimifrekvenssit, tiedosto);
+        
         if (tiedostonimi.isEmpty()) {
             System.out.println("Tiedostolle ei löytynyt nimeä.");
             return;
@@ -109,20 +137,28 @@ public class Purkaja {
         System.out.println("onnistui " + tiedostonimi);
 
 //        String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
-        String[] frekvenssisisalto = this.lueTiedosto(kansionSisalto[0]);
+        
+        byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[0]);
+        
+        
+//        String[] frekvenssisisalto = this.lueTiedosto(kansionSisalto[0]);
+        
+        Numerokasittelija numerokasittelija = new Numerokasittelija();
 
 //        System.out.println(frekvenssisisalto[0]);
 
 
 
-        int[] frekvenssit = this.muodostaFrekvenssitaulukko(frekvenssisisalto[0]);
+//        int[] frekvenssit = this.muodostaFrekvenssitaulukko(frekvenssisisalto[0]);
+        
+        int[] frekvenssit = numerokasittelija.muodostaFrekvenssitaulukkoUudestaan(tiedostoTavutaulukkona);
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
         this.puu = this.pakkaaja.muodostaPuu();
 
 //        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
 //        String[] uusienKoodienTaulukko = new String[256];
-
+//
 //        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
 //
 //        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
@@ -135,13 +171,14 @@ public class Purkaja {
         System.out.println("Tavutaulukko alkaa");
 
 //        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
-        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[1]);
-//        for(int i = 0; i < tavutaulukko.length; i++){
-//            System.out.println(tavutaulukko[i]);
+//        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[1]);
+//        for(int i = 0; i < tiedostoTavutaulukkona.length; i++){
+//            System.out.println(tiedostoTavutaulukkona[i]);
 //        }
 
 
-        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tavutaulukko);
+//        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tavutaulukko);
+        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tiedostoTavutaulukkona);
 //        for(int i = 0; i< numerotavut.length; i++){
 //            System.out.println(numerotavut[i]);
 //        }
@@ -277,25 +314,37 @@ public class Purkaja {
      * @param tiedostopolku Pakatun tiedoston polku.
      * @return Palauttaa alkuperäisen tiedostonimen tai tyhjän merkkijonon.
      */
-    public String etsiTiedostonimi(String frekvenssitTiedostopolku, String tiedostopolku) {
-        String frekvenssisana = "";
-
-        for (int i = 17; i < frekvenssitTiedostopolku.length() - 3; i++) {
-            frekvenssisana = frekvenssisana + frekvenssitTiedostopolku.charAt(i);
-        }
-
+//    public String etsiTiedostonimi(String frekvenssitTiedostopolku, String tiedostopolku) {
+//        String frekvenssisana = "";
+//
+//        for (int i = 17; i < frekvenssitTiedostopolku.length() - 3; i++) {
+//            frekvenssisana = frekvenssisana + frekvenssitTiedostopolku.charAt(i);
+//        }
+//
+//        String tiedostonimi = "";
+//
+//        for (int i = 7; i < tiedostopolku.length() - 3; i++) {
+//            tiedostonimi = tiedostonimi + tiedostopolku.charAt(i);
+//        }
+//
+//        if (frekvenssisana.equals(tiedostonimi)) {
+//            return tiedostonimi;
+//        }
+//
+//
+//        return "";
+//    }
+    
+      public String etsiTiedostonimi(String tiedostopolku) {
+       
         String tiedostonimi = "";
 
         for (int i = 7; i < tiedostopolku.length() - 3; i++) {
             tiedostonimi = tiedostonimi + tiedostopolku.charAt(i);
         }
 
-        if (frekvenssisana.equals(tiedostonimi)) {
-            return tiedostonimi;
-        }
 
-
-        return "";
+        return tiedostonimi;
     }
 
     /**

@@ -77,7 +77,6 @@ public class Bittikasittelija {
      * @param bittijono Bittijono, johon roskabitit lis‰t‰‰n.
      * @return Palauttaa uuden bittijonon.
      */
-
     public boolean[] lisaaRoskabititSanaan(boolean[] tavut, int osoitin) {
 
         int roskabittienMaara = this.etsiRoskabittimaara(osoitin);
@@ -99,16 +98,15 @@ public class Bittikasittelija {
      */
     public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
 
-        int[] numerotavut = new int[osoitin+1];
+        int[] numerotavut = new int[osoitin + 1];
 
-        for (int i = 0; i < osoitin+1; i++) {
+        for (int i = 0; i < osoitin + 1; i++) {
             int numero = this.bitsToByte(tavut[i]);
             numerotavut[i] = numero;
         }
 
         return numerotavut;
     }
-
 
     /**
      * Muuntaa numeromuotoiset tavut oikeiksi Javan tavuiksi (v‰lill‰ -127-128).
@@ -117,14 +115,17 @@ public class Bittikasittelija {
      * @return Palauttaa numerotavuja vastaavat byte-tavut.
      */
     public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
-        byte[] tavuja = new byte[numerotavut.length];
+        byte[] tavuja = new byte[numerotavut.length + 1024];
 
-        for (int i = 0; i < numerotavut.length; i++) {
+        int laskuri = 0;
 
-            int k = numerotavut[i] - 128;
+        for (int i = 1024; i < tavuja.length; i++) {
+
+            int k = numerotavut[laskuri] - 128;
             byte tavu = (byte) k;
 
             tavuja[i] = tavu;
+            laskuri++;
         }
         return tavuja;
     }
@@ -135,13 +136,27 @@ public class Bittikasittelija {
      * @param tavuja Tavut, jotka muunnetaan numeroiksi.
      * @return Palauttaa annettuja tavuja vastaavat numerotavut.
      */
+//    public int[] muunnaNumerotavuiksi(byte[] tavuja) {
+//        int[] numerotavut = new int[tavuja.length];
+//        for (int i = 0; i < tavuja.length; i++) {
+////            System.out.println("Tavu oli " + tavuja[i]);
+//            int k = tavuja[i] + 128;
+//
+//            numerotavut[i] = k;
+//        }
+//        return numerotavut;
+//
+//
+//    }
     public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-        int[] numerotavut = new int[tavuja.length];
-        for (int i = 0; i < tavuja.length; i++) {
+        int[] numerotavut = new int[tavuja.length -1024];
+        int laskuri = 0;
+        for (int i = 1024; i < tavuja.length; i++) {
 //            System.out.println("Tavu oli " + tavuja[i]);
             int k = tavuja[i] + 128;
 
-            numerotavut[i] = k;
+            numerotavut[laskuri] = k;
+            laskuri++;
         }
         return numerotavut;
 
@@ -211,7 +226,6 @@ public class Bittikasittelija {
      * @param bitit Merkkimuotoinen bittijono, joka muutetaan booleaneiksi.
      * @return Palauttaa merkit muutettuina ja jaettuina tavuihin.
      */
-
     public boolean[][] jaaTavuihin(boolean[] bitit, int osoitin) {
 
         boolean[][] tavut = new boolean[(bitit.length - osoitin) / 8][8];

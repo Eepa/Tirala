@@ -3,6 +3,7 @@ package huffmancoding.koodaaja;
 import huffmancoding.logiikka.Bittikasittelija;
 import huffmancoding.logiikka.Kirjoittaja;
 import huffmancoding.logiikka.Minimikeko;
+import huffmancoding.logiikka.Numerokasittelija;
 import huffmancoding.logiikka.Syotekasittelija;
 
 /**
@@ -90,6 +91,7 @@ public class Pakkaaja {
         String tiedostopolku = this.syotekasittelija.etsiTiedostopolku(teksti);
 
         int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
+//        System.out.println(frekvenssit.length);
 
 //        for(int i = 0; i < frekvenssit.length; i++){
 //            System.out.println("Tavu on: " + (i-128) + " Esiintymiskertojen määrä on: " + frekvenssit[i] + "\n");
@@ -122,9 +124,14 @@ public class Pakkaaja {
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
        
-        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+//        String frekvenssitSana = this.muodostaFrekvenssitString(frekvenssit);
+        
+        Numerokasittelija numerokasittelija = new Numerokasittelija();
+        byte[] uudetTavut = numerokasittelija.kirjoitaFrekvenssitaulukkoTiedostoon(frekvenssit, tavuja);
 
-        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja, tiedostopolku);
+//        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, frekvenssitSana, tavuja, tiedostopolku);
+        
+        this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, uudetTavut, tiedostopolku);
 
     }
     
