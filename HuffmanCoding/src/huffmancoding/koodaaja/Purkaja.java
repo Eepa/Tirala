@@ -44,18 +44,55 @@ public class Purkaja {
         this.bittikasittelija = new Bittikasittelija();
     }
 
+    public String[] lueKansionSisalto(String kansiopolku) {
+        File kansio = new File(kansiopolku);
+
+        String[] kansionSisalto = new String[2];
+
+        try {
+            File[] tiedostolista = kansio.listFiles();
+
+            for (int i = 0; i < tiedostolista.length; i++) {
+                if (tiedostolista[i].isFile()) {
+                    String tiedostopolku = tiedostolista[i].getCanonicalPath();
+                    System.out.println(tiedostopolku);
+                    kansionSisalto[i] = tiedostopolku;
+                }
+            }
+            return kansionSisalto;
+
+        } catch (Exception e) {
+            return new String[2];
+        }
+
+    }
+
     /**
      * Käynnistää purkamisen ja suorittaa tarvittavat operaatiot.
      */
     public void kaynnistaPurku() {
-        System.out.println("Valitaan ensiksi haluttu frekvenssitiedosto.");
-        String tiedostopolkufrekvenssit = this.syotekasittelija.lueTiedostopolku("purku");
+//        System.out.println("Valitaan ensiksi haluttu frekvenssitiedosto.");
+//        String tiedostopolkufrekvenssit = this.syotekasittelija.lueTiedostopolku("purku");
+//
+//        System.out.println("Valitaan sitten haluttu purettava tiedosto.");
+//        String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
-        System.out.println("Valitaan sitten haluttu purettava tiedosto.");
-        String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
+        System.out.println("Valitaan kansio, jossa purettavat tiedostot ovat.");
+        String kansiopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
-        String tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(tiedostopolkufrekvenssit);
-        String tiedosto = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
+        String[] kansionSisalto = this.lueKansionSisalto(kansiopolku);
+
+//        String tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(tiedostopolkufrekvenssit);
+//        String tiedosto = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
+
+        String tiedostonimifrekvenssit = "";
+        String tiedosto = "";
+
+        if (kansionSisalto[0] != null && kansionSisalto[1] != null) {
+            tiedostonimifrekvenssit = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[0]);
+            tiedosto = this.syotekasittelija.etsiTiedostonimi(kansionSisalto[1]);
+        }
+
 
 
         if (tiedostonimifrekvenssit == null || tiedosto == null) {
@@ -70,7 +107,8 @@ public class Purkaja {
 
         System.out.println("onnistui " + tiedostonimi);
 
-        String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
+//        String[] frekvenssisisalto = this.lueTiedosto(tiedostopolkufrekvenssit);
+        String[] frekvenssisisalto = this.lueTiedosto(kansionSisalto[0]);
 
 //        System.out.println(frekvenssisisalto[0]);
 
@@ -95,7 +133,8 @@ public class Purkaja {
 
         System.out.println("Tavutaulukko alkaa");
 
-        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
+//        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
+        byte[] tavutaulukko = this.syotekasittelija.muutaTiedostoTavutaulukoksi(kansionSisalto[1]);
 //        for(int i = 0; i < tavutaulukko.length; i++){
 //            System.out.println(tavutaulukko[i]);
 //        }
