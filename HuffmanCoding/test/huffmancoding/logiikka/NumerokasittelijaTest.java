@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Testaa luokkaa Numerokasittelija.
  * @author Eveliina
  */
 public class NumerokasittelijaTest {

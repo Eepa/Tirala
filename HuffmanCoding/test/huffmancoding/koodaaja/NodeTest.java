@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
+ * Testaa luokkaa Node.
  * @author Eveliina
  */
 public class NodeTest {
