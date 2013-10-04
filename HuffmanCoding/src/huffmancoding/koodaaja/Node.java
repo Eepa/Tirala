@@ -69,14 +69,7 @@ public class Node {
         this.maara += muutos;
     }
 
-    public void setVasenLapsi(Node vasenLapsi) {
-        this.vasenLapsi = vasenLapsi;
-    }
-
-    public void setOikeaLapsi(Node oikeaLapsi) {
-        this.vasenLapsi = oikeaLapsi;
-    }
-    
+   
     public Node getVasenLapsi(){
         return this.vasenLapsi;
     }

@@ -8,10 +8,7 @@ import org.junit.Before;
  * @author Eveliina
  */
 public class MinimikekoTest {
-    
-    public MinimikekoTest() {
-    }
-    
+
 
     
     @Before

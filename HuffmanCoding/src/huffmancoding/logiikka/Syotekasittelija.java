@@ -142,7 +142,7 @@ public class Syotekasittelija {
 
         String[] osat;
         String merkki = "\\\\";
-
+       
         if (osoite.contains("/")) {
             merkki = "/";
             osat = osoite.split(merkki);
@@ -153,7 +153,7 @@ public class Syotekasittelija {
             return osat[osat.length - 1];
         }
 
-        return "";
+        return osoite;
     }
 
     /**

@@ -9,9 +9,7 @@ import org.junit.Before;
  */
 public class KirjoittajaTest {
     
-    public KirjoittajaTest() {
-    }
-    
+
 
     
     @Before

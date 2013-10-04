@@ -31,30 +31,22 @@ public class Tree {
         return this.juuri;
     }
 
-    /**
-     * Asettaa uuden juuren puulle.
-     *
-     * @param uusiJuuri
-     */
-    public void setJuuri(Node uusiJuuri) {
-        this.juuri = uusiJuuri;
-    }
 
-    /**
-     * Tulostaa puun alkiot esij‰rjestyksess‰.
-     *
-     * @param solmu Puun juurisolmu.
-     */
-    public void tulostaAlkiotPreorder(Node solmu) {
-
-        if (solmu != null) {
-            System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
-
-            tulostaAlkiotPreorder(solmu.getVasenLapsi());
-
-            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
-        }
-    }
+//    /**
+//     * Tulostaa puun alkiot esij‰rjestyksess‰.
+//     *
+//     * @param solmu Puun juurisolmu.
+//     */
+//    public void tulostaAlkiotPreorder(Node solmu) {
+//
+//        if (solmu != null) {
+//            System.out.println("Tavun nimi:" + solmu.getTavu() + " M‰‰r‰: " + solmu.getMaara());
+//
+//            tulostaAlkiotPreorder(solmu.getVasenLapsi());
+//
+//            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
+//        }
+//    }
 
     /**
      * Muodostaa uudet bittikoodit tavuille.

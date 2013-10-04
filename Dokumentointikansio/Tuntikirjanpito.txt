@@ -47,3 +47,9 @@ Muutto nopeammaksi.
 
 ke 2.10.2013, 3h
 Panikointia! Kansiot meni ihan v*******.
+
+to 3.10.2013, 4h
+Ohjelma toimintakuntoon, koulussa paja, illalla koodailu.
+
+pe 4.10.2013, 2h
+Testien kirjoittamista, ongelmien korjailua.

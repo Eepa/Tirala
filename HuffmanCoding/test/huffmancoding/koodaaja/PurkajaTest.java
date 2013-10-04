@@ -9,11 +9,7 @@ import org.junit.Before;
  */
 public class PurkajaTest {
     
-    public PurkajaTest() {
-    }
-    
 
-    
     @Before
     public void setUp() {
     }
