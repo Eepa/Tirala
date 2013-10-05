@@ -72,15 +72,11 @@ public class Pakkaaja {
      */
     public void kaynnistaPakkaus() {
 
-
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
-
 
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
 
-
-        if (this.tiedostonTavut.length == 0) {
-            System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
+        if (this.tarkistaLoytyikoTiedosto(this.tiedostonTavut.length)) {
             return;
         }
 
@@ -117,14 +113,21 @@ public class Pakkaaja {
 
         boolean[][] tavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
 
-        int[] numerotavut = this.bittikasittelija.muodostaNumerotavut(tavut, this.kirjoittaja.getOsoitin());
 
-        byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(numerotavut);
+        byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(tavut, this.kirjoittaja.getOsoitin());
 
         byte[] uudetTavut = this.numerokasittelija.kirjoitaFrekvenssitaulukkoTiedostoon(frekvenssit, tavuja);
 
 
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, uudetTavut, tiedostopolku);
+    }
+
+    public boolean tarkistaLoytyikoTiedosto(int pituus) {
+        if (pituus == 0) {
+            System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Pakattua tiedostoa ei luotu.");
+            return true;
+        }
+        return false;
     }
 
     /**

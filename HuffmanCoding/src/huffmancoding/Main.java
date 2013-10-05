@@ -21,8 +21,8 @@ public class Main {
 
         // Tekstikäyttöliittymä
 
-        HuffmanCoding pakkaaja = new HuffmanCoding(lukija);
-        pakkaaja.kaynnista();
+        HuffmanCoding huffmancoding = new HuffmanCoding(lukija);
+        huffmancoding.kaynnista();
 
     }
 }

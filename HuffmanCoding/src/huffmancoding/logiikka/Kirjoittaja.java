@@ -37,7 +37,7 @@ public class Kirjoittaja {
         this.uudetEsitykset = uudetEsitykset;
         this.bitti = 0;
         this.osoitin = 0;
-        this.tiedostonTavut = new boolean[koko][8];
+        this.tiedostonTavut = new boolean[koko*2][8];
 
     }
 
@@ -72,8 +72,6 @@ public class Kirjoittaja {
         } catch (Exception e) {
             System.out.println("Osoitin: " + this.osoitin + " ja bitti " + this.bitti);
         }
-
-
     }
 
     /**

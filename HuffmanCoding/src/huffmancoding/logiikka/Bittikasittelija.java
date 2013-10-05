@@ -63,32 +63,47 @@ public class Bittikasittelija {
      * @param tavut Bittimuotoiset tavut, jotka muutetaan numeroiksi.
      * @return
      */
-    public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
-
-        int[] numerotavut = new int[osoitin + 1];
-
-        for (int i = 0; i < osoitin + 1; i++) {
-            int numero = this.bitsToByte(tavut[i]);
-            numerotavut[i] = numero;
-        }
-
-        return numerotavut;
-    }
-
+//    public int[] muodostaNumerotavut(boolean[][] tavut, int osoitin) {
+//
+//        int[] numerotavut = new int[osoitin + 1];
+//
+//        for (int i = 0; i < osoitin + 1; i++) {
+//            int numero = this.bitsToByte(tavut[i]);
+//            numerotavut[i] = numero;
+//        }
+//
+//        return numerotavut;
+//    }
     /**
      * Muuntaa numeromuotoiset tavut oikeiksi Javan tavuiksi (välillä -127-128).
      *
      * @param numerotavut Numerotavut, jotka muutetaan byte-muotoon.
      * @return Palauttaa numerotavuja vastaavat byte-tavut.
      */
-    public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
-        byte[] tavuja = new byte[numerotavut.length + 1024];
+//    public byte[] muunnaOikeiksiTavuiksi(int[] numerotavut) {
+//        byte[] tavuja = new byte[numerotavut.length + 1024];
+//
+//        int laskuri = 0;
+//
+//        for (int i = 1024; i < tavuja.length; i++) {
+//
+//            int k = numerotavut[laskuri] - 128;
+//            byte tavu = (byte) k;
+//
+//            tavuja[i] = tavu;
+//            laskuri++;
+//        }
+//        return tavuja;
+//    }
+    public byte[] muunnaOikeiksiTavuiksi(boolean[][] tavut, int osoitin) {
+        int tavumaara = osoitin + 1;
+        byte[] tavuja = new byte[tavumaara + 1024];
 
         int laskuri = 0;
 
         for (int i = 1024; i < tavuja.length; i++) {
-
-            int k = numerotavut[laskuri] - 128;
+            int muunnettuTavu = this.bitsToByte(tavut[laskuri]);
+            int k = muunnettuTavu - 128;
             byte tavu = (byte) k;
 
             tavuja[i] = tavu;

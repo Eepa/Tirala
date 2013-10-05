@@ -33,7 +33,7 @@ public class Syotekasittelija {
      * @return Palauttaa käyttäjän valitseman toiminnon.
      */
     public String toiminnonValinta() {
-        System.out.println("Kirjoita 'pakkaus', jos haluat pakata tekstiä, ja 'purku', jos haluat purkaa.");
+        System.out.println("Kirjoita 'pakkaus', jos haluat pakata tiedoston, ja 'purku', jos haluat purkaa.");
 
         while (true) {
             String toiminto = this.lukija.nextLine();
@@ -42,7 +42,7 @@ public class Syotekasittelija {
                 return toiminto;
             }
 
-            System.out.println("Syöte oli väärä.");
+            System.out.println("Syöte oli väärä.\n");
         }
 
     }
@@ -54,7 +54,7 @@ public class Syotekasittelija {
      * @return Palauttaa tiedoston polun String-muodossa.
      */
     public String lueTiedostopolku(String toiminto) {
-        System.out.println("Seuraava toiminto on " + toiminto + ". Syötä haluamasi tiedoston polku: ");
+        System.out.println("\nSeuraava toiminto on " + toiminto + ". Kirjoita haluamasi tiedoston polku: ");
 
         String polku = this.lukija.nextLine();
 
@@ -90,12 +90,12 @@ public class Syotekasittelija {
 
             for (int maara; (maara = fileInputStream.read(aputaulukko)) != -1;) {
                 byteArrayOutputStream.write(aputaulukko, 0, maara);
-                System.out.println("Tiedoston pituus " + maara + " tavua.");
+                System.out.println("\nTiedoston pituus oli " + maara + " tavua.");
             }
 
 
         } catch (Exception e) {
-            System.out.println("VIRHE! \n" + e.getMessage());
+            System.out.println("VIRHE! \nAnnettu tiedostopolku: " + e.getMessage());
             return new byte[0];
         }
 
@@ -213,9 +213,10 @@ public class Syotekasittelija {
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(tavut);
             fileOutputStream.close();
-
+            System.out.println("\nPakkaaminen onnistui!");
         } catch (Exception e) {
-            System.out.println("VIRHE! \n" + e.getMessage());
+            System.out.println("VIRHE! \nAnnettu tiedostopolku: " + e.getMessage());
+            System.out.println("Pakkaaminen ei onnistunut!");
 
         }
 
@@ -241,11 +242,11 @@ public class Syotekasittelija {
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(tavut);
             fileOutputStream.close();
-
+            System.out.println("\nPurkaminen onnistui!");
 
         } catch (Exception e) {
-            System.out.println("VIRHE! \n" + e.getMessage());
-
+            System.out.println("VIRHE! \nAnnettu tiedostopolku: " + e.getMessage());
+            System.out.println("Purkaminen ei onnistunut!");
         }
     }
 }

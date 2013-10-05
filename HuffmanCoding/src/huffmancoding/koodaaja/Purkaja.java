@@ -50,7 +50,7 @@ public class Purkaja {
      */
     public void kaynnistaPurku() {
 
-        System.out.println("Anna tiedosto, jonka haluat purkaa.");
+        
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
         String haettuNimi = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
@@ -58,17 +58,17 @@ public class Purkaja {
 
 
         if (tiedostonimi.isEmpty()) {
-            System.out.println("Tiedostolle ei löytynyt nimeä.");
+            System.out.println("\nAlkuperäistä tiedostonimeä ei löytynyt. Purkaminen keskeytettiin.");
             return;
         }
 
-        System.out.println("onnistui " + tiedostonimi);
+        System.out.println("\nAlkuperäinen tiedosto löydettiin. Tiedostonimi: " + tiedostonimi);
 
 
         byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
 
         if (tiedostoTavutaulukkona.length == 0) {
-            System.out.println("Tiedosto oli tyhjä tai sitä ei löytynyt. Purkamista ei voitu aloittaa.");
+            System.out.println("\nTiedosto oli tyhjä tai sitä ei löytynyt. Purkaminen keskeytettiin.");
             return;
         }
 
@@ -90,7 +90,7 @@ public class Purkaja {
 //
 //        }
 
-        System.out.println("Tavutaulukko alkaa");
+//        System.out.println("Tavutaulukko alkaa");
 
 //        for(int i = 0; i < tiedostoTavutaulukkona.length; i++){
 //            System.out.println(tiedostoTavutaulukkona[i]);
