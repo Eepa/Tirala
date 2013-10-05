@@ -229,8 +229,8 @@ public class Syotekasittelija {
      * @param tavut Purettavaan tiedostoon kirjoitettavat tavut.
      * @param tiedostonimi Alkuperäisen tiedoston nimi.
      */
-    public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi) {
-
+    public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi, String tiedostopolku) {
+        // String osoite = tiedostopolku + tiedostonimi;
         String osoite = tiedostonimi;
 
         File file = new File(osoite);

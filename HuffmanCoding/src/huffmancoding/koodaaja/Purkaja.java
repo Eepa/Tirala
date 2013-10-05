@@ -50,7 +50,7 @@ public class Purkaja {
      */
     public void kaynnistaPurku() {
 
-        
+
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
         String haettuNimi = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
@@ -63,6 +63,8 @@ public class Purkaja {
         }
 
         System.out.println("\nAlkuperäinen tiedosto löydettiin. Tiedostonimi: " + tiedostonimi);
+
+        String alkuperainenTiedostopolku = this.syotekasittelija.etsiTiedostopolku(tiedostopolku);
 
 
         byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
@@ -98,13 +100,13 @@ public class Purkaja {
 
 
 
-        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tiedostoTavutaulukkona);
-//        for(int i = 0; i< numerotavut.length; i++){
-//            System.out.println(numerotavut[i]);
-//        }
-
-        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
-
+//        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tiedostoTavutaulukkona);
+////        for(int i = 0; i< numerotavut.length; i++){
+////            System.out.println(numerotavut[i]);
+////        }
+//
+//        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
+        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(tiedostoTavutaulukkona);
 //        for(int i = 0; i < luettavatTavut.length; i++){
 //            System.out.println(luettavatTavut[i]);
 //        }
@@ -112,7 +114,7 @@ public class Purkaja {
 
         byte[] tavut = this.muodostaTavutUudestaan(luettavatTavut);
 
-        this.syotekasittelija.luoPurettuTiedosto(tavut, tiedostonimi);
+        this.syotekasittelija.luoPurettuTiedosto(tavut, tiedostonimi, alkuperainenTiedostopolku);
     }
 
     /**
