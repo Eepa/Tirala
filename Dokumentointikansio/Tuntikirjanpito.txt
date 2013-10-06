@@ -53,3 +53,6 @@ Ohjelma toimintakuntoon, koulussa paja, illalla koodailu.
 
 pe 4.10.2013, 2h
 Testien kirjoittamista, ongelmien korjailua.
+
+la 5.10.2013, 2h
+Refaktorointia ja testeja.

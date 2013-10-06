@@ -79,26 +79,7 @@ public class Bittikasittelija {
         return tavuja;
     }
 
-    /**
-     * Muuntaa byte-muotoiset tavut numerotavuiksi välille 0-255.
-     *
-     * @param tavuja Tavut, jotka muunnetaan numeroiksi.
-     * @return Palauttaa annettuja tavuja vastaavat numerotavut.
-     */
-//    public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-//        int[] numerotavut = new int[tavuja.length - 1024];
-//        int laskuri = 0;
-//        for (int i = 1024; i < tavuja.length; i++) {
-////            System.out.println("Tavu oli " + tavuja[i]);
-//            int k = tavuja[i] + 128;
-//
-//            numerotavut[laskuri] = k;
-//            laskuri++;
-//        }
-//        return numerotavut;
-//
-//
-//    }
+
     /**
      * Muodostaa annetuista numerotavuista ensin bittimuotoiset tavut ja kopioi
      * ne sitten yhteen boolean-taulukkoon lukemista varten. Taulukko vastaa
@@ -107,72 +88,7 @@ public class Bittikasittelija {
      * @param numerotavut Numerotavut, joista bittiesitys muodostetaan.
      * @return Palauttaa tiedoston bittiesityksen (true = 1, false = 0).
      */
-//    public boolean[] muodostaLuettavatTavut(int[] numerotavut) {
-//
-//        boolean[] luettavatTavut = new boolean[numerotavut.length * 8];
-//        boolean[][] valiaikaisetTavut = new boolean[numerotavut.length][8];
-//
-//        for (int i = 0; i < numerotavut.length; i++) {
-//            boolean[] uudetTavut = this.byteToBits(numerotavut[i]);
-//
-//            for (int j = 0; j < uudetTavut.length; j++) {
-//                valiaikaisetTavut[i][j] = uudetTavut[j];
-//            }
-//        }
-//
-//        int laskuri = 0;
-//
-//        for (int h = 0; h < valiaikaisetTavut.length; h++) {
-//            for (int k = 0; k < valiaikaisetTavut[h].length; k++) {
-//                luettavatTavut[laskuri] = valiaikaisetTavut[h][k];
-//                laskuri++;
-//            }
-//        }
-//
-//        return luettavatTavut;
-//    }
-    //    public int[] muunnaNumerotavuiksi(byte[] tavuja) {
-//        int[] numerotavut = new int[tavuja.length - 1024];
-//        int laskuri = 0;
-//        for (int i = 1024; i < tavuja.length; i++) {
-////            System.out.println("Tavu oli " + tavuja[i]);
-//            int k = tavuja[i] + 128;
-//
-//            numerotavut[laskuri] = k;
-//            laskuri++;
-//        }
-//        return numerotavut;
-//
-//
-//    }
-//    public boolean[] muodostaLuettavatTavut(byte[] tavuja) {
-//        int pituus = tavuja.length - 1024;
-//        boolean[] luettavatTavut = new boolean[pituus * 8];
-//        boolean[][] valiaikaisetTavut = new boolean[pituus][8];
-//
-//        int tavulaskuri = 1024;
-//
-//        for (int i = 0; i < pituus; i++) {
-//            int numero = tavuja[tavulaskuri] + 128;
-//            boolean[] uudetTavut = this.byteToBits(numero);
-//
-//            for (int j = 0; j < uudetTavut.length; j++) {
-//                valiaikaisetTavut[i][j] = uudetTavut[j];
-//            }
-//            tavulaskuri++;
-//        }
-//
-//        int laskuri = 0;
-//
-//        for (int h = 0; h < valiaikaisetTavut.length; h++) {
-//            for (int k = 0; k < valiaikaisetTavut[h].length; k++) {
-//                luettavatTavut[laskuri] = valiaikaisetTavut[h][k];
-//                laskuri++;
-//            }
-//        }
-//
-//        return luettavatTavut;
-//    }
+
     public boolean[] muodostaLuettavatTavut(byte[] tavuja) {
 
         int pituus = tavuja.length - 1024;

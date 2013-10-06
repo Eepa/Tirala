@@ -92,24 +92,10 @@ public class Purkaja {
 //
 //        }
 
-//        System.out.println("Tavutaulukko alkaa");
-
-//        for(int i = 0; i < tiedostoTavutaulukkona.length; i++){
-//            System.out.println(tiedostoTavutaulukkona[i]);
-//        }
 
 
 
-//        int[] numerotavut = this.bittikasittelija.muunnaNumerotavuiksi(tiedostoTavutaulukkona);
-////        for(int i = 0; i< numerotavut.length; i++){
-////            System.out.println(numerotavut[i]);
-////        }
-//
-//        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(numerotavut);
         boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(tiedostoTavutaulukkona);
-//        for(int i = 0; i < luettavatTavut.length; i++){
-//            System.out.println(luettavatTavut[i]);
-//        }
 
 
         byte[] tavut = this.muodostaTavutUudestaan(luettavatTavut);

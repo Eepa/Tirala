@@ -37,7 +37,8 @@ public class Kirjoittaja {
         this.uudetEsitykset = uudetEsitykset;
         this.bitti = 0;
         this.osoitin = 0;
-        this.tiedostonTavut = new boolean[koko*2][8];
+        int kerrottuKoko = koko * 2;
+        this.tiedostonTavut = new boolean[kerrottuKoko][8];
 
     }
 
@@ -72,6 +73,10 @@ public class Kirjoittaja {
         } catch (Exception e) {
             System.out.println("Osoitin: " + this.osoitin + " ja bitti " + this.bitti);
         }
+    }
+    
+    public boolean[][] getTavutaulukko(){
+        return this.tiedostonTavut;
     }
 
     /**
@@ -113,6 +118,9 @@ public class Kirjoittaja {
         }
     }
 
+    public int getBitti(){
+        return this.bitti;
+    }
     public int getOsoitin() {
         return this.osoitin;
     }
