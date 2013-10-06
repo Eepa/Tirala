@@ -101,12 +101,12 @@ public class Pakkaaja {
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-//        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
-//            if (this.uusienKoodienTaulukko[i] != null) {
-//                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
-//            }
-//
-//        }
+        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+            if (this.uusienKoodienTaulukko[i] != null) {
+                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
+            }
+
+        }
 
 
         this.kirjoittaja = new Kirjoittaja(this.uusienKoodienTaulukko, this.puu.getJuuri().getMaara());

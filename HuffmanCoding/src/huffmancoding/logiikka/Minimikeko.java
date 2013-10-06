@@ -89,6 +89,7 @@ public class Minimikeko {
      */
     public Node[] heapify(Node[] keko, int indeksi, int keonPituus) {
         
+        // Jos keossa on vain kaksi solmua
         if(keonPituus == 1){
             if(keko[0].getMaara() > keko[1].getMaara()){
                 Node apunode = keko[0];
@@ -97,7 +98,8 @@ public class Minimikeko {
                 return keko;
             }
         }
-
+        
+        // Muussa tapauksessa
         while ((this.vasenLapsi(indeksi)) <= keonPituus - 1) {
             int pienin = indeksi;
 
