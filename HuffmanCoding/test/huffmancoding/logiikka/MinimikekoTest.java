@@ -2,8 +2,8 @@ package huffmancoding.logiikka;
 
 import huffmancoding.koodaaja.Node;
 import java.util.Scanner;
-import org.junit.Before;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -61,20 +61,39 @@ public class MinimikekoTest {
     public void toimiikoOikealapsi() {
         assertEquals(12, this.minimikeko.oikeaLapsi(5));
     }
-     @Test
+
+    @Test
     public void toimiikoHeapify() {
         Node[] solmu = this.minimikeko.luoSolmut();
         for (int i = (solmu[256].getMaara() / 2) - 1; i >= 0; i--) {
             solmu = minimikeko.heapify(solmu, i, solmu[256].getMaara());
         }
-        boolean tosi = false;System.out.println(solmu[0].getTavu());
-        System.out.println(solmu[1].getTavu());
-        System.out.println(solmu[2].getTavu());
-        
-        if(solmu[0].getTavu() == 15 && solmu[1].getTavu() == 16 && solmu[2].getTavu() == 17){
+        boolean tosi = false;
+        if (solmu[0].getTavu() == 16 && solmu[1].getTavu() == 15 && solmu[2].getTavu() == 17) {
             tosi = true;
         }
 
         assertTrue(tosi);
+    }
+
+    @Test
+    public void toimiikoPienimmanPoistaminen() {
+        Node[] solmu = this.minimikeko.luoSolmut();
+        for (int i = (solmu[256].getMaara() / 2) - 1; i >= 0; i--) {
+            solmu = minimikeko.heapify(solmu, i, solmu[256].getMaara());
+        }
+        Node poistettu = this.minimikeko.poistaPienin(solmu);
+        assertEquals(16, poistettu.getTavu());
+    }
+
+    @Test
+    public void toimiikoSolmunLisaaminenKekoon() {
+        Node[] solmu = this.minimikeko.luoSolmut();
+        for (int i = (solmu[256].getMaara() / 2) - 1; i >= 0; i--) {
+            solmu = minimikeko.heapify(solmu, i, solmu[256].getMaara());
+        }
+        Node uusiSolmu = new Node(18, 1);
+        this.minimikeko.lisaaAlkioKekoon(solmu, uusiSolmu);
+        assertEquals(18, solmu[0].getTavu());
     }
 }

@@ -146,6 +146,10 @@ public class Pakkaaja {
         }
 
     }
+    
+    public Node[] getKeko(){
+        return this.keko;
+    }
 
     /**
      * Muodostaa Huffman koodauksen puun annetusta keosta.

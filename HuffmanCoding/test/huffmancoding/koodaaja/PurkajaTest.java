@@ -2,9 +2,9 @@ package huffmancoding.koodaaja;
 
 import huffmancoding.logiikka.Syotekasittelija;
 import java.util.Scanner;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Testaa luokkaa Purkaja.
@@ -28,5 +28,11 @@ public class PurkajaTest {
     @Test
     public void luotuPurkajaOlemassa() {
         assertTrue(this.purkaja != null);
+    }
+    
+    @Test
+    public void toimiikoTiedostonimenEtsinta(){
+        String tiedostonimi = this.purkaja.etsiTiedostonimi("pakattuKOKEILUtiedosto.pdf.ep");
+        assertEquals("KOKEILUtiedosto.pdf", tiedostonimi);
     }
 }

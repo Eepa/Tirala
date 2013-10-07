@@ -17,7 +17,9 @@ public class Numerokasittelija {
      * @param numero Numero, josta tehdään tavutaulukko.
      */
     public byte[] intToByteArray(int numero) {
-
+        if(numero > Integer.MAX_VALUE){
+            throw new IllegalArgumentException("Luku oli liian suuri: " + numero);
+        }
         byte[] taulukko = new byte[]{
             (byte) (numero >>> 24),
             (byte) (numero >>> 16),
