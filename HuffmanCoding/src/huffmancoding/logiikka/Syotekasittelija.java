@@ -230,8 +230,8 @@ public class Syotekasittelija {
      * @param tiedostonimi Alkuperäisen tiedoston nimi.
      */
     public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi, String tiedostopolku) {
-//         String osoite = tiedostopolku + tiedostonimi;
-        String osoite = tiedostonimi;
+         String osoite = tiedostopolku + tiedostonimi;
+//        String osoite = tiedostonimi;
 
         File file = new File(osoite);
 
