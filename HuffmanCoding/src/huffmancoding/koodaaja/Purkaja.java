@@ -80,22 +80,8 @@ public class Purkaja {
         this.pakkaaja.luoMinimikeko(frekvenssit);
         this.puu = this.pakkaaja.muodostaPuu();
 
-//        this.puu.tulostaAlkiotPreorder(this.puu.getJuuri());
-//        String[] uusienKoodienTaulukko = new String[256];
-//
-//        uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(uusienKoodienTaulukko, "", this.puu.getJuuri());
-//
-//        for (int i = 0; i < uusienKoodienTaulukko.length; i++) {
-//            if (uusienKoodienTaulukko[i] != null) {
-//                System.out.println("Tavun nimi: " + (i - 128) + " Uusi koodi: " + uusienKoodienTaulukko[i]);
-//            }
-//
-//        }
 
-
-
-
-        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(tiedostoTavutaulukkona);
+        boolean[] luettavatTavut = this.bittikasittelija.muodostaBittijonoPurkamiseen(tiedostoTavutaulukkona);
 
 
         byte[] tavut = this.muodostaTavutUudestaan(luettavatTavut);
@@ -123,7 +109,6 @@ public class Purkaja {
         while (tavulaskuri < this.puu.getJuuri().getMaara()) {
 
             if (solmu.getVasenLapsi() == null && solmu.getOikeaLapsi() == null) {
-//                System.out.println(solmu.getTavu());
 
                 byte tavu = (byte) solmu.getTavu();
                 tavut[tavulaskuri] = tavu;
@@ -147,12 +132,13 @@ public class Purkaja {
 
         }
 
-//        for (int j = 0; j < tavut.length; j++) {
-//            System.out.println(tavut[j]);
-//        }
 
         return tavut;
 
+    }
+    
+    public void setPuu(Tree puu){
+        this.puu = puu;
     }
 
     /**
@@ -163,9 +149,9 @@ public class Purkaja {
      * @return Palauttaa alkuperäisen tiedostonimen tai tyhjän merkkijonon.
      */
     public String etsiTiedostonimi(String tiedostopolku) {
-
+        String alkuosa = tiedostopolku.substring(0, 7);
         String tiedostonimi = "";
-        if (tiedostopolku.length() <= 7) {
+        if (!alkuosa.equals("pakattu")) {
             return "";
         }
         for (int i = 7; i < tiedostopolku.length() - 3; i++) {

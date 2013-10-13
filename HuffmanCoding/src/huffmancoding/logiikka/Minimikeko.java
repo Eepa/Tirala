@@ -41,7 +41,6 @@ public class Minimikeko {
                 Node uusiSolmu = new Node(i - 128, frekvenssit[i]);
                 solmut[paikka] = uusiSolmu;
                 solmut[256].muutaMaaraa(1);
-//                System.out.println("Solmuja lisatty: " + paikka + " keon koko " + solmut[256].getMaara());
                 paikka++;
             }
 

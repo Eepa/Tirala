@@ -40,7 +40,5 @@ public class HuffmanCoding {
             purkaja.kaynnistaPurku();
         }
 
-
-
     }
 }

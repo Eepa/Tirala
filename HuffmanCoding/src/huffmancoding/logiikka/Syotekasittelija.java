@@ -113,20 +113,12 @@ public class Syotekasittelija {
     public int[] luoTavuistaFrekvenssitaululukko(byte[] tavut) {
 
         int[] frekvenssit = new int[256];
-//        System.out.println("Tulostetaan tavut");
-//        for(int i = 0; i < tavut.length; i++){
-//            System.out.println(tavut[i]);
-//        }
-//        System.out.println("Tavutulostus loppui");
-
         for (byte tavu : tavut) {
 
             int arvo = tavu + 128;
 
-//            System.out.println("Vanha määrä: " + frekvenssit[arvo] + " Tavu oli: " + tavu);
             frekvenssit[arvo]++;
-//            System.out.println("Uusi määrä: " + frekvenssit[arvo]);
-//            System.out.println("");
+
         }
 
         return frekvenssit;

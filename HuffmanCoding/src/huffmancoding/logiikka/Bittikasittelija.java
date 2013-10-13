@@ -89,7 +89,7 @@ public class Bittikasittelija {
      * @return Palauttaa tiedoston bittiesityksen (true = 1, false = 0).
      */
 
-    public boolean[] muodostaLuettavatTavut(byte[] tavuja) {
+    public boolean[] muodostaBittijonoPurkamiseen(byte[] tavuja) {
 
         int pituus = tavuja.length - 1024;
         boolean[] luettavatTavut = new boolean[pituus * 8];

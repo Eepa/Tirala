@@ -77,7 +77,7 @@ public class BittikasittelijaTest {
         bittitavut[1] = tavukaksi;
         byte[] tavut = this.bittikasittelija.muunnaOikeiksiTavuiksi(bittitavut, 1);
 
-        boolean[] luettavatTavut = this.bittikasittelija.muodostaLuettavatTavut(tavut);
+        boolean[] luettavatTavut = this.bittikasittelija.muodostaBittijonoPurkamiseen(tavut);
 
         int numerolaskuri = 0;
         int[] numerot = new int[2];
