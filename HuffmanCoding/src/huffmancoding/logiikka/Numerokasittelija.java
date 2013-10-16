@@ -17,7 +17,7 @@ public class Numerokasittelija {
      * @param numero Numero, josta tehdään tavutaulukko.
      */
     public byte[] intToByteArray(int numero) {
-        if(numero > Integer.MAX_VALUE){
+        if (numero > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("Luku oli liian suuri: " + numero);
         }
         byte[] taulukko = new byte[]{
@@ -28,7 +28,6 @@ public class Numerokasittelija {
         };
 
         return taulukko;
-
     }
 
     /**
@@ -50,6 +49,7 @@ public class Numerokasittelija {
      * @return Palauttaa tiedoston, johon on lisätty frekvenssitaulukko.
      */
     public byte[] kirjoitaFrekvenssitaulukkoTiedostoon(int[] frekvenssit, byte[] tiedosto) {
+
         int laskuri = 0;
         for (int i = 0; i < frekvenssit.length; i++) {
 
@@ -76,7 +76,6 @@ public class Numerokasittelija {
             tiedosto[indeksi] = numero[i];
             indeksi++;
         }
-
 
         return tiedosto;
     }
@@ -111,6 +110,7 @@ public class Numerokasittelija {
      * @return Palauttaa numeron (4 tavua) tavutaulukkona.
      */
     public byte[] poimiNumeroTaulukosta(int indeksi, byte[] tavut) {
+        
         byte[] numero = new byte[4];
 
         for (int i = 0; i < 4; i++) {

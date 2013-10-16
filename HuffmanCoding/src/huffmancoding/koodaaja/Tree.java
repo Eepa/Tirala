@@ -31,7 +31,6 @@ public class Tree {
         return this.juuri;
     }
 
-
 //    /**
 //     * Tulostaa puun alkiot esijärjestyksessä.
 //     *
@@ -47,7 +46,6 @@ public class Tree {
 //            tulostaAlkiotPreorder(solmu.getOikeaLapsi());
 //        }
 //    }
-
     /**
      * Muodostaa uudet bittikoodit tavuille.
      *

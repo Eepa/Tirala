@@ -30,7 +30,6 @@ public class Bittikasittelija {
 
         }
         return bits;
-
     }
 
     /**
@@ -41,9 +40,11 @@ public class Bittikasittelija {
      * @return Palauttaa bittej‰ vastaavan tavun.
      */
     public int bitsToByte(boolean[] bits) {
+        
         if (bits == null || bits.length != 8) {
             throw new IllegalArgumentException("V‰‰r‰nlainen taulukko.");
         }
+        
         int data = 0;
 
         for (int i = 0; i < 8; i++) {
@@ -52,17 +53,17 @@ public class Bittikasittelija {
             }
         }
         return data;
-
-
     }
 
     /**
      * Muuntaa numeromuotoiset tavut oikeiksi Javan tavuiksi (v‰lill‰ -127-128).
      *
-     * @param numerotavut Numerotavut, jotka muutetaan byte-muotoon.
-     * @return Palauttaa numerotavuja vastaavat byte-tavut.
+     * @param tavut Bittimuotoiset tavut.
+     * @param osoitin Kertoo, miss‰ kohdassa tiedostoa ollaan.
+     * @return Palauttaa tavuja vastaavat byte-tavut.
      */
     public byte[] muunnaOikeiksiTavuiksi(boolean[][] tavut, int osoitin) {
+        
         int tavumaara = osoitin + 1;
         byte[] tavuja = new byte[tavumaara + 1024];
 
@@ -85,7 +86,7 @@ public class Bittikasittelija {
      * ne sitten yhteen boolean-taulukkoon lukemista varten. Taulukko vastaa
      * vanhan tiedoston bittiesityst‰.
      *
-     * @param numerotavut Numerotavut, joista bittiesitys muodostetaan.
+     * @param tavuja Tavut, joista bittiesitys muodostetaan.
      * @return Palauttaa tiedoston bittiesityksen (true = 1, false = 0).
      */
 

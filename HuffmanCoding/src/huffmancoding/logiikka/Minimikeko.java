@@ -66,7 +66,7 @@ public class Minimikeko {
      * @return Vasemman lapsen indeksi.
      */
     public int vasenLapsi(int indeksi) {
-        return 2 * indeksi+1;
+        return 2 * indeksi + 1;
     }
 
     /**
@@ -87,17 +87,17 @@ public class Minimikeko {
      * @return Palauttaa valmiin minimikeon.
      */
     public Node[] heapify(Node[] keko, int indeksi, int keonPituus) {
-        
+
         // Jos keossa on vain kaksi solmua
-        if(keonPituus == 1){
-            if(keko[0].getMaara() > keko[1].getMaara()){
+        if (keonPituus == 1) {
+            if (keko[0].getMaara() > keko[1].getMaara()) {
                 Node apunode = keko[0];
                 keko[0] = keko[1];
                 keko[1] = apunode;
                 return keko;
             }
         }
-        
+
         // Muussa tapauksessa
         while ((this.vasenLapsi(indeksi)) <= keonPituus - 1) {
             int pienin = indeksi;
@@ -131,8 +131,10 @@ public class Minimikeko {
      * @return Palauttaa viitten poistettuun alkioon.
      */
     public Node poistaPienin(Node[] keko) {
+
         Node pienin = keko[0];
-        if(keko[256].getMaara() == 0){
+
+        if (keko[256].getMaara() == 0) {
             keko[256].muutaMaaraa(-1);
             return pienin;
         }
@@ -153,6 +155,7 @@ public class Minimikeko {
      * @param uusiSolmu Solmu, joka lisätään kekoon.
      */
     public void lisaaAlkioKekoon(Node[] keko, Node uusiSolmu) {
+
         keko[256].muutaMaaraa(1);
         int indeksi = keko[256].getMaara();
 
@@ -160,6 +163,7 @@ public class Minimikeko {
             keko[indeksi] = keko[this.parent(indeksi)];
             indeksi = this.parent(indeksi);
         }
+
         keko[indeksi] = uusiSolmu;
     }
 }

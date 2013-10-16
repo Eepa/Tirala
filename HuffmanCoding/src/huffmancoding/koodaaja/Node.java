@@ -16,24 +16,21 @@ public class Node {
      * Kertoo, kuinka monta kertaa tavu esiintyy.
      */
     private int maara;
-    
     /**
      * Solmun vasen lapsi.
      */
-    
     private Node vasenLapsi;
-    
     /**
      * Solmun oikea lapsi.
      */
     private Node oikeaLapsi;
-    
+
     /**
      * Konstruktori alustaa solmun ilman lapsia.
+     *
      * @param tavu Kertoo, mit‰ tavua solmu kuvaa ("solmun nimi").
      * @param maara Kertoo kyseisen tavun esiintymiskertojen m‰‰r‰n.
      */
-
     public Node(int tavu, int maara) {
         this.tavu = tavu;
         this.maara = maara;
@@ -41,15 +38,15 @@ public class Node {
         this.vasenLapsi = null;
         this.oikeaLapsi = null;
     }
-    
+
     /**
      * Alustaa solmun, kun lapset tiedet‰‰n. K‰ytt‰‰ toista konstruktoria apuna.
+     *
      * @param tavu Kertoo, mit‰ tavua solmu kuvaa ("solmun nimi").
      * @param maara Kertoo kyseisen tavun esiintymiskertojen m‰‰r‰n.
      * @param vasenLapsi Solmun uusi vasen lapsi.
      * @param oikeaLapsi Solmun uusi oikea lapsi.
      */
-
     public Node(int tavu, int maara, Node vasenLapsi, Node oikeaLapsi) {
         this(tavu, maara);
 
@@ -69,12 +66,11 @@ public class Node {
         this.maara += muutos;
     }
 
-   
-    public Node getVasenLapsi(){
+    public Node getVasenLapsi() {
         return this.vasenLapsi;
     }
-    
-    public Node getOikeaLapsi(){
+
+    public Node getOikeaLapsi() {
         return this.oikeaLapsi;
     }
 }

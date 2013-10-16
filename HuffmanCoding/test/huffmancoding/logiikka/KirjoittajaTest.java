@@ -91,15 +91,15 @@ public class KirjoittajaTest {
     @Test
     public void muodostaaKoodinOikein() {
         byte[] tavut = new byte[2];
-        tavut[0] = (byte) (140-128);
-        tavut[1] = (byte) (142-128);
+        tavut[0] = (byte) (140 - 128);
+        tavut[1] = (byte) (142 - 128);
         boolean[][] bitit = this.kirjoittaja.muodostaUusiEsitys(tavut);
         String sana = "";
-        for(int i = 0; i < 1; i++){
-            for(int j = 0; j < 4; j++){
-                if(bitit[i][j]){
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (bitit[i][j]) {
                     sana += "1";
-                }else {
+                } else {
                     sana += "0";
                 }
             }

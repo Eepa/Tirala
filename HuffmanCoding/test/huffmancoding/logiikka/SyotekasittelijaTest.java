@@ -31,7 +31,7 @@ public class SyotekasittelijaTest {
         this.lukija = new Scanner("pakkaus");
         this.syotekasittelija = new Syotekasittelija(this.lukija);
         String teksti = this.syotekasittelija.toiminnonValinta();
-        assertEquals("pakkaus", teksti );
+        assertEquals("pakkaus", teksti);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class SyotekasittelijaTest {
         this.lukija = new Scanner("home/src/testi.pdf");
         this.syotekasittelija = new Syotekasittelija(this.lukija);
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
-        assertEquals("home/src/testi.pdf", teksti );
+        assertEquals("home/src/testi.pdf", teksti);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class SyotekasittelijaTest {
 
 
         String teksti = this.syotekasittelija.etsiTiedostonimi("home/src/testi.pdf");
-        assertEquals("testi.pdf" ,teksti );
+        assertEquals("testi.pdf", teksti);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class SyotekasittelijaTest {
 
 
         String teksti = this.syotekasittelija.etsiTiedostopolku("home/src/testi.pdf");
-        assertEquals("home/src/" ,teksti );
+        assertEquals("home/src/", teksti);
     }
 
     @Test
@@ -84,6 +84,6 @@ public class SyotekasittelijaTest {
         taulukko[1] = "src";
         taulukko[2] = "testi.pdf";
         String teksti = this.syotekasittelija.kasaaTiedostopolku(taulukko);
-        assertEquals("home/src/" ,teksti );
+        assertEquals("home/src/", teksti);
     }
 }

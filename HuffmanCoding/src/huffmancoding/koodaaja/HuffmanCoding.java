@@ -39,6 +39,5 @@ public class HuffmanCoding {
             Purkaja purkaja = new Purkaja(this.syotekasittelija);
             purkaja.kaynnistaPurku();
         }
-
     }
 }

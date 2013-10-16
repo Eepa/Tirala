@@ -50,12 +50,14 @@ public class Purkaja {
      */
     public void kaynnistaPurku() {
 
+        //Alustetaan muuttujia tiedoston nimeen ja polkuun liittyen ja tarkistetaan, 
+        //onko tiedosto olemassa.
 
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
         String haettuNimi = this.syotekasittelija.etsiTiedostonimi(tiedostopolku);
-        String tiedostonimi = this.etsiTiedostonimi(haettuNimi);
 
+        String tiedostonimi = this.etsiTiedostonimi(haettuNimi);
 
         if (tiedostonimi.isEmpty()) {
             System.out.println("\nAlkuperäistä tiedostonimeä ei löytynyt. Purkaminen keskeytettiin.");
@@ -65,7 +67,10 @@ public class Purkaja {
         System.out.println("\nAlkuperäinen tiedosto löydettiin. Tiedostonimi: " + tiedostonimi);
 
         String alkuperainenTiedostopolku = this.syotekasittelija.etsiTiedostopolku(tiedostopolku);
-
+        
+        
+        
+        //Luetaan pakattu tiedosto ja muodostetaan uudestaan uudet bittikoodit.
 
         byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
 
@@ -74,12 +79,14 @@ public class Purkaja {
             return;
         }
 
-
         int[] frekvenssit = numerokasittelija.muodostaFrekvenssitaulukkoUudestaan(tiedostoTavutaulukkona);
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
         this.puu = this.pakkaaja.muodostaPuu();
-
+        
+        
+        
+        //Muodostetaan uudestaan alkuperäisen tiedoston tavut ja kirjoitetaan alkuperäinen tiedosto.
 
         boolean[] luettavatTavut = this.bittikasittelija.muodostaBittijonoPurkamiseen(tiedostoTavutaulukkona);
 
@@ -132,12 +139,10 @@ public class Purkaja {
 
         }
 
-
         return tavut;
-
     }
-    
-    public void setPuu(Tree puu){
+
+    public void setPuu(Tree puu) {
         this.puu = puu;
     }
 
@@ -149,15 +154,17 @@ public class Purkaja {
      * @return Palauttaa alkuperäisen tiedostonimen tai tyhjän merkkijonon.
      */
     public String etsiTiedostonimi(String tiedostopolku) {
+        
         String alkuosa = tiedostopolku.substring(0, 7);
         String tiedostonimi = "";
+        
         if (!alkuosa.equals("pakattu")) {
             return "";
         }
+        
         for (int i = 7; i < tiedostopolku.length() - 3; i++) {
             tiedostonimi = tiedostonimi + tiedostopolku.charAt(i);
         }
-
 
         return tiedostonimi;
     }

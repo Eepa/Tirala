@@ -39,7 +39,6 @@ public class Kirjoittaja {
         this.osoitin = 0;
         int kerrottuKoko = koko * 2;
         this.tiedostonTavut = new boolean[kerrottuKoko][8];
-
     }
 
     /**
@@ -74,8 +73,8 @@ public class Kirjoittaja {
             System.out.println("Osoitin: " + this.osoitin + " ja bitti " + this.bitti);
         }
     }
-    
-    public boolean[][] getTavutaulukko(){
+
+    public boolean[][] getTavutaulukko() {
         return this.tiedostonTavut;
     }
 
@@ -118,15 +117,17 @@ public class Kirjoittaja {
         }
     }
 
-    public int getBitti(){
+    public int getBitti() {
         return this.bitti;
     }
+
     public int getOsoitin() {
         return this.osoitin;
     }
 
     /**
      * Muodostaa uuden bittimuotoisen esityksen alkuperäisen tiedoston tavuista.
+     *
      * @param alkuperaisenTiedostonTavut Tavut, joista uusi esitys muodostetaan.
      * @return Palauttaa bittimuotoisen esityksen.
      */

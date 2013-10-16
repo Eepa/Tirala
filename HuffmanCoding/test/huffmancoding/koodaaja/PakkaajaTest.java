@@ -79,12 +79,12 @@ public class PakkaajaTest {
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
         Tree puu = this.pakkaaja.muodostaPuu();
-        
+
         String sana = "-100015-10001617";
-        String uusiSana = "" + puu.getJuuri().getTavu() + puu.getJuuri().getVasenLapsi().getTavu() + 
-                puu.getJuuri().getOikeaLapsi().getTavu() + puu.getJuuri().getOikeaLapsi().getVasenLapsi().getTavu() +
-                puu.getJuuri().getOikeaLapsi().getOikeaLapsi().getTavu();
-        
+        String uusiSana = "" + puu.getJuuri().getTavu() + puu.getJuuri().getVasenLapsi().getTavu()
+                + puu.getJuuri().getOikeaLapsi().getTavu() + puu.getJuuri().getOikeaLapsi().getVasenLapsi().getTavu()
+                + puu.getJuuri().getOikeaLapsi().getOikeaLapsi().getTavu();
+
         assertEquals(sana, uusiSana);
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package huffmancoding.koodaaja;
 
 import static org.junit.Assert.*;
@@ -10,6 +6,7 @@ import org.junit.Test;
 
 /**
  * Testaa luokkaa Tree.
+ *
  * @author Eveliina
  */
 public class TreeTest {
@@ -27,18 +24,18 @@ public class TreeTest {
     public void luotuPuuOlemassa() {
         assertTrue(this.puu != null);
     }
-    
+
     @Test
-    public void palauttaaJuurenOikein(){
+    public void palauttaaJuurenOikein() {
         assertEquals(17, this.puu.getJuuri().getMaara());
     }
-    
+
     @Test
-    public void muodostaaUudetKoodit(){
+    public void muodostaaUudetKoodit() {
         String[] taulukko = new String[255];
         taulukko = this.puu.muodostaUudetKoodit(taulukko, "", this.puu.getJuuri());
-         boolean tosi = false;
-        if(taulukko[138].equals("0")&& taulukko[140].equals("00") && taulukko[142].equals("01") && taulukko[146].equals("1")){
+        boolean tosi = false;
+        if (taulukko[138].equals("0") && taulukko[140].equals("00") && taulukko[142].equals("01") && taulukko[146].equals("1")) {
             tosi = true;
         }
         assertTrue(tosi);

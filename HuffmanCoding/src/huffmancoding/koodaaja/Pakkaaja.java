@@ -72,6 +72,9 @@ public class Pakkaaja {
      */
     public void kaynnistaPakkaus() {
 
+        //Alustetaan muutujia tiedoston nimeen ja polkuun liittyen ja tehd‰‰n tarkastus,
+        //onko tiedostoa olemassa.
+
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
 
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);
@@ -84,27 +87,28 @@ public class Pakkaaja {
 
         String tiedostopolku = this.syotekasittelija.etsiTiedostopolku(teksti);
 
-        int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(tiedostonTavut);
+
+
+        //K‰sitell‰‰n uutta frekvenssitaulukkoa ja muodostetaan siit‰ uudet bittikoodit.
+
+        int[] frekvenssit = this.syotekasittelija.luoTavuistaFrekvenssitaululukko(this.tiedostonTavut);
 
         this.luoMinimikeko(frekvenssit);
-
 
         this.puu = this.muodostaPuu();
 
         this.uusienKoodienTaulukko = this.puu.muodostaUudetKoodit(this.uusienKoodienTaulukko, "", this.puu.getJuuri());
 
-        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
-            if (this.uusienKoodienTaulukko[i] != null) {
-                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
-            }
+        this.tulostaUudetKoodit();
 
-        }
 
+
+        //Muodostetaan uusien koodien avulla uusi esitys tiedostolle ja kirjoitetaan 
+        //se lopuksi tiedostoon.
 
         this.kirjoittaja = new Kirjoittaja(this.uusienKoodienTaulukko, this.puu.getJuuri().getMaara());
 
         boolean[][] tavut = this.kirjoittaja.muodostaUusiEsitys(this.tiedostonTavut);
-
 
         byte[] tavuja = this.bittikasittelija.muunnaOikeiksiTavuiksi(tavut, this.kirjoittaja.getOsoitin());
 
@@ -114,12 +118,30 @@ public class Pakkaaja {
         this.syotekasittelija.luoPakattuTiedosto(this.tiedostonimi, uudetTavut, tiedostopolku);
     }
 
+    /**
+     * Tarkistaa lˆytyikˆ tiedostoa annetun polun avulla. Jos pituus on 0 niin
+     * tiedostoa ei lˆytynyt.
+     *
+     * @param pituus Tiedoston pituus
+     * @return Palauttaa true, jos tiedostoa ei lˆytynyt, muuten false.
+     */
     public boolean tarkistaLoytyikoTiedosto(int pituus) {
         if (pituus == 0) {
             System.out.println("Tiedosto oli tyhj‰ tai sit‰ ei lˆytynyt. Pakattua tiedostoa ei luotu.");
             return true;
         }
         return false;
+    }
+
+    /**
+     * Tulostaa tavujen uudet koodit.
+     */
+    public void tulostaUudetKoodit() {
+        for (int i = 0; i < this.uusienKoodienTaulukko.length; i++) {
+            if (this.uusienKoodienTaulukko[i] != null) {
+                System.out.println("Tavun nimi: " + (i) + " Uusi koodi: " + this.uusienKoodienTaulukko[i]);
+            }
+        }
     }
 
     /**
@@ -138,8 +160,8 @@ public class Pakkaaja {
         }
 
     }
-    
-    public Node[] getKeko(){
+
+    public Node[] getKeko() {
         return this.keko;
     }
 
@@ -154,10 +176,8 @@ public class Pakkaaja {
 
         while (laskuri < lahtoarvo) {
 
-
             Node ensimmainenSolmu = this.minimikeko.poistaPienin(this.keko);
             laskuri++;
-
 
             Node toinenSolmu = this.minimikeko.poistaPienin(this.keko);
             laskuri++;
@@ -166,7 +186,6 @@ public class Pakkaaja {
 
             this.minimikeko.lisaaAlkioKekoon(this.keko, uusiParentSolmu);
             laskuri++;
-
 
         }
 

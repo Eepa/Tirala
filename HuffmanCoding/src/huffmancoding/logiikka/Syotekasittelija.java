@@ -44,7 +44,6 @@ public class Syotekasittelija {
 
             System.out.println("Syöte oli väärä.\n");
         }
-
     }
 
     /**
@@ -74,7 +73,6 @@ public class Syotekasittelija {
         File file = new File(polku);
 
         ByteArrayOutputStream byteArrayOutputStream;
-
 
         try {
 
@@ -134,7 +132,7 @@ public class Syotekasittelija {
 
         String[] osat;
         String merkki = "\\\\";
-       
+
         if (osoite.contains("/")) {
             merkki = "/";
             osat = osoite.split(merkki);
@@ -180,6 +178,7 @@ public class Syotekasittelija {
      * @return Palauttaa kokonaisen polun.
      */
     public String kasaaTiedostopolku(String[] osat) {
+        
         String polku = "";
         for (int i = 0; i < osat.length - 1; i++) {
             polku += osat[i] + "/";
@@ -211,7 +210,6 @@ public class Syotekasittelija {
             System.out.println("Pakkaaminen ei onnistunut!");
 
         }
-
     }
 
     /**
@@ -222,8 +220,7 @@ public class Syotekasittelija {
      * @param tiedostonimi Alkuperäisen tiedoston nimi.
      */
     public void luoPurettuTiedosto(byte[] tavut, String tiedostonimi, String tiedostopolku) {
-         String osoite = tiedostopolku + tiedostonimi;
-//        String osoite = tiedostonimi;
+        String osoite = tiedostopolku + tiedostonimi;
 
         File file = new File(osoite);
 
