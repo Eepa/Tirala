@@ -1,7 +1,10 @@
 Tirala
-bra
+
 ======
-===
+
+
+Tiralabra
+
 
 Huffman koodauksella toteutettu pakkausohjelma. 
 
