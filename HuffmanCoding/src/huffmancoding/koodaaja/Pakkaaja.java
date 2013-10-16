@@ -74,7 +74,10 @@ public class Pakkaaja {
 
         //Alustetaan muutujia tiedoston nimeen ja polkuun liittyen ja tehd‰‰n tarkastus,
         //onko tiedostoa olemassa.
-
+        System.out.println("Varoitus! Tiedosto pakataan samaan kansioon, jossa alkuper‰inen tiedosto sijaitsee. \n"
+                + "Pakkaaminen korvaa kaikki uuden pakatun tiedoston nimiset tiedostot t‰ss‰ kansiossa. \n"
+                + "Pakatun tiedoston nimi muodossa: pakattu[alkuper‰isenTiedostonNimi].ep");
+        
         String teksti = this.syotekasittelija.lueTiedostopolku("pakkaus");
 
         this.tiedostonTavut = this.syotekasittelija.muutaTiedostoTavutaulukoksi(teksti);

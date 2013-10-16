@@ -52,6 +52,9 @@ public class Purkaja {
 
         //Alustetaan muuttujia tiedoston nimeen ja polkuun liittyen ja tarkistetaan, 
         //onko tiedosto olemassa.
+        System.out.println("Varoitus! Tiedosto puretaan samaan kansioon, jossa pakattu tiedosto sijaitsee. \n"
+                + "Purkaminen korvaa kaikki alkuperäisen tiedoston nimiset tiedostot tässä kansiossa. \n"
+                + "Alkuperäinen tiedostonimi löytyy pakatun tiedoston nimestä: pakattu[alkuperäisenTiedostonNimi].ep");
 
         String tiedostopolku = this.syotekasittelija.lueTiedostopolku("purku");
 
@@ -67,9 +70,9 @@ public class Purkaja {
         System.out.println("\nAlkuperäinen tiedosto löydettiin. Tiedostonimi: " + tiedostonimi);
 
         String alkuperainenTiedostopolku = this.syotekasittelija.etsiTiedostopolku(tiedostopolku);
-        
-        
-        
+
+
+
         //Luetaan pakattu tiedosto ja muodostetaan uudestaan uudet bittikoodit.
 
         byte[] tiedostoTavutaulukkona = this.syotekasittelija.muutaTiedostoTavutaulukoksi(tiedostopolku);
@@ -83,9 +86,9 @@ public class Purkaja {
 
         this.pakkaaja.luoMinimikeko(frekvenssit);
         this.puu = this.pakkaaja.muodostaPuu();
-        
-        
-        
+
+
+
         //Muodostetaan uudestaan alkuperäisen tiedoston tavut ja kirjoitetaan alkuperäinen tiedosto.
 
         boolean[] luettavatTavut = this.bittikasittelija.muodostaBittijonoPurkamiseen(tiedostoTavutaulukkona);
@@ -154,14 +157,14 @@ public class Purkaja {
      * @return Palauttaa alkuperäisen tiedostonimen tai tyhjän merkkijonon.
      */
     public String etsiTiedostonimi(String tiedostopolku) {
-        
+
         String alkuosa = tiedostopolku.substring(0, 7);
         String tiedostonimi = "";
-        
+
         if (!alkuosa.equals("pakattu")) {
             return "";
         }
-        
+
         for (int i = 7; i < tiedostopolku.length() - 3; i++) {
             tiedostonimi = tiedostonimi + tiedostopolku.charAt(i);
         }

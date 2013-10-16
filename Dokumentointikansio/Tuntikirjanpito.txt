@@ -59,3 +59,9 @@ Refaktorointia ja testeja.
 
 su 13.10.2013, 3h
 Dokumentaatiota ja refaktorointia.
+
+ti 15.10.2013, 1h
+Dokumentaation parantelua.
+
+ke 16.10.2013, 2h
+Viimeistelya ja testailua.
