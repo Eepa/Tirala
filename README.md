@@ -24,3 +24,5 @@ Esimerkkisyöte pakkaukseen voisi olla (oletetaan että testi.txt -tiedosto on ole
 
 Esimerkkisyöte purkamiseen voisi olla (oletetaan että pakattu tiedosto pakattutesti.txt.ep on olemassa): 
 ”purku[enter]HuffmanCoding\src\pakattutesti.txt.ep[enter]”.
+
+[enter] tarkoittaa enter-napin painamista.
