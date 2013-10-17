@@ -65,3 +65,6 @@ Dokumentaation parantelua.
 
 ke 16.10.2013, 2h
 Viimeistelya ja testailua.
+
+to 17.10.2013, 1h
+Loppuviimeistely ja palautus.
